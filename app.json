@@ -37,6 +37,12 @@
             "useFrameworks": "static"
           }
         }
+      ],
+      [
+        "expo-font",
+        {
+          "fonts": ["./assets/fonts/Iceland-Regular.ttf"]
+        }
       ]
     ],
     "jsEngine": "hermes",

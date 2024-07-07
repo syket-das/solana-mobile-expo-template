@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
 import React, { useEffect } from 'react';
 import useHomeStore from '../../store/homeStore';
+import { globalStyles } from '../../styles/globalStyles';
 
 const Lifeline = () => {
   const {
@@ -10,18 +11,9 @@ const Lifeline = () => {
     lifeline,
     maxLifeline,
     decreaseLifeline,
-    startLifelineRegen,
-    stopLifelineRegen,
+    increaseLifeline,
     mode,
   }: any = useHomeStore((state) => state);
-
-  useEffect(() => {
-    startLifelineRegen();
-
-    return () => {
-      stopLifelineRegen();
-    };
-  }, [startLifelineRegen, stopLifelineRegen]);
 
   return (
     <>
@@ -35,14 +27,27 @@ const Lifeline = () => {
           marginTop: 10,
         }}
       >
-        <Text
-          style={{
-            color: '#fff',
-            fontSize: 20,
-          }}
-        >
-          {lifeline} / {maxLifeline}
-        </Text>
+        {mode === 'game' ? (
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 20,
+              ...globalStyles.globalFont,
+            }}
+          >
+            {lifeline} / {maxLifeline}
+          </Text>
+        ) : mode === 'boss' ? (
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 20,
+              ...globalStyles.globalFont,
+            }}
+          >
+            ∞ / ∞
+          </Text>
+        ) : null}
         <Image
           source={require('../../assets/img/home/eb.png')}
           style={{ width: 40, height: 30 }}

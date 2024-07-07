@@ -22,6 +22,8 @@ import EnergyCapacity from '../components/fuel/EnergyCapacity';
 import FeulSpeed from '../components/fuel/FeulSpeed';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 import CoinContainer from '../components/global/CoinContainer';
+import { globalStyles } from '../styles/globalStyles';
+import { Ionicons } from '@expo/vector-icons';
 const FuelScreen = () => {
   const { points }: any = useHomeStore((state) => state);
 
@@ -93,7 +95,14 @@ const FuelScreen = () => {
                     style={{ width: 40, height: 40 }}
                   />
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        ...globalStyles.globalFont,
+                        fontSize: 18,
+                      }}
+                    >
                       FULL CHARGE
                     </Text>
                     <View
@@ -105,11 +114,22 @@ const FuelScreen = () => {
                       }}
                     >
                       <Text
-                        style={{ color: '#fff', marginLeft: 10, fontSize: 12 }}
+                        style={{
+                          color: '#fff',
+                          marginLeft: 10,
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
                       >
                         21/22
                       </Text>
-                      <Text style={{ color: '#6CF926', marginRight: 10 }}>
+                      <Text
+                        style={{
+                          color: '#6CF926',
+                          marginRight: 10,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
                         00:14:36
                       </Text>
                     </View>
@@ -143,11 +163,23 @@ const FuelScreen = () => {
                     style={{ width: 40, height: 40 }}
                   />
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        ...globalStyles.globalFont,
+                        fontSize: 18,
+                      }}
+                    >
                       LUMIK TAPER
                     </Text>
                     <Text
-                      style={{ color: '#fff', marginLeft: 10, fontSize: 12 }}
+                      style={{
+                        color: '#fff',
+                        marginLeft: 10,
+                        fontSize: 12,
+                        ...globalStyles.globalFont,
+                      }}
                     >
                       1/1
                     </Text>
@@ -200,7 +232,14 @@ const FuelScreen = () => {
                     style={{ width: 40, height: 40 }}
                   />
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        ...globalStyles.globalFont,
+                        fontSize: 18,
+                      }}
+                    >
                       MULTIPLIER{' '}
                     </Text>
                     <View
@@ -216,14 +255,35 @@ const FuelScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
-                      <Text style={{ color: '#6CF926', fontSize: 12 }}>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#6CF926',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
                         | LVL 1
                       </Text>
                     </View>
                   </View>
                 </View>
-                <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text>
+                <Ionicons
+                  name="chevron-forward"
+                  size={16}
+                  color="#6CF926"
+                  style={{
+                    marginRight: 10,
+                  }}
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -252,7 +312,14 @@ const FuelScreen = () => {
                     style={{ width: 40, height: 40 }}
                   />
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        ...globalStyles.globalFont,
+                        fontSize: 18,
+                      }}
+                    >
                       ENERGY CAPACITY
                     </Text>
                     <View
@@ -268,14 +335,35 @@ const FuelScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
-                      <Text style={{ color: '#6CF926', fontSize: 12 }}>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#6CF926',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
                         | LVL 1
                       </Text>
                     </View>
                   </View>
                 </View>
-                <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text>
+                <Ionicons
+                  name="chevron-forward"
+                  size={16}
+                  color="#6CF926"
+                  style={{
+                    marginRight: 10,
+                  }}
+                />
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -304,7 +392,14 @@ const FuelScreen = () => {
                     style={{ width: 40, height: 40 }}
                   />
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        ...globalStyles.globalFont,
+                        fontSize: 18,
+                      }}
+                    >
                       FUEL SPEED
                     </Text>
                     <View
@@ -320,14 +415,35 @@ const FuelScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
-                      <Text style={{ color: '#6CF926', fontSize: 12 }}>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#6CF926',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
                         | LVL 1
                       </Text>
                     </View>
                   </View>
                 </View>
-                <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text>
+                <Ionicons
+                  name="chevron-forward"
+                  size={16}
+                  color="#6CF926"
+                  style={{
+                    marginRight: 10,
+                  }}
+                />
               </TouchableOpacity>
             </View>
           </View>
@@ -371,8 +487,8 @@ const styles = StyleSheet.create({
   },
 
   titleText: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    fontSize: 24,
     color: '#6CF926',
+    ...globalStyles.globalFont,
   },
 });

@@ -27,6 +27,7 @@ import DailyTaskScreen from '../screens/DailyTaskScreen';
 import Web3PassScreen from '../screens/Web3PassScreen';
 import RanksScreen from '../screens/RanksScreen';
 import SagaScreen from '../screens/SagaScreen';
+import TeamScreen from '../screens/TeamScreen';
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -52,6 +53,7 @@ type RootStackParamList = {
   Web3Pass: undefined;
   Ranks: undefined;
   Saga: undefined;
+  Team: undefined;
   // 🔥 Your screens go here
 };
 
@@ -110,6 +112,11 @@ const AppStack = () => {
       <Stack.Screen
         name="Saga"
         component={SagaScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Team"
+        component={TeamScreen}
         options={{ headerShown: false }}
       />
 

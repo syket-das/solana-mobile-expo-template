@@ -30,6 +30,8 @@
     "expo-clipboard": "~5.0.1",
     "expo-crypto": "~12.8.1",
     "expo-dev-client": "~3.3.12",
+    "expo-font": "~11.10.3",
+    "expo-splash-screen": "~0.26.5",
     "expo-status-bar": "~1.11.1",
     "expo-system-ui": "~2.9.4",
     "lodash": "^4.17.21",

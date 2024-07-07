@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import {
   View,
   StyleSheet,
@@ -12,26 +12,16 @@ import useAuthStore from '../../store/authStore';
 
 const GameCoin = () => {
   const {
-    id,
     points,
-    setPoints,
     increasePoints,
     lifeline,
     decreaseLifeline,
-    startLifelineRegen,
-    stopLifelineRegen,
+    maxLifeline,
     mode,
-    fetchPointsFromServer,
-    updatePointsOnServer,
-  }: any = useHomeStore((state) => state);
+    increaseLifeline,
+  } = useHomeStore((state) => state);
 
   const { user } = useAuthStore((state) => state);
-
-  const userId = user.id;
-
-  useEffect(() => {
-    fetchPointsFromServer(userId);
-  }, [fetchPointsFromServer, userId]);
 
   const animations = useRef([]).current;
   const [tiltX] = useState(new Animated.Value(0));
@@ -74,12 +64,6 @@ const GameCoin = () => {
         animations.shift(); // Remove the animation once it finishes
       });
     });
-
-    // Update points on the server with debounce
-    updatePointsOnServer({
-      id,
-      points: points + 1,
-    });
   };
 
   const handlePressOut = () => {
@@ -97,11 +81,14 @@ const GameCoin = () => {
   };
 
   useEffect(() => {
-    startLifelineRegen();
-    return () => {
-      stopLifelineRegen();
-    };
-  }, [startLifelineRegen, stopLifelineRegen]);
+    const interval = setInterval(() => {
+      if (lifeline < maxLifeline) {
+        increaseLifeline();
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [lifeline, points]);
 
   return (
     <View style={styles.container}>

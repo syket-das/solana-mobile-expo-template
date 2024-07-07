@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import CoinContainer from '../components/global/CoinContainer';
 import BottomTabNav from '../components/global/BottomTabNav';
+import { globalStyles } from '../styles/globalStyles';
 
 const JoinSocialsScreen = () => {
   return (
@@ -37,10 +38,23 @@ const JoinSocialsScreen = () => {
             marginTop: 20,
           }}
         >
-          <Text style={{ color: '#52F81A', fontSize: 20 }}>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 24,
+              ...globalStyles.globalFont,
+            }}
+          >
             JOIN OUR SOCIALS
           </Text>
-          <Text style={{ color: '#fff', fontSize: 12, marginTop: 10 }}>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 16,
+              ...globalStyles.globalFont,
+              marginTop: 10,
+            }}
+          >
             To be eligible for airdrop distribution, joining our social media
             platforms is required. We regularly share important updates on these
             channels. Complete all the tasks below [Join Socials] to receive
@@ -72,7 +86,14 @@ const JoinSocialsScreen = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   LUMIK POINT REWARDS{' '}
                 </Text>
                 <View
@@ -83,13 +104,28 @@ const JoinSocialsScreen = () => {
                     marginLeft: 10,
                   }}
                 >
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500
+                  </Text>
                 </View>
               </View>
             </View>
           </TouchableOpacity>
 
-          <Text style={{ color: '#52F81A', fontSize: 20, marginTop: 20 }}>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 24,
+              marginTop: 20,
+              ...globalStyles.globalFont,
+            }}
+          >
             YOUR TASKS'S
           </Text>
 
@@ -127,7 +163,14 @@ const JoinSocialsScreen = () => {
                   }}
                 >
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        fontSize: 18,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
                       JOIN TELEGRAM CHANNEL
                     </Text>
                     <View
@@ -143,7 +186,15 @@ const JoinSocialsScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 16,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -162,7 +213,15 @@ const JoinSocialsScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>GO</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      GO
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {}}
@@ -177,7 +236,15 @@ const JoinSocialsScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>CHECK</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      CHECK
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -209,7 +276,14 @@ const JoinSocialsScreen = () => {
                   }}
                 >
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        fontSize: 18,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
                       JOIN TELEGRAM CHAT
                     </Text>
                     <View
@@ -225,7 +299,15 @@ const JoinSocialsScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 16,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -244,7 +326,15 @@ const JoinSocialsScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>GO</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      GO
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {}}
@@ -259,7 +349,15 @@ const JoinSocialsScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>CHECK</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      CHECK
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>

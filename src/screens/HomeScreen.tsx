@@ -33,25 +33,30 @@ import useAuthStore from '../store/authStore';
 import useReferralStore from '../store/referralStore.ts';
 import Lifeline from '../components/home/Lifeline';
 import { alertAndLog } from '../utils/alertAndLog';
+import { globalStyles } from '../styles/globalStyles';
+import LudoModeModalComponent from '../components/home/LudoModalComponent';
 
 const HomeScreen = () => {
   const navigation = useNavigation();
   const isFocused = useIsFocused();
 
   const { user }: any = useAuthStore((state) => state);
-  const {
-    referral,
-    createReferral,
-    error: referralError,
-  }: any = useReferralStore((state) => state);
+  const { error: referralError }: any = useReferralStore((state) => state);
+  const { mode }: any = useHomeStore((state) => state);
 
   const [code, setCode] = useState('');
 
   const bottomSheetRef = useRef<BottomSheet>(null);
   const modeBottomSheetRef = useRef<BottomSheet>(null);
+  const ludoBottomSheetRef = useRef<BottomSheet>(null);
 
   const handleOpenPress = useCallback(
     () => bottomSheetRef.current?.expand(),
+    []
+  );
+
+  const handleClosePress = useCallback(
+    () => bottomSheetRef.current?.close(),
     []
   );
 
@@ -69,14 +74,11 @@ const HomeScreen = () => {
 
   const submitReferral = async () => {
     try {
-      await createReferral(user.id, code);
-
-      if (referralError) {
-        alertAndLog(referralError, referralError);
-        return;
+      if (!code) {
+        return alertAndLog('Error', 'Please enter a referral code');
       }
 
-      navigation.navigate('Auth');
+      handleClosePress();
     } catch (error) {}
   };
 
@@ -100,26 +102,52 @@ const HomeScreen = () => {
           />
           <CoinContainer />
           <GameCoin />
-          <ImageBackground
-            source={require('../assets/img/auth-bg.png')}
-            style={{
-              width: '100%',
-              height: 50,
-              marginTop: 10,
-              justifyContent: 'center',
-              flexDirection: 'row',
-              columnGap: 20,
-              alignItems: 'center',
-            }}
-          >
-            <Image
-              source={require('../assets/img/home/rock.png')}
-              style={{ width: 40, height: 40 }}
-            />
-            <Text style={{ color: '#fff' }}>ROCK</Text>
-          </ImageBackground>
+          {mode === 'game' && (
+            <ImageBackground
+              source={require('../assets/img/auth-bg.png')}
+              style={{
+                width: '100%',
+                marginTop: 10,
+                justifyContent: 'center',
+                flexDirection: 'row',
+                columnGap: 10,
+                alignItems: 'center',
+                paddingVertical: 5,
+              }}
+            >
+              <Image
+                source={require('../assets/img/home/rock.png')}
+                style={{ width: 40, height: 40 }}
+              />
+              <Text
+                style={{
+                  color: '#fff',
+                  ...globalStyles.globalFont,
+                  fontSize: 20,
+                }}
+              >
+                ROCK
+              </Text>
+            </ImageBackground>
+          )}
+          {mode === 'boss' && (
+            <Text
+              style={{
+                color: '#FFCC00',
+                ...globalStyles.globalFont,
+                alignSelf: 'center',
+                fontSize: 20,
+                marginBottom: 20,
+              }}
+            >
+              10:00:00
+            </Text>
+          )}
 
-          <Modes bottomSheetRef={modeBottomSheetRef} />
+          <Modes
+            bottomSheetRef={modeBottomSheetRef}
+            ludoBottomSheetRef={ludoBottomSheetRef}
+          />
           <Lifeline />
 
           <BottomTabNav />
@@ -130,11 +158,31 @@ const HomeScreen = () => {
                 alignSelf: 'center',
               }}
             >
+              <View
+                style={{
+                  alignSelf: 'center',
+                  marginBottom: 20,
+                  padding: 0,
+                  backgroundColor: '#1E3B10',
+                  borderRadius: 10,
+                }}
+              >
+                <Image
+                  source={require('../assets/img/home/referral-code.png')}
+                  style={{
+                    width: 80,
+                    height: 80,
+                  }}
+                />
+              </View>
+
               <Text
                 style={{
                   fontSize: 24,
                   fontWeight: '600',
                   color: '#6CF926',
+                  ...globalStyles.globalFont,
+                  alignSelf: 'center',
                 }}
               >
                 ENTER YOUR INVITE CODE
@@ -145,6 +193,9 @@ const HomeScreen = () => {
                   maxWidth: '80%',
                   textAlign: 'center',
                   marginTop: 10,
+                  fontSize: 18,
+                  lineHeight: 20,
+                  ...globalStyles.globalFont,
                 }}
               >
                 Please enter your invite code to continue and play the game. An
@@ -160,6 +211,8 @@ const HomeScreen = () => {
                   backgroundColor: '#383C1C',
                   width: '80%',
                   borderRadius: 10,
+                  borderColor: '#FFCC00',
+                  borderWidth: 1,
                 }}
               >
                 <TextInput
@@ -170,6 +223,7 @@ const HomeScreen = () => {
                     borderRadius: 10,
                     flex: 1,
                     color: '#fff',
+                    ...globalStyles.globalFont,
                   }}
                   value={code}
                   onChangeText={(text) => setCode(text)}
@@ -177,8 +231,10 @@ const HomeScreen = () => {
                 <TouchableHighlight
                   onPress={submitReferral}
                   style={{
-                    backgroundColor: '#EEBF01',
-                    borderRadius: 10,
+                    backgroundColor: '#FFCC00',
+                    // borderRadius: 10,
+                    borderTopRightRadius: 10,
+                    borderBottomRightRadius: 10,
                     height: '100%',
                     alignItems: 'center',
                   }}
@@ -188,11 +244,12 @@ const HomeScreen = () => {
                       color: '#000',
                       padding: 10,
                       alignItems: 'center',
-                      marginTop: 5,
+                      marginTop: 8,
                       fontWeight: '600',
+                      ...globalStyles.globalFont,
                     }}
                   >
-                    SUBMIT
+                    CONTINUE
                   </Text>
                 </TouchableHighlight>
               </View>
@@ -210,6 +267,10 @@ const HomeScreen = () => {
           </CustomBottomSheet>
           <CustomBottomSheet ref={modeBottomSheetRef} closable>
             <BossModeModalContent />
+          </CustomBottomSheet>
+
+          <CustomBottomSheet ref={ludoBottomSheetRef} closable>
+            <LudoModeModalComponent />
           </CustomBottomSheet>
         </ImageBackground>
       </View>

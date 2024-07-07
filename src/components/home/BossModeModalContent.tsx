@@ -1,12 +1,7 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import useHomeStore from '../../store/homeStore';
+import { globalStyles } from '../../styles/globalStyles';
 
 const BossModeModalContent = () => {
   const [isVerified, setIsVerified] = useState(false);
@@ -18,7 +13,7 @@ const BossModeModalContent = () => {
         alignItems: 'center',
       }}
     >
-      <TouchableHighlight onPress={() => console.log('rock')}>
+      <View>
         <View>
           <View style={styles.gameBtn}>
             <Image
@@ -27,14 +22,14 @@ const BossModeModalContent = () => {
             />
           </View>
         </View>
-      </TouchableHighlight>
+      </View>
       <Text
         style={{
           color: '#6CF926',
           textAlign: 'center',
           marginTop: 10,
-          fontSize: 20,
-          fontWeight: 'bold',
+          fontSize: 24,
+          ...globalStyles.globalFont,
         }}
       >
         BOSS MODE
@@ -46,6 +41,8 @@ const BossModeModalContent = () => {
           marginTop: 10,
           fontSize: 16,
           maxWidth: 300,
+          ...globalStyles.globalFont,
+          lineHeight: 20,
         }}
       >
         Battery draining so fast right? Want it to last for 10 hours while
@@ -61,29 +58,53 @@ const BossModeModalContent = () => {
         }}
       >
         {!isVerified && (
-          <TouchableHighlight onPress={() => console.log('rock')}>
+          <TouchableOpacity onPress={() => console.log('rock')}>
             <View style={styles.adBtn}>
-              <Text style={{ color: '#fff', fontWeight: 'bold' }}>GO</Text>
+              <Text
+                style={{
+                  color: '#fff',
+                  ...globalStyles.globalFont,
+                  fontSize: 20,
+                }}
+              >
+                GO
+              </Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
         {!isVerified && (
-          <TouchableHighlight onPress={() => setIsVerified(true)}>
+          <TouchableOpacity onPress={() => setIsVerified(true)}>
             <View style={styles.adBtn}>
-              <Text style={{ color: '#fff', fontWeight: 'bold' }}>CHECK</Text>
+              <Text
+                style={{
+                  color: '#fff',
+                  ...globalStyles.globalFont,
+                  fontSize: 20,
+                }}
+              >
+                CHECK
+              </Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
         {isVerified && (
-          <TouchableHighlight
+          <TouchableOpacity
             onPress={() => {
               setModeToBoss();
             }}
           >
             <View style={styles.adBtn}>
-              <Text style={{ color: '#fff', fontWeight: 'bold' }}>START</Text>
+              <Text
+                style={{
+                  color: '#fff',
+                  ...globalStyles.globalFont,
+                  fontSize: 20,
+                }}
+              >
+                START
+              </Text>
             </View>
-          </TouchableHighlight>
+          </TouchableOpacity>
         )}
       </View>
     </View>

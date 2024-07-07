@@ -8,3 +8,4 @@ export * from './DailyTaskScreen';
 export * from './Web3PassScreen';
 export * from './RanksScreen';
 export * from './SagaScreen';
+export * from './TeamScreen';

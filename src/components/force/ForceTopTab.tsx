@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { globalStyles } from '../../styles/globalStyles';
 
 const ForceTopTab = () => {
   const navigation = useNavigation();
@@ -43,9 +44,18 @@ const ForceTopTab = () => {
             alignItems: 'center',
             height: 30,
             borderRadius: 5,
+            flex: 1,
           }}
         >
-          <Text style={{ color: '#52F81A', fontWeight: 'bold' }}>TASK</Text>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 18,
+              ...globalStyles.globalFont,
+            }}
+          >
+            TASK
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setSelected('leagues')}
@@ -56,9 +66,18 @@ const ForceTopTab = () => {
             alignItems: 'center',
             height: 30,
             borderRadius: 5,
+            flex: 1,
           }}
         >
-          <Text style={{ color: '#52F81A', fontWeight: 'bold' }}>LEAGUES</Text>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 18,
+              ...globalStyles.globalFont,
+            }}
+          >
+            LEAGUES
+          </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -70,9 +89,18 @@ const ForceTopTab = () => {
             alignItems: 'center',
             height: 30,
             borderRadius: 5,
+            flex: 1,
           }}
         >
-          <Text style={{ color: '#52F81A', fontWeight: 'bold' }}>TEAM</Text>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 18,
+              ...globalStyles.globalFont,
+            }}
+          >
+            TEAM
+          </Text>
         </TouchableOpacity>
       </View>
 
@@ -112,7 +140,14 @@ const ForceTopTab = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   JOIN OUR SOCIALS
                 </Text>
                 <View
@@ -128,14 +163,22 @@ const ForceTopTab = () => {
                     style={{ width: 20, height: 20 }}
                   />
 
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
+                  </Text>
                 </View>
               </View>
             </View>
             {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
             <Ionicons
               name="chevron-forward"
-              size={24}
+              size={20}
               color="#6CF926"
               style={{ marginRight: 10 }}
             />
@@ -167,7 +210,14 @@ const ForceTopTab = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   WEB3.0 PASS
                 </Text>
                 <View
@@ -183,14 +233,22 @@ const ForceTopTab = () => {
                     style={{ width: 20, height: 20 }}
                   />
 
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
+                  </Text>
                 </View>
               </View>
             </View>
             {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
             <Ionicons
               name="chevron-forward"
-              size={24}
+              size={20}
               color="#6CF926"
               style={{ marginRight: 10 }}
             />
@@ -222,7 +280,14 @@ const ForceTopTab = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   DAILY TASK
                 </Text>
                 <View
@@ -238,14 +303,22 @@ const ForceTopTab = () => {
                     style={{ width: 20, height: 20 }}
                   />
 
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
+                  </Text>
                 </View>
               </View>
             </View>
             {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
             <Ionicons
               name="chevron-forward"
-              size={24}
+              size={20}
               color="#6CF926"
               style={{ marginRight: 10 }}
             />
@@ -290,7 +363,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     ROCK{' '}
                   </Text>
                   <View
@@ -306,7 +386,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -323,7 +411,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}
@@ -380,7 +476,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     WOOD{' '}
                   </Text>
                   <View
@@ -396,7 +499,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -413,7 +524,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}
@@ -470,7 +589,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     BRONZE{' '}
                   </Text>
                   <View
@@ -486,7 +612,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -503,7 +637,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}
@@ -560,7 +702,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     SILVER{' '}
                   </Text>
                   <View
@@ -576,7 +725,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -593,7 +750,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}
@@ -650,7 +815,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     GOLD{' '}
                   </Text>
                   <View
@@ -666,7 +838,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -683,7 +863,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}
@@ -740,7 +928,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     PLATINUM{' '}
                   </Text>
                   <View
@@ -756,7 +951,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -773,7 +976,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}
@@ -840,7 +1051,14 @@ const ForceTopTab = () => {
                   style={{ width: 40, height: 40 }}
                 />
                 <View>
-                  <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      marginLeft: 10,
+                      fontSize: 18,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     INVITE 1
                   </Text>
                   <View
@@ -856,7 +1074,15 @@ const ForceTopTab = () => {
                       style={{ width: 20, height: 20 }}
                     />
 
-                    <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                    <Text
+                      style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      500
+                    </Text>
                   </View>
                 </View>
               </View>
@@ -873,7 +1099,15 @@ const ForceTopTab = () => {
                   paddingVertical: 5,
                 }}
               >
-                <Text style={{ color: '#6CF926' }}>CLAIM</Text>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  CLAIM
+                </Text>
               </TouchableOpacity>
             </View>
             {/* progress bar */}

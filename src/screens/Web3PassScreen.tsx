@@ -10,6 +10,7 @@ import {
 import React from 'react';
 import CoinContainer from '../components/global/CoinContainer';
 import BottomTabNav from '../components/global/BottomTabNav';
+import { globalStyles } from '../styles/globalStyles';
 
 const Web3PassScreen = () => {
   return (
@@ -37,8 +38,23 @@ const Web3PassScreen = () => {
             marginTop: 20,
           }}
         >
-          <Text style={{ color: '#52F81A', fontSize: 20 }}>WEB3 PASS</Text>
-          <Text style={{ color: '#fff', fontSize: 12, marginTop: 10 }}>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 24,
+              ...globalStyles.globalFont,
+            }}
+          >
+            WEB3 PASS
+          </Text>
+          <Text
+            style={{
+              color: '#fff',
+              fontSize: 18,
+              marginTop: 10,
+              ...globalStyles.globalFont,
+            }}
+          >
             We assume you've already connected your SOLANA wallet upon logging
             in. To boost your chances of receiving the $INA token airdrop. We
             recommend Minting or Buying Azameina NFT. This NFT is a P2E pass,
@@ -71,7 +87,14 @@ const Web3PassScreen = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   LUMIK POINT REWARDS{' '}
                 </Text>
                 <View
@@ -82,7 +105,15 @@ const Web3PassScreen = () => {
                     marginLeft: 10,
                   }}
                 >
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500
+                  </Text>
                 </View>
               </View>
             </View>
@@ -126,7 +157,14 @@ const Web3PassScreen = () => {
                   }}
                 >
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        fontSize: 18,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
                       CONNECT SOLANA WALLET
                     </Text>
                     <View
@@ -142,7 +180,15 @@ const Web3PassScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 16,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -161,7 +207,15 @@ const Web3PassScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>GO</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      GO
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {}}
@@ -176,7 +230,15 @@ const Web3PassScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>CHECK</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      CHECK
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -208,7 +270,14 @@ const Web3PassScreen = () => {
                   }}
                 >
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        fontSize: 18,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
                       BUY AZAMEINA NFT{' '}
                     </Text>
                     <View
@@ -224,7 +293,15 @@ const Web3PassScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 16,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -243,7 +320,15 @@ const Web3PassScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>GO</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      GO
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {}}
@@ -258,7 +343,15 @@ const Web3PassScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>CHECK</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      CHECK
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -290,7 +383,14 @@ const Web3PassScreen = () => {
                   }}
                 >
                   <View>
-                    <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        fontSize: 18,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
                       BUY LUMIK TAPPER NFT{' '}
                     </Text>
                     <View
@@ -306,7 +406,15 @@ const Web3PassScreen = () => {
                         style={{ width: 20, height: 20 }}
                       />
 
-                      <Text style={{ color: '#fff', fontSize: 12 }}>500</Text>
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 16,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -325,7 +433,15 @@ const Web3PassScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>GO</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      GO
+                    </Text>
                   </TouchableOpacity>
                   <TouchableOpacity
                     onPress={() => {}}
@@ -340,7 +456,15 @@ const Web3PassScreen = () => {
                       paddingVertical: 5,
                     }}
                   >
-                    <Text style={{ color: '#6CF926' }}>CHECK</Text>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        fontSize: 16,
+                        ...globalStyles.globalFont,
+                      }}
+                    >
+                      CHECK
+                    </Text>
                   </TouchableOpacity>
                 </View>
               </View>

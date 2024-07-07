@@ -11,6 +11,7 @@ import CoinContainer from '../components/global/CoinContainer';
 import BottomTabNav from '../components/global/BottomTabNav';
 import ForceTopTab from '../components/force/ForceTopTab';
 import RanksTopTab from '../components/ranks/RanksTopTab';
+import { globalStyles } from '../styles/globalStyles';
 
 const RanksScreen = () => {
   return (
@@ -34,9 +35,10 @@ const RanksScreen = () => {
         <Text
           style={{
             color: '#52F81A',
-            fontSize: 20,
+            fontSize: 24,
             marginTop: 20,
             marginHorizontal: 20,
+            ...globalStyles.globalFont,
           }}
         >
           GAME STATS{' '}
@@ -73,7 +75,15 @@ const RanksScreen = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    ...globalStyles.globalFont,
+                    fontSize: 18,
+                    marginBottom: 5,
+                  }}
+                >
                   TOTAL PLAYERS
                 </Text>
                 <View
@@ -84,7 +94,15 @@ const RanksScreen = () => {
                     marginLeft: 10,
                   }}
                 >
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
+                  </Text>
                 </View>
               </View>
             </View>
@@ -114,7 +132,15 @@ const RanksScreen = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                    marginBottom: 5,
+                  }}
+                >
                   DAILY ACTIVE PLAYERS{' '}
                 </Text>
                 <View
@@ -125,7 +151,15 @@ const RanksScreen = () => {
                     marginLeft: 10,
                   }}
                 >
-                  <Text style={{ color: '#fff', fontSize: 12 }}>5000</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    5000
+                  </Text>
                 </View>
               </View>
             </View>
@@ -155,7 +189,15 @@ const RanksScreen = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                    marginBottom: 5,
+                  }}
+                >
                   CURRENT ONLINE PLAYERS{' '}
                 </Text>
                 <View
@@ -166,7 +208,15 @@ const RanksScreen = () => {
                     marginLeft: 10,
                   }}
                 >
-                  <Text style={{ color: '#fff', fontSize: 12 }}>5000</Text>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    5000
+                  </Text>
                 </View>
               </View>
             </View>
@@ -176,9 +226,10 @@ const RanksScreen = () => {
         <Text
           style={{
             color: '#52F81A',
-            fontSize: 20,
             marginTop: 20,
             marginHorizontal: 20,
+            fontSize: 24,
+            ...globalStyles.globalFont,
           }}
         >
           RANKINGS{' '}

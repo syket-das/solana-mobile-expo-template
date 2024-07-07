@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { globalStyles } from '../../styles/globalStyles';
 
 const BottomTabNav = () => {
   const navigation = useNavigation();
@@ -29,7 +30,9 @@ const BottomTabNav = () => {
             source={require('../../assets/img/home/saga.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#6CF926' }}>SAGA</Text>
+          <Text style={{ color: '#6CF926', ...globalStyles.globalFont }}>
+            SAGA
+          </Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate('Force')}>
@@ -38,25 +41,31 @@ const BottomTabNav = () => {
             source={require('../../assets/img/home/force.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#6CF926' }}>FORCE</Text>
+          <Text style={{ color: '#6CF926', ...globalStyles.globalFont }}>
+            FORCE
+          </Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate('Home')}>
-        <View style={styles.gameBtn}>
+        <View style={styles.bossBtn}>
           <Image
             source={require('../../assets/img/home/gc.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#6CF926' }}>PLAY</Text>
+          <Text style={{ color: '#FFCC00', ...globalStyles.globalFont }}>
+            PLAY
+          </Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate('Fuel')}>
-        <View style={styles.bossBtn}>
+        <View style={styles.gameBtn}>
           <Image
             source={require('../../assets/img/home/fuel.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#EEBF01' }}>FUEL</Text>
+          <Text style={{ color: '#6CF926', ...globalStyles.globalFont }}>
+            FUEL
+          </Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate('Ranks')}>
@@ -65,7 +74,9 @@ const BottomTabNav = () => {
             source={require('../../assets/img/home/ranks.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#6CF926' }}>RANKS</Text>
+          <Text style={{ color: '#6CF926', ...globalStyles.globalFont }}>
+            RANKS
+          </Text>
         </View>
       </TouchableHighlight>
     </View>

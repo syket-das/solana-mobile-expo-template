@@ -9,28 +9,23 @@ import React, { useRef } from 'react';
 import useHomeStore from '../../store/homeStore';
 import CustomBottomSheet from '../global/CustomBottomSheet';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import { globalStyles } from '../../styles/globalStyles';
 
 const Modes = ({
   bottomSheetRef,
+  ludoBottomSheetRef,
 }: {
   bottomSheetRef: React.RefObject<BottomSheet>;
+  ludoBottomSheetRef: React.RefObject<BottomSheet>;
 }) => {
-  const {
-    points,
-    setPoints,
-    increasePoints,
-    lifeline,
-    maxLifeline,
-    decreaseLifeline,
-    startLifelineRegen,
-    stopLifelineRegen,
-    setModeToBoss,
-    setModeToGame,
-    mode,
-  }: any = useHomeStore((state) => state);
+  const { setModeToGame, mode }: any = useHomeStore((state) => state);
 
   const handleClosePress = () => bottomSheetRef.current?.close();
   const handleOpenPress = () => bottomSheetRef.current?.expand();
+
+  const handleLudoOpenPress = () => ludoBottomSheetRef.current?.expand();
+  const handleLudoClosePress = () => ludoBottomSheetRef.current?.close();
+
   return (
     <View
       style={{
@@ -47,7 +42,7 @@ const Modes = ({
             styles.gameBtn,
             {
               borderWidth: mode === 'game' ? 2 : 0,
-              borderColor: mode === 'game' ? 'red' : 'transparent',
+              borderColor: mode === 'game' ? '#fff' : 'transparent',
             },
           ]}
         >
@@ -55,7 +50,9 @@ const Modes = ({
             source={require('../../assets/img/home/mine-coin.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#6CF926' }}>GAME</Text>
+          <Text style={{ color: '#6CF926', ...globalStyles.globalFont }}>
+            GAME
+          </Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => handleOpenPress()}>
@@ -64,7 +61,7 @@ const Modes = ({
             styles.bossBtn,
             {
               borderWidth: mode === 'boss' ? 2 : 0,
-              borderColor: mode === 'boss' ? 'red' : 'transparent',
+              borderColor: mode === 'boss' ? '#fff' : 'transparent',
             },
           ]}
         >
@@ -72,16 +69,20 @@ const Modes = ({
             source={require('../../assets/img/home/boss.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#EEBF01' }}>BOSS</Text>
+          <Text style={{ color: '#EEBF01', ...globalStyles.globalFont }}>
+            BOSS
+          </Text>
         </View>
       </TouchableHighlight>
-      <TouchableHighlight onPress={() => console.log('rock')}>
+      <TouchableHighlight onPress={() => handleLudoOpenPress()}>
         <View style={styles.gameBtn}>
           <Image
             source={require('../../assets/img/home/ludo.png')}
             style={{ width: 50, height: 40 }}
           />
-          <Text style={{ color: '#6CF926' }}>LUDU</Text>
+          <Text style={{ color: '#6CF926', ...globalStyles.globalFont }}>
+            LUDU
+          </Text>
         </View>
       </TouchableHighlight>
     </View>

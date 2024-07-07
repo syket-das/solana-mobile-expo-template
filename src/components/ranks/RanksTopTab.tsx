@@ -9,6 +9,7 @@ import {
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { globalStyles } from '../../styles/globalStyles';
 
 const RanksTopTab = () => {
   const navigation = useNavigation();
@@ -43,9 +44,18 @@ const RanksTopTab = () => {
             alignItems: 'center',
             height: 30,
             borderRadius: 5,
+            flex: 1,
           }}
         >
-          <Text style={{ color: '#52F81A', fontWeight: 'bold' }}>TOP 1111</Text>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 18,
+              ...globalStyles.globalFont,
+            }}
+          >
+            TOP 1111
+          </Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => setSelected('standing')}
@@ -57,9 +67,16 @@ const RanksTopTab = () => {
             alignItems: 'center',
             height: 30,
             borderRadius: 5,
+            flex: 1,
           }}
         >
-          <Text style={{ color: '#52F81A', fontWeight: 'bold' }}>
+          <Text
+            style={{
+              color: '#52F81A',
+              fontSize: 18,
+              ...globalStyles.globalFont,
+            }}
+          >
             STANDINGS
           </Text>
         </TouchableOpacity>
@@ -99,7 +116,14 @@ const RanksTopTab = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   STEVE JOBS
                 </Text>
                 <View
@@ -115,8 +139,22 @@ const RanksTopTab = () => {
                     style={{ width: 20, height: 20 }}
                   />
 
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
-                  <Text style={{ color: '#6CF926', fontSize: 12 }}>
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
+                  </Text>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     | TEAM: 100K
                   </Text>
                 </View>
@@ -148,8 +186,15 @@ const RanksTopTab = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
-                  STEVE JOBS
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
+                  STEVE JOBS 2
                 </Text>
                 <View
                   style={{
@@ -164,106 +209,22 @@ const RanksTopTab = () => {
                     style={{ width: 20, height: 20 }}
                   />
 
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
-                  <Text style={{ color: '#6CF926', fontSize: 12 }}>
-                    | TEAM: 100K
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
                   </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/rank/1.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
-                  <Text style={{ color: '#6CF926', fontSize: 12 }}>
-                    | TEAM: 100K
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/rank/1.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
-                  <Text style={{ color: '#6CF926', fontSize: 12 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     | TEAM: 100K
                   </Text>
                 </View>
@@ -305,7 +266,14 @@ const RanksTopTab = () => {
                 style={{ width: 40, height: 40 }}
               />
               <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
+                <Text
+                  style={{
+                    color: '#6CF926',
+                    marginLeft: 10,
+                    fontSize: 18,
+                    ...globalStyles.globalFont,
+                  }}
+                >
                   STEVE JOBS
                 </Text>
                 <View
@@ -321,57 +289,22 @@ const RanksTopTab = () => {
                     style={{ width: 20, height: 20 }}
                   />
 
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
-                  <Text style={{ color: '#6CF926', fontSize: 12 }}>
-                    | TEAM: 100K
+                  <Text
+                    style={{
+                      color: '#fff',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
+                    500000
                   </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/rank/1.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text style={{ color: '#6CF926', marginLeft: 10 }}>
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text style={{ color: '#fff', fontSize: 12 }}>500000</Text>
-                  <Text style={{ color: '#6CF926', fontSize: 12 }}>
+                  <Text
+                    style={{
+                      color: '#6CF926',
+                      fontSize: 16,
+                      ...globalStyles.globalFont,
+                    }}
+                  >
                     | TEAM: 100K
                   </Text>
                 </View>

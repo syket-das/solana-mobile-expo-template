@@ -4,6 +4,7 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React, { useCallback, useEffect, useState } from 'react';
@@ -12,6 +13,7 @@ import { useAuthorization } from '../utils/useAuthorization';
 import { useMobileWallet } from '../utils/useMobileWallet';
 import { alertAndLog } from '../utils/alertAndLog';
 import useAuthStore from '../store/authStore';
+import { globalStyles } from '../styles/globalStyles';
 
 const AuthScreen = () => {
   const navigation = useNavigation();
@@ -42,7 +44,7 @@ const AuthScreen = () => {
       });
 
       if (selectedAccount?.address !== '') {
-        await registerOrLogin(selectedAccount);
+        registerOrLogin(selectedAccount);
 
         if (error) {
           alertAndLog('Error during sign in', error);
@@ -70,22 +72,10 @@ const AuthScreen = () => {
   }, [isFocused, selectedAccount, user]);
 
   const handleAuth = async () => {
-    try {
-      await registerOrLogin(selectedAccount);
+    registerOrLogin(selectedAccount);
 
-      if (error) {
-        alertAndLog('Error during sign in', error);
-        return;
-      }
-
-      if (user) {
-        navigation.navigate('Home');
-      }
-    } catch (err: any) {
-      alertAndLog(
-        'Error during sign in',
-        err instanceof Error ? err.message : err
-      );
+    if (user) {
+      navigation.navigate('Home');
     }
   };
 
@@ -105,7 +95,7 @@ const AuthScreen = () => {
           }}
         />
 
-        <TouchableHighlight onPress={() => handleConnectPress()}>
+        <TouchableOpacity onPress={() => handleConnectPress()}>
           <View style={styles.authBtn}>
             <View style={styles.logoContainer}>
               <Image
@@ -113,13 +103,31 @@ const AuthScreen = () => {
                 style={styles.solanaLogo}
               />
             </View>
-            <Text style={styles.authBtnText}>CONNECT WALLET</Text>
+            <Text style={[styles.authBtnText, globalStyles.globalFont]}>
+              CONNECT WALLET
+            </Text>
           </View>
-        </TouchableHighlight>
-        <Text style={{ color: '#fff', alignSelf: 'center', marginTop: 20 }}>
+        </TouchableOpacity>
+        <Text
+          style={[
+            {
+              color: '#fff',
+              alignSelf: 'center',
+              marginTop: 20,
+              ...globalStyles.globalFont,
+            },
+          ]}
+        >
           CONNECT YOUR SOLANA WALLET TO{' '}
         </Text>
-        <Text style={{ color: '#fff', alignSelf: 'center', marginTop: 5 }}>
+        <Text
+          style={{
+            color: '#fff',
+            alignSelf: 'center',
+            marginTop: 5,
+            ...globalStyles.globalFont,
+          }}
+        >
           START PLAY THE GAME
         </Text>
 
@@ -166,7 +174,7 @@ const styles = StyleSheet.create({
 
   authBtnText: {
     color: '#6CF926',
-    fontWeight: 'bold',
+    fontWeight: '600',
     fontSize: 20,
   },
   solanaLogo: {

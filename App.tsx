@@ -17,6 +17,9 @@ import {
 import { AppNavigator } from './src/navigators/AppNavigator';
 import { ClusterProvider } from './src/components/cluster/cluster-data-access';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import * as SplashScreen from 'expo-splash-screen';
+import { useFonts } from 'expo-font';
+import { useEffect } from 'react';
 
 const queryClient = new QueryClient();
 
@@ -43,6 +46,20 @@ export default function App() {
       ...DarkTheme.colors,
     },
   };
+
+  const [loaded, error] = useFonts({
+    'Iceland-Regular': require('./assets/fonts/Iceland-Regular.ttf'),
+  });
+
+  useEffect(() => {
+    if (loaded || error) {
+      SplashScreen.hideAsync();
+    }
+  }, [loaded, error]);
+
+  if (!loaded && !error) {
+    return null;
+  }
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

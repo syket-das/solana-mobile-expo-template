@@ -28,7 +28,7 @@ const CloseBtn = () => {
         alignItems: 'center',
       }}
     >
-      <Entypo name="circle-with-cross" size={20} color="red" />
+      <Entypo name="circle-with-cross" size={20} color="green" />
     </TouchableOpacity>
   );
 };
