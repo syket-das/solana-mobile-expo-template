@@ -6,14 +6,25 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import CoinContainer from '../components/global/CoinContainer';
 import BottomTabNav from '../components/global/BottomTabNav';
 import ForceTopTab from '../components/force/ForceTopTab';
 import RanksTopTab from '../components/ranks/RanksTopTab';
 import { globalStyles } from '../styles/globalStyles';
+import useStatsStore from '../store/statsStore';
 
 const RanksScreen = () => {
+  const { stats, error, getStats }: any = useStatsStore((state) => state);
+
+  const fetchStats = async () => {
+    await getStats();
+  };
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -101,7 +112,7 @@ const RanksScreen = () => {
                       ...globalStyles.globalFont,
                     }}
                   >
-                    500000
+                    {stats?.users}
                   </Text>
                 </View>
               </View>
@@ -158,7 +169,7 @@ const RanksScreen = () => {
                       ...globalStyles.globalFont,
                     }}
                   >
-                    5000
+                    {stats?.dailyActiveUsers}
                   </Text>
                 </View>
               </View>
@@ -215,7 +226,7 @@ const RanksScreen = () => {
                       ...globalStyles.globalFont,
                     }}
                   >
-                    5000
+                    {stats?.activeUsers}
                   </Text>
                 </View>
               </View>

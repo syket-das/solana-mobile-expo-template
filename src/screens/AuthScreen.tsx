@@ -38,13 +38,13 @@ const AuthScreen = () => {
       }
       setSignInInProgress(true);
       await signIn({
-        domain: 'yourdomain.com',
-        statement: 'Sign into Expo Template App',
-        uri: 'https://yourdomain.com',
+        domain: 'ecosystem-kernel.onrender.com',
+        statement: 'Sign into Azameina',
+        uri: 'https://ecosystem-kernel.onrender.com',
       });
 
       if (selectedAccount?.address !== '') {
-        registerOrLogin(selectedAccount);
+        await registerOrLogin(selectedAccount);
 
         if (error) {
           alertAndLog('Error during sign in', error);
@@ -72,7 +72,7 @@ const AuthScreen = () => {
   }, [isFocused, selectedAccount, user]);
 
   const handleAuth = async () => {
-    registerOrLogin(selectedAccount);
+    await registerOrLogin(selectedAccount);
 
     if (user) {
       navigation.navigate('Home');

@@ -8,10 +8,33 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { globalStyles } from '../../styles/globalStyles';
+import useUserStore from '../../store/userStore';
+import * as Clipboard from 'expo-clipboard';
 
 const InviteCodeModalContent = () => {
+  const { user, error, getUserProfile }: any = useUserStore((state) => state);
+
+  const fetchUserProfile = async () => {
+    await getUserProfile();
+    copyToClipboard(user?.referralCode);
+  };
+
+  React.useEffect(() => {
+    fetchUserProfile();
+  }, []);
   const [isVerified, setIsVerified] = useState(false);
-  const [code, setCode] = useState('sssssss');
+  const [code, setCode] = useState('');
+
+  const [copiedText, setCopiedText] = useState('');
+
+  const copyToClipboard = async (str: any) => {
+    await Clipboard.setStringAsync(str);
+  };
+
+  const fetchCopiedText = async () => {
+    const text = await Clipboard.getStringAsync();
+    setCopiedText(text);
+  };
 
   return (
     <View
@@ -107,7 +130,7 @@ const InviteCodeModalContent = () => {
             fontSize: 18,
           }}
         >
-          {code}
+          {user?.referralCode}
         </Text>
         <TouchableHighlight
           style={{

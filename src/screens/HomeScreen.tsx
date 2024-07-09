@@ -30,7 +30,7 @@ import BossModeModalContent from '../components/home/BossModeModalContent';
 import CoinContainer from '../components/global/CoinContainer';
 import BottomTabNav from '../components/global/BottomTabNav';
 import useAuthStore from '../store/authStore';
-import useReferralStore from '../store/referralStore.ts';
+import useReferralStore from '../store/referralStore';
 import Lifeline from '../components/home/Lifeline';
 import { alertAndLog } from '../utils/alertAndLog';
 import { globalStyles } from '../styles/globalStyles';
@@ -41,7 +41,9 @@ const HomeScreen = () => {
   const isFocused = useIsFocused();
 
   const { user }: any = useAuthStore((state) => state);
-  const { error: referralError }: any = useReferralStore((state) => state);
+  const { error: referralError, createReferral }: any = useReferralStore(
+    (state) => state
+  );
   const { mode }: any = useHomeStore((state) => state);
 
   const [code, setCode] = useState('');
@@ -78,8 +80,11 @@ const HomeScreen = () => {
         return alertAndLog('Error', 'Please enter a referral code');
       }
 
-      handleClosePress();
-    } catch (error) {}
+      await createReferral(code);
+      navigation.navigate('Auth');
+    } catch (error: any) {
+      alertAndLog('Error', error.message);
+    }
   };
 
   return (

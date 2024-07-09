@@ -38,7 +38,7 @@ const RanksTopTab = () => {
         <TouchableOpacity
           onPress={() => setSelected('top')}
           style={{
-            backgroundColor: selected === 'top' ? '#6CF926' : 'transparent',
+            backgroundColor: selected === 'top' ? '#006600' : 'transparent',
             width: '30%',
             justifyContent: 'center',
             alignItems: 'center',
@@ -61,7 +61,7 @@ const RanksTopTab = () => {
           onPress={() => setSelected('standing')}
           style={{
             backgroundColor:
-              selected === 'standing' ? '#6CF926' : 'transparent',
+              selected === 'standing' ? '#006600' : 'transparent',
             width: '30%',
             justifyContent: 'center',
             alignItems: 'center',
