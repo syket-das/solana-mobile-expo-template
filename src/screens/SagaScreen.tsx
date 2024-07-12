@@ -20,18 +20,22 @@ import CustomBottomSheet from '../components/global/CustomBottomSheet';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 import InviteCodeModalContent from '../components/saga/InviteCodeModalContent';
 import { useNavigation } from '@react-navigation/native';
+import useUserStore from '../store/userStore';
 
 const SagaScreen = () => {
+  const { user, error, getUserProfile }: any = useUserStore((state) => state);
+
+  const fetchUserProfile = async () => {
+    await getUserProfile();
+  };
+
+  React.useEffect(() => {
+    fetchUserProfile();
+  }, []);
+
   const modeBottomSheetRef = React.useRef<BottomSheet>(null);
   const [copiedText, setCopiedText] = useState('');
   const navigation = useNavigation();
-  const user = {
-    id: 'Steve',
-    referredBy: {
-      userId: '123',
-    },
-    referralCode: '123456',
-  };
 
   const copyToClipboard = async (str: any) => {
     await Clipboard.setStringAsync(str);
@@ -87,7 +91,7 @@ const SagaScreen = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
-                backgroundColor: '#16d70D',
+                backgroundColor: '#006600',
                 borderRadius: 5,
                 padding: 5,
               }}
@@ -223,7 +227,7 @@ const SagaScreen = () => {
                       ...globalStyles.globalFont,
                     }}
                   >
-                    KKSSHS
+                    {user?.referrals?.length || 0}
                   </Text>
                 </View>
               </View>

@@ -6,11 +6,15 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useNavigationState } from "@react-navigation/native";
 import { globalStyles } from "../../styles/globalStyles";
 
 const BottomTabNav = () => {
   const navigation = useNavigation();
+  const currentRoute = useNavigationState(
+    (state) => state.routes[state.index].name
+  );
+
   return (
     <View
       style={{
@@ -26,7 +30,12 @@ const BottomTabNav = () => {
       }}
     >
       <TouchableHighlight onPress={() => navigation.navigate("Saga")}>
-        <View style={styles.gameBtn}>
+        <View
+          style={[
+            styles.gameBtn,
+            currentRoute === "Saga" && styles.activeGameBtn,
+          ]}
+        >
           <Image
             source={require("../../assets/img/home/saga.png")}
             style={{ width: 50, height: 40 }}
@@ -37,7 +46,12 @@ const BottomTabNav = () => {
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate("Force")}>
-        <View style={styles.gameBtn}>
+        <View
+          style={[
+            styles.gameBtn,
+            currentRoute === "Force" && styles.activeGameBtn,
+          ]}
+        >
           <Image
             source={require("../../assets/img/home/force.png")}
             style={{ width: 50, height: 40 }}
@@ -48,7 +62,12 @@ const BottomTabNav = () => {
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate("Home")}>
-        <View style={styles.bossBtn}>
+        <View
+          style={[
+            styles.bossBtn,
+            currentRoute === "Home" && styles.activeBossBtn,
+          ]}
+        >
           <Image
             source={require("../../assets/img/home/gc.png")}
             style={{ width: 50, height: 40 }}
@@ -59,7 +78,12 @@ const BottomTabNav = () => {
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate("Fuel")}>
-        <View style={styles.gameBtn}>
+        <View
+          style={[
+            styles.gameBtn,
+            currentRoute === "Fuel" && styles.activeGameBtn,
+          ]}
+        >
           <Image
             source={require("../../assets/img/home/fuel.png")}
             style={{ width: 50, height: 40 }}
@@ -70,7 +94,12 @@ const BottomTabNav = () => {
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => navigation.navigate("Ranks")}>
-        <View style={styles.gameBtn}>
+        <View
+          style={[
+            styles.gameBtn,
+            currentRoute === "Ranks" && styles.activeGameBtn,
+          ]}
+        >
           <Image
             source={require("../../assets/img/home/ranks.png")}
             style={{ width: 50, height: 40 }}
@@ -94,8 +123,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 8,
     paddingHorizontal: 4,
-    borderColor: "#6CF926",
-    borderWidth: 1,
   },
   bossBtn: {
     backgroundColor: "#282209",
@@ -104,6 +131,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingVertical: 8,
     paddingHorizontal: 4,
+  },
+  activeGameBtn: {
+    borderColor: "#6CF926",
+    borderWidth: 1,
+  },
+  activeBossBtn: {
     borderColor: "#FFCC00",
     borderWidth: 1,
   },

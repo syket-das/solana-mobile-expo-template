@@ -19,17 +19,16 @@ import { globalStyles } from '../styles/globalStyles';
 import CustomBottomSheet from '../components/global/CustomBottomSheet';
 import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
 import InviteCodeModalContent from '../components/saga/InviteCodeModalContent';
+import useUserStore from '../store/userStore';
 
 const TeamScreen = () => {
+  const { user, error, getUserProfile }: any = useUserStore((state) => state);
+
+  const fetchUserProfile = async () => {
+    await getUserProfile();
+  };
   const modeBottomSheetRef = React.useRef<BottomSheet>(null);
   const [copiedText, setCopiedText] = useState('');
-  const user = {
-    id: 'Steve',
-    referredBy: {
-      userId: '123',
-    },
-    referralCode: '123456',
-  };
 
   const copyToClipboard = async (str: any) => {
     await Clipboard.setStringAsync(str);
@@ -85,7 +84,7 @@ const TeamScreen = () => {
                 alignItems: 'center',
                 justifyContent: 'center',
                 width: '100%',
-                backgroundColor: '#16d70D',
+                backgroundColor: '#006600',
                 borderRadius: 5,
                 padding: 5,
               }}
@@ -102,31 +101,100 @@ const TeamScreen = () => {
             </View>
           </View>
 
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
+          {user &&
+            user.referrals.map((referral: any) => (
+              <TouchableOpacity
+                onPress={() => {}}
+                style={{
+                  width: '100%',
+                  height: 60,
+                  backgroundColor: '#31460C',
+                  borderRadius: 10,
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: 20,
+                }}
+              >
+                <View
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 10,
+                  }}
+                >
+                  <Image
+                    source={require('../assets/img/global/league/platinum.png')}
+                    style={{ width: 40, height: 40 }}
+                  />
+                  <View>
+                    <Text
+                      style={{
+                        color: '#6CF926',
+                        marginLeft: 10,
+                        ...globalStyles.globalFont,
+                        fontSize: 18,
+                      }}
+                    >
+                      STEVE JOBS
+                    </Text>
+                    <View
+                      style={{
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        columnGap: 4,
+                        marginLeft: 10,
+                      }}
+                    >
+                      <Image
+                        source={require('../assets/img/global/gcwg.png')}
+                        style={{ width: 20, height: 20 }}
+                      />
+
+                      <Text
+                        style={{
+                          color: '#fff',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        500
+                      </Text>
+                      <Text
+                        style={{
+                          color: '#6CF926',
+                          fontSize: 12,
+                          ...globalStyles.globalFont,
+                        }}
+                      >
+                        | TEAM 1100K
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            ))}
+
+          {user && user.referrals.length === 0 && (
             <View
               style={{
+                width: '100%',
+                height: 60,
+                backgroundColor: '#31460C',
+                borderRadius: 10,
                 flexDirection: 'row',
+                justifyContent: 'space-between',
                 alignItems: 'center',
-                marginLeft: 10,
+                marginBottom: 20,
               }}
             >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginLeft: 10,
+                }}
+              >
                 <Text
                   style={{
                     color: '#6CF926',
@@ -135,323 +203,11 @@ const TeamScreen = () => {
                     fontSize: 18,
                   }}
                 >
-                  STEVE JOBS
+                  NO TEAM MEMBERS
                 </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/global/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM 1100K
-                  </Text>
-                </View>
               </View>
             </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    ...globalStyles.globalFont,
-                    fontSize: 18,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/global/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM 1100K
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    ...globalStyles.globalFont,
-                    fontSize: 18,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/global/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM 1100K
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    ...globalStyles.globalFont,
-                    fontSize: 18,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/global/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM 1100K
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    ...globalStyles.globalFont,
-                    fontSize: 18,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/global/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM 1100K
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
+          )}
         </ScrollView>
 
         <BottomTabNav />

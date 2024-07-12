@@ -38,7 +38,7 @@ const ForceTopTab = () => {
         <TouchableOpacity
           onPress={() => setSelected('task')}
           style={{
-            backgroundColor: selected === 'task' ? '#6CF926' : 'transparent',
+            backgroundColor: selected === 'task' ? '#006600' : 'transparent',
             width: '30%',
             justifyContent: 'center',
             alignItems: 'center',
@@ -60,7 +60,7 @@ const ForceTopTab = () => {
         <TouchableOpacity
           onPress={() => setSelected('leagues')}
           style={{
-            backgroundColor: selected === 'leagues' ? '#6CF926' : 'transparent',
+            backgroundColor: selected === 'leagues' ? '#006600' : 'transparent',
             width: '30%',
             justifyContent: 'center',
             alignItems: 'center',
@@ -83,7 +83,7 @@ const ForceTopTab = () => {
         <TouchableOpacity
           onPress={() => setSelected('team')}
           style={{
-            backgroundColor: selected === 'team' ? '#6CF926' : 'transparent',
+            backgroundColor: selected === 'team' ? '#006600' : 'transparent',
             width: '30%',
             justifyContent: 'center',
             alignItems: 'center',

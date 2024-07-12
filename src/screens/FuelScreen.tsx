@@ -73,16 +73,7 @@ const FuelScreen = () => {
                   setKey("full-charge");
                   handleOpenPress();
                 }}
-                style={{
-                  width: "100%",
-                  height: 60,
-                  backgroundColor: "#31460C",
-                  borderRadius: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingHorizontal: 8,
-                }}
+                style={styles.contentContainer}
               >
                 <View
                   style={{
@@ -136,16 +127,7 @@ const FuelScreen = () => {
                   setKey("lumik-taper");
                   handleOpenPress();
                 }}
-                style={{
-                  width: "100%",
-                  height: 60,
-                  backgroundColor: "#31460C",
-                  borderRadius: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingHorizontal: 8,
-                }}
+                style={styles.contentContainer}
               >
                 <View
                   style={{
@@ -209,16 +191,7 @@ const FuelScreen = () => {
                   setKey("multiplier");
                   handleOpenPress();
                 }}
-                style={{
-                  width: "100%",
-                  height: 60,
-                  backgroundColor: "#31460C",
-                  borderRadius: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingHorizontal: 8,
-                }}
+                style={styles.contentContainer}
               >
                 <View
                   style={{
@@ -287,16 +260,7 @@ const FuelScreen = () => {
                   setKey("energy-capacity");
                   handleOpenPress();
                 }}
-                style={{
-                  width: "100%",
-                  height: 60,
-                  backgroundColor: "#31460C",
-                  borderRadius: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingHorizontal: 8,
-                }}
+                style={styles.contentContainer}
               >
                 <View
                   style={{
@@ -365,16 +329,7 @@ const FuelScreen = () => {
                   setKey("fuel-speed");
                   handleOpenPress();
                 }}
-                style={{
-                  width: "100%",
-                  height: 60,
-                  backgroundColor: "#31460C",
-                  borderRadius: 8,
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  paddingHorizontal: 8,
-                }}
+                style={styles.contentContainer}
               >
                 <View
                   style={{
@@ -475,8 +430,14 @@ const styles = StyleSheet.create({
   gcCOntainer: {},
 
   contentContainer: {
-    flex: 1,
+    width: "100%",
+    height: 60,
+    backgroundColor: "#16270D",
+    borderRadius: 8,
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 8,
   },
 
   titleText: {
