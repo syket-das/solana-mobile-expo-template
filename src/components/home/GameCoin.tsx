@@ -1,14 +1,14 @@
 // @ts-nocheck
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
   Animated,
   Image,
-} from 'react-native';
-import useHomeStore from '../../store/homeStore';
-import useAuthStore from '../../store/authStore';
+} from "react-native";
+import useHomeStore from "../../store/homeStore";
+import useAuthStore from "../../store/authStore";
 
 const GameCoin = () => {
   const {
@@ -105,27 +105,27 @@ const GameCoin = () => {
                 {
                   rotateY: tiltX.interpolate({
                     inputRange: [-15, 15],
-                    outputRange: ['-15deg', '15deg'],
+                    outputRange: ["-15deg", "15deg"],
                   }),
                 },
                 {
                   rotateX: tiltY.interpolate({
                     inputRange: [-15, 15],
-                    outputRange: ['-15deg', '15deg'],
+                    outputRange: ["-15deg", "15deg"],
                   }),
                 },
               ],
             },
           ]}
         >
-          {mode === 'game' ? (
+          {mode === "game" ? (
             <Image
-              source={require('../../assets/img/home/gc.png')}
+              source={require("../../assets/img/home/gc.png")}
               style={styles.image}
             />
-          ) : mode === 'boss' ? (
+          ) : mode === "boss" ? (
             <Image
-              source={require('../../assets/img/home/golden-mining-coin.png')}
+              source={require("../../assets/img/home/golden-mining-coin.png")}
               style={styles.image}
             />
           ) : null}
@@ -159,26 +159,26 @@ const GameCoin = () => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   },
   coin: {
-    marginBottom: 20,
+    marginVertical: 5,
   },
   image: {
-    width: 350,
-    height: 350,
-    resizeMode: 'contain',
+    width: 325,
+    height: 325,
+    resizeMode: "contain",
   },
   points: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   plusOne: {
-    position: 'absolute',
+    position: "absolute",
     fontSize: 20,
-    color: '#fff',
-    fontWeight: 'bold',
+    color: "#fff",
+    fontWeight: "bold",
   },
 });
 

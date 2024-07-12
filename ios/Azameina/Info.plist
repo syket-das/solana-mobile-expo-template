@@ -48,6 +48,10 @@
       <key>NSAllowsLocalNetworking</key>
       <true/>
     </dict>
+    <key>UIAppFonts</key>
+    <array>
+      <string>Iceland-Regular.ttf</string>
+    </array>
     <key>UILaunchStoryboardName</key>
     <string>SplashScreen</string>
     <key>UIRequiredDeviceCapabilities</key>

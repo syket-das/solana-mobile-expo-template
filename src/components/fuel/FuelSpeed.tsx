@@ -3,13 +3,12 @@ import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  TouchableOpacity,
   View,
 } from "react-native";
 import React from "react";
-import { Entypo } from "@expo/vector-icons";
+import { globalStyles } from "../../styles/globalStyles";
 
-const LumikTaper = () => {
+const FuelSpeed = () => {
   return (
     <View
       style={{
@@ -20,7 +19,7 @@ const LumikTaper = () => {
       <View>
         <View style={styles.gameBtn}>
           <Image
-            source={require("../../assets/img/fuel/auto-miner.png")}
+            source={require("../../assets/img/fuel/fuel-speed.png")}
             style={{ width: 45, height: 45 }}
           />
         </View>
@@ -34,7 +33,7 @@ const LumikTaper = () => {
           fontWeight: "bold",
         }}
       >
-        LUMIK TAPER
+        FUEL SPEED
       </Text>
       <Text
         style={{
@@ -45,9 +44,32 @@ const LumikTaper = () => {
           maxWidth: 300,
         }}
       >
-        Would you like to automate your Lumik points earning? Click the button
-        below to mint this NFT and enjoy automated Lumik points earning 24/7 for
-        a lifetime.
+        Would you like to speed up your fuel filling speed? Click the button
+        below to to spend{" "}
+        <Text
+          style={{
+            color: "#FFCC00",
+          }}
+        >
+          500
+        </Text>{" "}
+        Lumik points and upgrade your fuel filling speed to{" "}
+        <Text
+          style={{
+            color: "#FFCC00",
+          }}
+        >
+          LV 2
+        </Text>
+        , boosting it to{" "}
+        <Text
+          style={{
+            color: "#FFCC00",
+          }}
+        >
+          2
+        </Text>{" "}
+        points per second.
       </Text>
 
       <View
@@ -60,12 +82,18 @@ const LumikTaper = () => {
       >
         <TouchableHighlight onPress={() => console.log("rock")}>
           <View style={styles.CTABtn}>
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>GO</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight onPress={() => console.log("rock")}>
-          <View style={styles.CTABtn}>
-            <Text style={{ color: "#fff", fontWeight: "bold" }}>CHECK</Text>
+            <Image
+              source={require("../../assets/img/global/gcwg.png")}
+              style={{ width: 20, height: 20 }}
+            />
+            <Text
+              style={{
+                color: "#fff",
+                fontSize: 16,
+              }}
+            >
+              500
+            </Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -73,19 +101,25 @@ const LumikTaper = () => {
   );
 };
 
-export default LumikTaper;
+export default FuelSpeed;
 
 const styles = StyleSheet.create({
   gameBtn: {
     backgroundColor: "#1E3B10",
     borderRadius: 8,
     paddingHorizontal: 6,
-    paddingVertical: 5,
+    paddingVertical: 6,
   },
   CTABtn: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 4,
     backgroundColor: "#1E3B10",
     borderRadius: 6,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
+    borderColor: "#FFCC00",
+    borderWidth: 0.5,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    paddingRight: 10,
   },
 });

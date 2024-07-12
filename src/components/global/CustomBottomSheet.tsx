@@ -1,10 +1,10 @@
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
-import React, { forwardRef, useCallback, useMemo } from 'react';
+import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
+import React, { forwardRef, useCallback, useMemo } from "react";
 import BottomSheet, {
   useBottomSheet,
   BottomSheetBackdrop,
-} from '@gorhom/bottom-sheet';
-import { Entypo } from '@expo/vector-icons';
+} from "@gorhom/bottom-sheet";
+import { Entypo } from "@expo/vector-icons";
 export type Ref = BottomSheet;
 
 interface Props {
@@ -18,14 +18,9 @@ const CloseBtn = () => {
     <TouchableOpacity
       onPress={() => close()}
       style={{
-        position: 'absolute',
+        position: "absolute",
         top: 0,
         right: 10,
-        padding: 10,
-        backgroundColor: '#1E3B10',
-        borderRadius: 30,
-        justifyContent: 'center',
-        alignItems: 'center',
       }}
     >
       <Entypo name="circle-with-cross" size={20} color="green" />
@@ -34,14 +29,14 @@ const CloseBtn = () => {
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
-  const snapPoints = useMemo(() => ['50%'], []);
+  const snapPoints = useMemo(() => ["50%"], []);
 
   //add this
   const renderBackdrop = useCallback(
     (props: any) => (
       <BottomSheetBackdrop
         opacity={0}
-        style={{ backgroundColor: 'transparent' }}
+        style={{ backgroundColor: "transparent" }}
         {...props}
       />
     ),
@@ -54,8 +49,8 @@ const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
       index={-1}
       snapPoints={snapPoints}
       enablePanDownToClose={false}
-      handleIndicatorStyle={{ backgroundColor: '#fff' }}
-      backgroundStyle={{ backgroundColor: '#152C0E' }}
+      handleIndicatorStyle={{ backgroundColor: "#fff" }}
+      backgroundStyle={{ backgroundColor: "#152C0E" }}
       backdropComponent={renderBackdrop} //add this
     >
       <View style={styles.contentContainer}>
@@ -72,9 +67,9 @@ const styles = StyleSheet.create({
   },
   containerHeadline: {
     fontSize: 24,
-    fontWeight: '600',
+    fontWeight: "600",
     padding: 20,
-    color: '#fff',
+    color: "#fff",
   },
 });
 

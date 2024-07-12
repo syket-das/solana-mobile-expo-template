@@ -7,7 +7,7 @@ import {
   TextInput,
   TouchableHighlight,
   View,
-} from 'react-native';
+} from "react-native";
 import React, {
   memo,
   useCallback,
@@ -15,26 +15,26 @@ import React, {
   useMemo,
   useRef,
   useState,
-} from 'react';
-import { TopBarWalletMenu } from '../components/top-bar/top-bar-ui';
-import { useAuthorization } from '../utils/useAuthorization';
-import GameCoin from '../components/home/GameCoin';
-import useHomeStore from '../store/homeStore';
-import Animated from 'react-native-reanimated';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
-import { BottomSheetModal, useBottomSheetModal } from '@gorhom/bottom-sheet';
-import CustomBottomSheet from '../components/global/CustomBottomSheet';
-import Modes from '../components/home/Modes';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
-import BossModeModalContent from '../components/home/BossModeModalContent';
-import CoinContainer from '../components/global/CoinContainer';
-import BottomTabNav from '../components/global/BottomTabNav';
-import useAuthStore from '../store/authStore';
-import useReferralStore from '../store/referralStore.ts';
-import Lifeline from '../components/home/Lifeline';
-import { alertAndLog } from '../utils/alertAndLog';
-import { globalStyles } from '../styles/globalStyles';
-import LudoModeModalComponent from '../components/home/LudoModalComponent';
+} from "react";
+import { TopBarWalletMenu } from "../components/top-bar/top-bar-ui";
+import { useAuthorization } from "../utils/useAuthorization";
+import GameCoin from "../components/home/GameCoin";
+import useHomeStore from "../store/homeStore";
+import Animated from "react-native-reanimated";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
+import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
+import CustomBottomSheet from "../components/global/CustomBottomSheet";
+import Modes from "../components/home/Modes";
+import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
+import BossModeModalContent from "../components/home/BossModeModalContent";
+import CoinContainer from "../components/global/CoinContainer";
+import BottomTabNav from "../components/global/BottomTabNav";
+import useAuthStore from "../store/authStore";
+import useReferralStore from "../store/referralStore.ts";
+import Lifeline from "../components/home/Lifeline";
+import { alertAndLog } from "../utils/alertAndLog";
+import { globalStyles } from "../styles/globalStyles";
+import LudoModeModalComponent from "../components/home/LudoModalComponent";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -44,7 +44,7 @@ const HomeScreen = () => {
   const { error: referralError }: any = useReferralStore((state) => state);
   const { mode }: any = useHomeStore((state) => state);
 
-  const [code, setCode] = useState('');
+  const [code, setCode] = useState("");
 
   const bottomSheetRef = useRef<BottomSheet>(null);
   const modeBottomSheetRef = useRef<BottomSheet>(null);
@@ -75,7 +75,7 @@ const HomeScreen = () => {
   const submitReferral = async () => {
     try {
       if (!code) {
-        return alertAndLog('Error', 'Please enter a referral code');
+        return alertAndLog("Error", "Please enter a referral code");
       }
 
       handleClosePress();
@@ -86,42 +86,41 @@ const HomeScreen = () => {
     <>
       <View style={styles.container}>
         <ImageBackground
-          source={require('../assets/img/auth-bg.png')}
+          source={require("../assets/img/background-image.png")}
           style={styles.bgImage}
         >
           {/* <TopBarWalletMenu /> */}
           <Image
-            source={require('../assets/img/home/text-logo.png')}
+            source={require("../assets/img/home/text-logo.png")}
             style={{
-              width: '50%',
-              height: 40,
-              alignSelf: 'center',
+              width: "40%",
+              height: 30,
+              alignSelf: "center",
               marginTop: 10,
-              objectFit: 'contain',
+              objectFit: "contain",
             }}
           />
           <CoinContainer />
           <GameCoin />
-          {mode === 'game' && (
+          {mode === "game" && (
             <ImageBackground
-              source={require('../assets/img/auth-bg.png')}
+              source={require("../assets/img/auth-bg.png")}
               style={{
-                width: '100%',
-                marginTop: 10,
-                justifyContent: 'center',
-                flexDirection: 'row',
+                width: "100%",
+                justifyContent: "center",
+                flexDirection: "row",
                 columnGap: 10,
-                alignItems: 'center',
+                alignItems: "center",
                 paddingVertical: 5,
               }}
             >
               <Image
-                source={require('../assets/img/home/rock.png')}
+                source={require("../assets/img/home/rock.png")}
                 style={{ width: 40, height: 40 }}
               />
               <Text
                 style={{
-                  color: '#fff',
+                  color: "#fff",
                   ...globalStyles.globalFont,
                   fontSize: 20,
                 }}
@@ -130,12 +129,12 @@ const HomeScreen = () => {
               </Text>
             </ImageBackground>
           )}
-          {mode === 'boss' && (
+          {mode === "boss" && (
             <Text
               style={{
-                color: '#FFCC00',
+                color: "#FFCC00",
                 ...globalStyles.globalFont,
-                alignSelf: 'center',
+                alignSelf: "center",
                 fontSize: 20,
                 marginBottom: 20,
               }}
@@ -155,20 +154,20 @@ const HomeScreen = () => {
           <CustomBottomSheet ref={bottomSheetRef}>
             <View
               style={{
-                alignSelf: 'center',
+                alignSelf: "center",
               }}
             >
               <View
                 style={{
-                  alignSelf: 'center',
+                  alignSelf: "center",
                   marginBottom: 20,
                   padding: 0,
-                  backgroundColor: '#1E3B10',
+                  backgroundColor: "#1E3B10",
                   borderRadius: 10,
                 }}
               >
                 <Image
-                  source={require('../assets/img/home/referral-code.png')}
+                  source={require("../assets/img/home/referral-code.png")}
                   style={{
                     width: 80,
                     height: 80,
@@ -179,19 +178,19 @@ const HomeScreen = () => {
               <Text
                 style={{
                   fontSize: 24,
-                  fontWeight: '600',
-                  color: '#6CF926',
+                  fontWeight: "600",
+                  color: "#6CF926",
                   ...globalStyles.globalFont,
-                  alignSelf: 'center',
+                  alignSelf: "center",
                 }}
               >
                 ENTER YOUR INVITE CODE
               </Text>
               <Text
                 style={{
-                  color: '#fff',
-                  maxWidth: '80%',
-                  textAlign: 'center',
+                  color: "#fff",
+                  maxWidth: "80%",
+                  textAlign: "center",
                   marginTop: 10,
                   fontSize: 18,
                   lineHeight: 20,
@@ -204,14 +203,14 @@ const HomeScreen = () => {
 
               <View
                 style={{
-                  flexDirection: 'row',
-                  justifyContent: 'center',
-                  alignItems: 'center',
+                  flexDirection: "row",
+                  justifyContent: "center",
+                  alignItems: "center",
                   marginTop: 40,
-                  backgroundColor: '#383C1C',
-                  width: '80%',
+                  backgroundColor: "#383C1C",
+                  width: "80%",
                   borderRadius: 10,
-                  borderColor: '#FFCC00',
+                  borderColor: "#FFCC00",
                   borderWidth: 1,
                 }}
               >
@@ -222,7 +221,7 @@ const HomeScreen = () => {
                     padding: 10,
                     borderRadius: 10,
                     flex: 1,
-                    color: '#fff',
+                    color: "#fff",
                     ...globalStyles.globalFont,
                   }}
                   value={code}
@@ -231,21 +230,21 @@ const HomeScreen = () => {
                 <TouchableHighlight
                   onPress={submitReferral}
                   style={{
-                    backgroundColor: '#FFCC00',
+                    backgroundColor: "#FFCC00",
                     // borderRadius: 10,
                     borderTopRightRadius: 10,
                     borderBottomRightRadius: 10,
-                    height: '100%',
-                    alignItems: 'center',
+                    height: "100%",
+                    alignItems: "center",
                   }}
                 >
                   <Text
                     style={{
-                      color: '#000',
+                      color: "#000",
                       padding: 10,
-                      alignItems: 'center',
+                      alignItems: "center",
                       marginTop: 8,
-                      fontWeight: '600',
+                      fontWeight: "600",
                       ...globalStyles.globalFont,
                     }}
                   >
@@ -256,9 +255,9 @@ const HomeScreen = () => {
 
               <Text
                 style={{
-                  color: 'red',
+                  color: "red",
                   marginTop: 20,
-                  alignSelf: 'center',
+                  alignSelf: "center",
                 }}
               >
                 {referralError}
@@ -286,25 +285,25 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   gcCOntainer: {},
   gameBtn: {
-    backgroundColor: '#1E3B10',
+    backgroundColor: "#1E3B10",
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 5,
   },
   bossBtn: {
-    backgroundColor: '#282209',
+    backgroundColor: "#282209",
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
     padding: 5,
   },
   contentContainer: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: "center",
   },
 });
