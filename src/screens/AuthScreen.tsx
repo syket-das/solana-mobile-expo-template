@@ -1,4 +1,5 @@
 import {
+  ActivityIndicator,
   Image,
   ImageBackground,
   StyleSheet,
@@ -72,9 +73,12 @@ const AuthScreen = () => {
   }, [signInInProgress, authorizeSession]);
 
   const getAuthData = async () => {
+    setSignInInProgress(true);
     const d = await fetchAuthorization();
 
     await registerOrLogin(d?.selectedAccount);
+
+    setSignInInProgress(false);
 
     if (user) {
       navigation.navigate('Home');
@@ -118,19 +122,29 @@ const AuthScreen = () => {
           }}
         />
 
-        <TouchableOpacity onPress={() => handleConnectPress()}>
-          <View style={styles.authBtn}>
-            <View style={styles.logoContainer}>
-              <Image
-                source={require('../assets/img/solana-logo.png')}
-                style={styles.solanaLogo}
-              />
+        {signInInProgress ? (
+          <ActivityIndicator
+            size="large"
+            color="#6CF926"
+            style={{
+              marginTop: 50,
+            }}
+          />
+        ) : (
+          <TouchableOpacity onPress={() => handleConnectPress()}>
+            <View style={styles.authBtn}>
+              <View style={styles.logoContainer}>
+                <Image
+                  source={require('../assets/img/solana-logo.png')}
+                  style={styles.solanaLogo}
+                />
+              </View>
+              <Text style={[styles.authBtnText, globalStyles.globalFont]}>
+                CONNECT WALLET
+              </Text>
             </View>
-            <Text style={[styles.authBtnText, globalStyles.globalFont]}>
-              CONNECT WALLET
-            </Text>
-          </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+        )}
         <Text
           style={[
             {

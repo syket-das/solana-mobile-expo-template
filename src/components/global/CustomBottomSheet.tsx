@@ -1,10 +1,10 @@
-import { View, StyleSheet, Text, Button, TouchableOpacity } from "react-native";
-import React, { forwardRef, useCallback, useMemo } from "react";
+import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
+import React, { forwardRef, useCallback, useMemo } from 'react';
 import BottomSheet, {
   useBottomSheet,
   BottomSheetBackdrop,
-} from "@gorhom/bottom-sheet";
-import { Entypo } from "@expo/vector-icons";
+} from '@gorhom/bottom-sheet';
+import { Entypo } from '@expo/vector-icons';
 export type Ref = BottomSheet;
 
 interface Props {
@@ -18,7 +18,7 @@ const CloseBtn = () => {
     <TouchableOpacity
       onPress={() => close()}
       style={{
-        position: "absolute",
+        position: 'absolute',
         top: 0,
         right: 10,
       }}
@@ -29,14 +29,14 @@ const CloseBtn = () => {
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
-  const snapPoints = useMemo(() => ["45%"], []);
+  const snapPoints = useMemo(() => ['60%'], []);
 
   //add this
   const renderBackdrop = useCallback(
     (props: any) => (
       <BottomSheetBackdrop
         opacity={1}
-        style={{ backgroundColor: "white" }}
+        style={{ backgroundColor: 'white' }}
         {...props}
       />
     ),
@@ -49,8 +49,8 @@ const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
       index={-1}
       snapPoints={snapPoints}
       enablePanDownToClose={true}
-      handleIndicatorStyle={{ backgroundColor: "#fff" }}
-      backgroundStyle={{ backgroundColor: "#152C0E" }}
+      handleIndicatorStyle={{ backgroundColor: '#fff' }}
+      backgroundStyle={{ backgroundColor: '#152C0E' }}
       backdropComponent={renderBackdrop} //add this
     >
       <View style={styles.contentContainer}>
@@ -67,9 +67,9 @@ const styles = StyleSheet.create({
   },
   containerHeadline: {
     fontSize: 24,
-    fontWeight: "600",
+    fontWeight: '600',
     padding: 20,
-    color: "#fff",
+    color: '#fff',
   },
 });
 
