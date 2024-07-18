@@ -6,14 +6,19 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   View,
-} from "react-native";
-import React, { useCallback, useEffect, useState } from "react";
-import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { useAuthorization } from "../utils/useAuthorization";
-import { useMobileWallet } from "../utils/useMobileWallet";
-import { alertAndLog } from "../utils/alertAndLog";
-import useAuthStore from "../store/authStore";
-import { globalStyles } from "../styles/globalStyles";
+} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import React, { useCallback, useEffect, useState } from 'react';
+import { useIsFocused, useNavigation } from '@react-navigation/native';
+import {
+  fetchAuthorization,
+  useAuthorization,
+} from '../utils/useAuthorization';
+import { useMobileWallet } from '../utils/useMobileWallet';
+import { alertAndLog } from '../utils/alertAndLog';
+import useAuthStore from '../store/authStore';
+import { globalStyles } from '../styles/globalStyles';
 
 const AuthScreen = () => {
   const navigation = useNavigation();
@@ -36,28 +41,29 @@ const AuthScreen = () => {
       if (signInInProgress) {
         return;
       }
+
       setSignInInProgress(true);
       await signIn({
-        domain: "ecosystem-kernel.onrender.com",
-        statement: "Sign into Azameina",
-        uri: "https://ecosystem-kernel.onrender.com",
+        domain: 'ecosystem-kernel.onrender.com',
+        statement: 'Sign into Azameina',
+        uri: 'https://ecosystem-kernel.onrender.com',
       });
 
-      if (selectedAccount?.address !== "") {
+      if (selectedAccount?.address !== '') {
         await registerOrLogin(selectedAccount);
 
         if (error) {
-          alertAndLog("Error during sign in", error);
+          alertAndLog('Error during sign in', error);
           return;
         }
 
         if (user) {
-          navigation.navigate("Home");
+          navigation.navigate('Home');
         }
       }
     } catch (err: any) {
       alertAndLog(
-        "Error during sign in",
+        'Error during sign in',
         err instanceof Error ? err.message : err
       );
     } finally {
@@ -65,9 +71,25 @@ const AuthScreen = () => {
     }
   }, [signInInProgress, authorizeSession]);
 
+  const getAuthData = async () => {
+    const d = await fetchAuthorization();
+
+    await registerOrLogin(d?.selectedAccount);
+
+    if (user) {
+      navigation.navigate('Home');
+    }
+  };
+
   useEffect(() => {
     if (isFocused && selectedAccount && user) {
       handleAuth();
+    } else {
+      async function fetchData() {
+        const data = getAuthData();
+      }
+
+      fetchData();
     }
   }, [isFocused, selectedAccount, user]);
 
@@ -75,24 +97,24 @@ const AuthScreen = () => {
     await registerOrLogin(selectedAccount);
 
     if (user) {
-      navigation.navigate("Home");
+      navigation.navigate('Home');
     }
   };
 
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/img/background-layer.jpg")}
+        source={require('../assets/img/background-layer.jpg')}
         style={styles.bgImage}
       >
         <Image
-          source={require("../assets/img/auth-logo.png")}
+          source={require('../assets/img/auth-logo.png')}
           style={{
             width: 280,
             height: 200,
-            alignSelf: "center",
+            alignSelf: 'center',
             marginTop: 20,
-            objectFit: "contain",
+            objectFit: 'contain',
           }}
         />
 
@@ -100,7 +122,7 @@ const AuthScreen = () => {
           <View style={styles.authBtn}>
             <View style={styles.logoContainer}>
               <Image
-                source={require("../assets/img/solana-logo.png")}
+                source={require('../assets/img/solana-logo.png')}
                 style={styles.solanaLogo}
               />
             </View>
@@ -112,19 +134,19 @@ const AuthScreen = () => {
         <Text
           style={[
             {
-              color: "#fff",
-              alignSelf: "center",
+              color: '#fff',
+              alignSelf: 'center',
               marginTop: 20,
               ...globalStyles.globalFont,
             },
           ]}
         >
-          CONNECT YOUR SOLANA WALLET TO{" "}
+          CONNECT YOUR SOLANA WALLET TO{' '}
         </Text>
         <Text
           style={{
-            color: "#fff",
-            alignSelf: "center",
+            color: '#fff',
+            alignSelf: 'center',
             marginTop: 5,
             ...globalStyles.globalFont,
           }}
@@ -133,14 +155,14 @@ const AuthScreen = () => {
         </Text>
 
         <Image
-          source={require("../assets/img/auth-char.png")}
+          source={require('../assets/img/auth-char.png')}
           style={{
             width: 280,
             height: 380,
-            position: "absolute",
+            position: 'absolute',
             bottom: 0,
-            marginHorizontal: "auto",
-            alignSelf: "center",
+            marginHorizontal: 'auto',
+            alignSelf: 'center',
           }}
         />
       </ImageBackground>
@@ -156,27 +178,27 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
   authBtn: {
-    width: "auto",
-    height: "auto",
-    backgroundColor: "#1E3B10",
+    width: 'auto',
+    height: 'auto',
+    backgroundColor: '#1E3B10',
     opacity: 0.9,
     borderRadius: 8,
-    alignSelf: "center",
-    justifyContent: "center",
-    alignItems: "center",
+    alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     marginTop: 50,
     paddingVertical: 6,
     paddingHorizontal: 12,
-    flexDirection: "row",
+    flexDirection: 'row',
     columnGap: 15,
   },
 
   authBtnText: {
-    color: "#6CF926",
-    fontWeight: "600",
+    color: '#6CF926',
+    fontWeight: '600',
     fontSize: 20,
   },
   solanaLogo: {
@@ -184,10 +206,10 @@ const styles = StyleSheet.create({
     height: 12,
   },
   logoContainer: {
-    backgroundColor: "#000",
+    backgroundColor: '#000',
     padding: 10,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: "#6CF926",
+    borderColor: '#6CF926',
   },
 });
