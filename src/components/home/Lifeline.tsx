@@ -1,7 +1,8 @@
-import { Image, StyleSheet, Text, View } from 'react-native';
-import React, { useEffect } from 'react';
-import useHomeStore from '../../store/homeStore';
-import { globalStyles } from '../../styles/globalStyles';
+import { Image, StyleSheet, Text, View } from "react-native";
+import React, { useEffect } from "react";
+import useHomeStore from "../../store/homeStore";
+import { globalStyles } from "../../styles/globalStyles";
+import CustomProgressBar from "../global/ProgressBar";
 
 const Lifeline = () => {
   const {
@@ -16,31 +17,44 @@ const Lifeline = () => {
   }: any = useHomeStore((state) => state);
 
   return (
-    <>
+    <View
+      style={{
+        marginVertical: 10,
+        width: "100%",
+        paddingHorizontal: 16,
+        display: "flex",
+        flexDirection: "column",
+        gap: 4,
+      }}
+    >
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          alignSelf: 'center',
-          columnGap: 20,
-          marginTop: 10,
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          alignSelf: "center",
+          columnGap: 12,
+          overflow: "scroll",
         }}
       >
-        {mode === 'game' ? (
+        <Image
+          source={require("../../assets/img/home/eb.png")}
+          style={{ width: 30, height: 30 }}
+        />
+        {mode === "game" ? (
           <Text
             style={{
-              color: '#fff',
+              color: "#fff",
               fontSize: 20,
               ...globalStyles.globalFont,
             }}
           >
             {lifeline} / {maxLifeline}
           </Text>
-        ) : mode === 'boss' ? (
+        ) : mode === "boss" ? (
           <Text
             style={{
-              color: '#fff',
+              color: "#fff",
               fontSize: 20,
               ...globalStyles.globalFont,
             }}
@@ -48,38 +62,9 @@ const Lifeline = () => {
             ∞ / ∞
           </Text>
         ) : null}
-        <Image
-          source={require('../../assets/img/home/eb.png')}
-          style={{ width: 40, height: 30 }}
-        />
       </View>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginTop: 10,
-        }}
-      >
-        <View
-          style={{
-            width: '85%',
-            height: 20,
-            backgroundColor: '#1E3B10',
-            borderRadius: 10,
-          }}
-        >
-          <View
-            style={{
-              width: `${(lifeline / maxLifeline) * 100}%`,
-              height: '100%',
-              backgroundColor: '#6CF926',
-              borderRadius: 10,
-            }}
-          ></View>
-        </View>
-      </View>
-    </>
+      <CustomProgressBar width={`${(lifeline / maxLifeline) * 100}%`} />
+    </View>
   );
 };
 

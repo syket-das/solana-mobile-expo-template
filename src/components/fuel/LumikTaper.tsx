@@ -5,44 +5,43 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React from 'react';
-import { Entypo } from '@expo/vector-icons';
+} from "react-native";
+import React from "react";
+import { Entypo } from "@expo/vector-icons";
 
 const LumikTaper = () => {
   return (
     <View
       style={{
-        alignItems: 'center',
+        marginTop: 30,
+        alignItems: "center",
       }}
     >
-      <TouchableHighlight onPress={() => console.log('rock')}>
-        <View>
-          <View style={styles.gameBtn}>
-            <Image
-              source={require('../../assets/img/fuel/auto-miner.png')}
-              style={{ width: 50, height: 40 }}
-            />
-          </View>
+      <View>
+        <View style={styles.gameBtn}>
+          <Image
+            source={require("../../assets/img/fuel/auto-miner.png")}
+            style={{ width: 45, height: 45 }}
+          />
         </View>
-      </TouchableHighlight>
+      </View>
       <Text
         style={{
-          color: '#6CF926',
-          textAlign: 'center',
+          color: "#6CF926",
+          textAlign: "center",
           marginTop: 10,
           fontSize: 20,
-          fontWeight: 'bold',
+          fontWeight: "bold",
         }}
       >
         LUMIK TAPER
       </Text>
       <Text
         style={{
-          color: '#6CF926',
-          textAlign: 'center',
+          color: "#FFFFFF",
+          textAlign: "center",
           marginTop: 10,
-          fontSize: 16,
+          fontSize: 18,
           maxWidth: 300,
         }}
       >
@@ -53,19 +52,20 @@ const LumikTaper = () => {
 
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          columnGap: 20,
+          flexDirection: "row",
+          justifyContent: "center",
+          columnGap: 15,
+          marginTop: 20,
         }}
       >
-        <TouchableHighlight onPress={() => console.log('rock')}>
-          <View style={styles.adBtn}>
-            <Text style={{ color: '#fff', fontWeight: 'bold' }}>GO</Text>
+        <TouchableHighlight onPress={() => console.log("rock")}>
+          <View style={styles.CTABtn}>
+            <Text style={{ color: "#fff", fontWeight: "bold" }}>GO</Text>
           </View>
         </TouchableHighlight>
-        <TouchableHighlight onPress={() => console.log('rock')}>
-          <View style={styles.adBtn}>
-            <Text style={{ color: '#fff', fontWeight: 'bold' }}>CHECK</Text>
+        <TouchableHighlight onPress={() => console.log("rock")}>
+          <View style={styles.CTABtn}>
+            <Text style={{ color: "#fff", fontWeight: "bold" }}>CHECK</Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -77,20 +77,15 @@ export default LumikTaper;
 
 const styles = StyleSheet.create({
   gameBtn: {
-    width: 70,
-    backgroundColor: '#1E3B10',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
+    backgroundColor: "#1E3B10",
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 5,
   },
-  adBtn: {
-    maxWidth: 150,
-    backgroundColor: '#1E3B10',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    marginTop: 20,
+  CTABtn: {
+    backgroundColor: "#1E3B10",
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
   },
 });

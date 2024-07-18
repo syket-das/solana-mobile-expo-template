@@ -5,55 +5,58 @@ import {
   TouchableHighlight,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React from 'react';
-import { useBottomSheet } from '@gorhom/bottom-sheet';
-import Entypo from '@expo/vector-icons/Entypo';
+} from "react-native";
+import React from "react";
+import { useBottomSheet } from "@gorhom/bottom-sheet";
+import Entypo from "@expo/vector-icons/Entypo";
 
 const FullCharge = () => {
   return (
     <View
       style={{
-        alignItems: 'center',
+        marginTop: 30,
+        alignItems: "center",
       }}
     >
-      <TouchableHighlight onPress={() => console.log('rock')}>
-        <View>
-          <View style={styles.gameBtn}>
-            <Image
-              source={require('../../assets/img/fuel/full-charge.png')}
-              style={{ width: 50, height: 40 }}
-            />
-          </View>
+      <View>
+        <View style={styles.gameBtn}>
+          <Image
+            source={require("../../assets/img/fuel/full-charge.png")}
+            style={{ width: 45, height: 45 }}
+          />
         </View>
-      </TouchableHighlight>
+      </View>
       <Text
         style={{
-          color: '#6CF926',
-          textAlign: 'center',
+          color: "#6CF926",
+          textAlign: "center",
           marginTop: 10,
           fontSize: 20,
-          fontWeight: 'bold',
+          fontWeight: "bold",
         }}
       >
         FULL CHARGE
       </Text>
       <Text
         style={{
-          color: '#6CF926',
-          textAlign: 'center',
+          color: "#FFFFFF",
+          textAlign: "center",
           marginTop: 10,
-          fontSize: 16,
+          fontSize: 18,
           maxWidth: 300,
         }}
       >
         To fully charge your battery instantly, please click the button below
-        and watch the entire ad without skipping.{' '}
+        and watch the entire ad without skipping.{" "}
       </Text>
 
-      <TouchableHighlight onPress={() => console.log('rock')}>
+      <TouchableHighlight onPress={() => console.log("rock")}>
         <View style={styles.adBtn}>
-          <Text style={{ color: '#fff', fontWeight: 'bold' }}>WATCH AD</Text>
+          <Image
+            source={require("../../assets/img/fuel/watch-ad.png")}
+            style={{ width: 25, height: 25 }}
+          />
+          <Text style={{ color: "#fff", fontWeight: "bold" }}>WATCH AD</Text>
         </View>
       </TouchableHighlight>
     </View>
@@ -64,20 +67,23 @@ export default FullCharge;
 
 const styles = StyleSheet.create({
   gameBtn: {
-    width: 70,
-    backgroundColor: '#1E3B10',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
+    backgroundColor: "#1E3B10",
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 6,
   },
   adBtn: {
-    width: 150,
-    backgroundColor: '#1E3B10',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
     marginTop: 20,
+    display: "flex",
+    flexDirection: "row",
+    gap: 4,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    backgroundColor: "#1E3B10",
+    borderColor: "#FFCC00",
+    borderWidth: 0.5,
+    borderRadius: 6,
   },
 });

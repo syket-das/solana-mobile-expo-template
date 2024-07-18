@@ -1,29 +1,28 @@
+import React, { useRef, useState } from "react";
 import {
-  Button,
   Image,
   ImageBackground,
   StyleSheet,
   Text,
-  TouchableHighlight,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+} from "react-native";
+import useHomeStore from "../store/homeStore";
+import CustomBottomSheet from "../components/global/CustomBottomSheet";
+import FullCharge from "../components/fuel/FullCharge";
+import LumikTaper from "../components/fuel/LumikTaper";
+import Multiplier from "../components/fuel/Multiplier";
+import EnergyCapacity from "../components/fuel/EnergyCapacity";
+import FuelSpeed from "../components/fuel/FuelSpeed";
+import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
+import { globalStyles } from "../styles/globalStyles";
+import NavBar from "../components/global/Navbar";
+import StatCard from "../components/global/StatCard";
+import AutoMiner from "../assets/img/fuel/auto-miner.png";
+import MultiPlayer from "../assets/img/fuel/multiplier.png";
+import EnergyCapacityImage from "../assets/img/fuel/energy-capacity.png";
+import FuelSpeedImage from "../assets/img/fuel/fuel-speed.png";
 
-import GameCoin from '../components/home/GameCoin';
-import useHomeStore from '../store/homeStore';
-import Animated from 'react-native-reanimated';
-import BottomTabNav from '../components/global/BottomTabNav';
-import CustomBottomSheet from '../components/global/CustomBottomSheet';
-import FullCharge from '../components/fuel/FullCharge';
-import LumikTaper from '../components/fuel/LumikTaper';
-import Multiplier from '../components/fuel/Multiplier';
-import EnergyCapacity from '../components/fuel/EnergyCapacity';
-import FeulSpeed from '../components/fuel/FeulSpeed';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
-import CoinContainer from '../components/global/CoinContainer';
-import { globalStyles } from '../styles/globalStyles';
-import { Ionicons } from '@expo/vector-icons';
 const FuelScreen = () => {
   const { points }: any = useHomeStore((state) => state);
 
@@ -37,430 +36,224 @@ const FuelScreen = () => {
     <>
       <View style={styles.container}>
         <ImageBackground
-          source={require('../assets/img/auth-bg.png')}
+          source={require("../assets/img/background-layer.jpg")}
           style={styles.bgImage}
         >
-          {/* <TopBarWalletMenu /> */}
-          <Image
-            source={require('../assets/img/home/text-logo.png')}
-            style={{
-              width: '50%',
-              height: 40,
-              alignSelf: 'center',
-              marginTop: 10,
-              objectFit: 'contain',
-            }}
-          />
-          <CoinContainer />
-
+          <NavBar />
           <View
             style={{
-              marginTop: 20,
-              marginLeft: 20,
+              marginTop: 28,
+              paddingHorizontal: 15,
             }}
           >
             <Text style={styles.titleText}>POWER UPS</Text>
 
             <View
               style={{
-                width: '90%',
-                rowGap: 20,
-                marginTop: 20,
+                width: "100%",
+                rowGap: 16,
+                marginTop: 16,
               }}
             >
               <TouchableOpacity
                 onPress={() => {
-                  setKey('full-charge');
+                  setKey("full-charge");
                   handleOpenPress();
                 }}
-                style={{
-                  width: '100%',
-                  height: 60,
-                  backgroundColor: '#31460C',
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
+                style={globalStyles.cardContainer}
               >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
+                <View style={globalStyles.cardContentStyle}>
                   <Image
-                    source={require('../assets/img/fuel/full-charge.png')}
-                    style={{ width: 40, height: 40 }}
+                    source={require("../assets/img/fuel/full-charge.png")}
+                    style={globalStyles.cardImage}
                   />
-                  <View>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: 1,
+                    }}
+                  >
                     <Text
                       style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        ...globalStyles.globalFont,
-                        fontSize: 18,
+                        color: "#6CF926",
+                        ...globalStyles.cardTitleText,
                       }}
                     >
                       FULL CHARGE
                     </Text>
-                    <View
+                    <Text
                       style={{
-                        flexDirection: 'row',
-                        justifyContent: 'space-between',
-                        alignItems: 'center',
-                        width: '92%',
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
                       }}
                     >
-                      <Text
-                        style={{
-                          color: '#fff',
-                          marginLeft: 10,
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        21/22
-                      </Text>
-                      <Text
-                        style={{
-                          color: '#6CF926',
-                          marginRight: 10,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        00:14:36
-                      </Text>
-                    </View>
+                      21/22
+                    </Text>
                   </View>
                 </View>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  setKey('lumik-taper');
-                  handleOpenPress();
-                }}
-                style={{
-                  width: '100%',
-                  height: 60,
-                  backgroundColor: '#31460C',
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <View
+                <Text
                   style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
+                    color: "#FFFFFF",
+                    ...globalStyles.cardSubTitleText,
+                    paddingTop: 16,
                   }}
                 >
-                  <Image
-                    source={require('../assets/img/fuel/auto-miner.png')}
-                    style={{ width: 40, height: 40 }}
-                  />
-                  <View>
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        ...globalStyles.globalFont,
-                        fontSize: 18,
-                      }}
-                    >
-                      LUMIK TAPER
-                    </Text>
-                    <Text
-                      style={{
-                        color: '#fff',
-                        marginLeft: 10,
-                        fontSize: 12,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      1/1
-                    </Text>
-                  </View>
-                </View>
-                <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text>
+                  00:14:36
+                </Text>
               </TouchableOpacity>
+              <StatCard
+                isClickable={true}
+                onPress={() => {
+                  setKey("lumik-taper");
+                  handleOpenPress();
+                }}
+                cardTitle="LUMIK TAPER"
+                cardImage={AutoMiner}
+                cardSubTitle={
+                  <Text
+                    style={{
+                      color: "#fff",
+                      ...globalStyles.cardSubTitleText,
+                    }}
+                  >
+                    1/1
+                  </Text>
+                }
+              />
             </View>
           </View>
 
           <View
             style={{
-              marginTop: 20,
-              marginLeft: 20,
+              marginTop: 18,
+              paddingHorizontal: 15,
             }}
           >
-            <Text style={styles.titleText}>Boosters</Text>
-
+            <Text style={styles.titleText}>BOOSTERS</Text>
             <View
               style={{
-                width: '90%',
-                rowGap: 20,
-                marginTop: 20,
+                width: "100%",
+                rowGap: 16,
+                marginTop: 16,
               }}
             >
-              <TouchableOpacity
+              <StatCard
+                isClickable={true}
                 onPress={() => {
-                  setKey('multiplier');
+                  setKey("multiplier");
                   handleOpenPress();
                 }}
-                style={{
-                  width: '100%',
-                  height: 60,
-                  backgroundColor: '#31460C',
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/fuel/multiplier.png')}
-                    style={{ width: 40, height: 40 }}
-                  />
-                  <View>
+                cardTitle="MULTIPLIER"
+                cardImage={MultiPlayer}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/global/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
                     <Text
                       style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        ...globalStyles.globalFont,
-                        fontSize: 18,
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
                       }}
                     >
-                      MULTIPLIER{' '}
+                      500
                     </Text>
-                    <View
+                    <Text
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        columnGap: 4,
-                        marginLeft: 10,
+                        color: "#6CF926",
+                        ...styles.cardSubTitle,
                       }}
                     >
-                      <Image
-                        source={require('../assets/img/global/gcwg.png')}
-                        style={{ width: 20, height: 20 }}
-                      />
-
-                      <Text
-                        style={{
-                          color: '#fff',
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        500
-                      </Text>
-                      <Text
-                        style={{
-                          color: '#6CF926',
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        | LVL 1
-                      </Text>
-                    </View>
+                      | LVL 1
+                    </Text>
                   </View>
-                </View>
-                <Ionicons
-                  name="chevron-forward"
-                  size={16}
-                  color="#6CF926"
-                  style={{
-                    marginRight: 10,
-                  }}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
+                }
+              />
+              <StatCard
+                isClickable={true}
                 onPress={() => {
-                  setKey('energy-capacity');
+                  setKey("energy-capacity");
                   handleOpenPress();
                 }}
-                style={{
-                  width: '100%',
-                  height: 60,
-                  backgroundColor: '#31460C',
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/fuel/energy-capacity.png')}
-                    style={{ width: 40, height: 40 }}
-                  />
-                  <View>
+                cardTitle="ENERGY CAPACITY"
+                cardImage={EnergyCapacityImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/global/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
                     <Text
                       style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        ...globalStyles.globalFont,
-                        fontSize: 18,
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
                       }}
                     >
-                      ENERGY CAPACITY
+                      500
                     </Text>
-                    <View
+                    <Text
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        columnGap: 4,
-                        marginLeft: 10,
+                        color: "#6CF926",
+                        ...styles.cardSubTitle,
                       }}
                     >
-                      <Image
-                        source={require('../assets/img/global/gcwg.png')}
-                        style={{ width: 20, height: 20 }}
-                      />
-
-                      <Text
-                        style={{
-                          color: '#fff',
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        500
-                      </Text>
-                      <Text
-                        style={{
-                          color: '#6CF926',
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        | LVL 1
-                      </Text>
-                    </View>
+                      | LVL 1
+                    </Text>
                   </View>
-                </View>
-                <Ionicons
-                  name="chevron-forward"
-                  size={16}
-                  color="#6CF926"
-                  style={{
-                    marginRight: 10,
-                  }}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
+                }
+              />
+              <StatCard
+                isClickable={true}
                 onPress={() => {
-                  setKey('fuel-speed');
+                  setKey("fuel-speed");
                   handleOpenPress();
                 }}
-                style={{
-                  width: '100%',
-                  height: 60,
-                  backgroundColor: '#31460C',
-                  borderRadius: 10,
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/fuel/energy-capacity.png')}
-                    style={{ width: 40, height: 40 }}
-                  />
-                  <View>
+                cardTitle="FUEL SPEED"
+                cardImage={FuelSpeedImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/global/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
                     <Text
                       style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        ...globalStyles.globalFont,
-                        fontSize: 18,
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
                       }}
                     >
-                      FUEL SPEED
+                      500
                     </Text>
-                    <View
+                    <Text
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        columnGap: 4,
-                        marginLeft: 10,
+                        color: "#6CF926",
+                        ...styles.cardSubTitle,
                       }}
                     >
-                      <Image
-                        source={require('../assets/img/fuel/fuel-speed.png')}
-                        style={{ width: 20, height: 20 }}
-                      />
-
-                      <Text
-                        style={{
-                          color: '#fff',
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        500
-                      </Text>
-                      <Text
-                        style={{
-                          color: '#6CF926',
-                          fontSize: 12,
-                          ...globalStyles.globalFont,
-                        }}
-                      >
-                        | LVL 1
-                      </Text>
-                    </View>
+                      | LVL 1
+                    </Text>
                   </View>
-                </View>
-                <Ionicons
-                  name="chevron-forward"
-                  size={16}
-                  color="#6CF926"
-                  style={{
-                    marginRight: 10,
-                  }}
-                />
-              </TouchableOpacity>
+                }
+              />
             </View>
           </View>
-
-          <BottomTabNav />
         </ImageBackground>
         <CustomBottomSheet ref={bottomSheetRef} closable>
-          {key === 'full-charge' ? (
+          {key === "full-charge" ? (
             <FullCharge />
-          ) : key === 'lumik-taper' ? (
+          ) : key === "lumik-taper" ? (
             <LumikTaper />
-          ) : key === 'multiplier' ? (
+          ) : key === "multiplier" ? (
             <Multiplier />
-          ) : key === 'energy-capacity' ? (
+          ) : key === "energy-capacity" ? (
             <EnergyCapacity />
-          ) : key === 'fuel-speed' ? (
-            <FeulSpeed />
+          ) : key === "fuel-speed" ? (
+            <FuelSpeed />
           ) : null}
         </CustomBottomSheet>
       </View>
@@ -476,19 +269,26 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 
   gcCOntainer: {},
 
-  contentContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-
   titleText: {
     fontSize: 24,
-    color: '#6CF926',
+    color: "#6CF926",
     ...globalStyles.globalFont,
+  },
+  cardSubTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 4,
+  },
+  cardSubTitleImage: {
+    width: 20,
+    height: 20,
+  },
+  cardSubTitle: {
+    ...globalStyles.cardSubTitleText,
   },
 });

@@ -6,41 +6,32 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React from 'react';
-import CoinContainer from '../components/global/CoinContainer';
-import BottomTabNav from '../components/global/BottomTabNav';
-import { globalStyles } from '../styles/globalStyles';
+} from "react-native";
+import React from "react";
+import BottomTabNav from "../components/global/BottomTabNav";
+import { globalStyles } from "../styles/globalStyles";
+import NavBar from "../components/global/Navbar";
+import CoinImage from "../assets/img/global/gcwg.png";
+import StatCard from "../components/global/StatCard";
 
 const Web3PassScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/img/auth-bg.png')}
+        source={require("../assets/img/background-layer.jpg")}
         style={styles.bgImage}
       >
-        {/* <TopBarWalletMenu /> */}
-        <Image
-          source={require('../assets/img/home/text-logo.png')}
-          style={{
-            width: '50%',
-            height: 40,
-            alignSelf: 'center',
-            marginTop: 10,
-            objectFit: 'contain',
-          }}
-        />
-        <CoinContainer />
+        <NavBar />
 
         <View
           style={{
-            marginHorizontal: 20,
-            marginTop: 20,
+            paddingHorizontal: 15,
+            marginTop: 28,
           }}
         >
           <Text
             style={{
-              color: '#52F81A',
+              color: "#6CF926",
               fontSize: 24,
               ...globalStyles.globalFont,
             }}
@@ -49,10 +40,10 @@ const Web3PassScreen = () => {
           </Text>
           <Text
             style={{
-              color: '#fff',
+              color: "#fff",
               fontSize: 18,
-              marginTop: 10,
               ...globalStyles.globalFont,
+              marginVertical: 10,
             }}
           >
             We assume you've already connected your SOLANA wallet upon logging
@@ -62,413 +53,262 @@ const Web3PassScreen = () => {
             https://example.com
           </Text>
 
-          <TouchableOpacity
-            onPress={() => {}}
+          <StatCard
+            isClickable={false}
+            cardTitle="LUMIK POINT REWARDS"
+            cardImage={CoinImage}
+            cardSubTitle={
+              <Text style={{ color: "#fff", ...globalStyles.cardSubTitleText }}>
+                500
+              </Text>
+            }
+          />
+
+          <Text
             style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
+              color: "#6CF926",
+              fontSize: 24,
               marginTop: 20,
+              ...globalStyles.globalFont,
             }}
           >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/gcwg.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  LUMIK POINT REWARDS{' '}
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-
-          <Text style={{ color: '#52F81A', fontSize: 20, marginTop: 20 }}>
             YOUR TASKS'S
           </Text>
 
           <ScrollView
             style={{
-              marginTop: 20,
-              height: '44%',
-              //   backgroundColor: '#16270D',
-              borderRadius: 10,
+              marginTop: 16,
+              height: "45%",
             }}
           >
             <View
               style={{
-                width: '100%',
-                // height: '100%',
-                backgroundColor: '#16270D',
-                borderRadius: 10,
-                marginBottom: 20,
-                paddingVertical: 10,
+                width: "100%",
+                rowGap: 16,
               }}
             >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
-                  <View>
+              <TouchableOpacity onPress={() => {}} style={styles.cardContainer}>
+                <View style={styles.cardContentStyle}>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: 2,
+                    }}
+                  >
                     <Text
                       style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        fontSize: 18,
-                        ...globalStyles.globalFont,
+                        color: "#6CF926",
+                        ...globalStyles.cardTitleText,
                       }}
                     >
                       CONNECT SOLANA WALLET
                     </Text>
                     <View
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
+                        flexDirection: "row",
+                        alignItems: "center",
                         columnGap: 4,
-                        marginLeft: 10,
                       }}
                     >
                       <Image
-                        source={require('../assets/img/global/gcwg.png')}
+                        source={require("../assets/img/global/gcwg.png")}
                         style={{ width: 20, height: 20 }}
                       />
 
                       <Text
                         style={{
-                          color: '#fff',
-                          fontSize: 16,
-                          ...globalStyles.globalFont,
+                          color: "#fff",
+                          ...globalStyles.cardSubTitleText,
                         }}
                       >
                         500
                       </Text>
                     </View>
                   </View>
-                </View>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <TouchableOpacity
-                    onPress={() => {}}
+                  <View
                     style={{
-                      backgroundColor: '#1E3C0F',
-
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 5,
-                      marginRight: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
+                      flexDirection: "row",
+                      gap: 10,
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => {}}
+                      style={styles.cardButtonStyle}
+                    >
+                      <Text
+                        style={{
+                          color: "#6CF926",
+                          ...globalStyles.cardSubTitleText,
+                        }}
+                      >
+                        GO
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {}}
+                      style={styles.cardButtonStyle}
+                    >
+                      <Text
+                        style={{
+                          color: "#6CF926",
+                          ...globalStyles.cardSubTitleText,
+                        }}
+                      >
+                        CHECK
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {}} style={styles.cardContainer}>
+                <View style={styles.cardContentStyle}>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: 2,
                     }}
                   >
                     <Text
                       style={{
-                        color: '#6CF926',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
+                        color: "#6CF926",
+                        ...globalStyles.cardTitleText,
                       }}
                     >
-                      GO
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    style={{
-                      backgroundColor: '#1E3C0F',
-
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 5,
-                      marginRight: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      CHECK
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              {/* progress bar */}
-            </View>
-            <View
-              style={{
-                width: '100%',
-                // height: '100%',
-                backgroundColor: '#16270D',
-                borderRadius: 10,
-                marginBottom: 20,
-                paddingVertical: 10,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
-                  <View>
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        fontSize: 18,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      BUY AZAMEINA NFT{' '}
+                      BUY AZAMEINA NFT
                     </Text>
                     <View
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
+                        flexDirection: "row",
+                        alignItems: "center",
                         columnGap: 4,
-                        marginLeft: 10,
                       }}
                     >
                       <Image
-                        source={require('../assets/img/global/gcwg.png')}
+                        source={require("../assets/img/global/gcwg.png")}
                         style={{ width: 20, height: 20 }}
                       />
 
                       <Text
                         style={{
-                          color: '#fff',
-                          fontSize: 16,
-                          ...globalStyles.globalFont,
+                          color: "#fff",
+                          ...globalStyles.cardSubTitleText,
                         }}
                       >
                         500
                       </Text>
                     </View>
                   </View>
-                </View>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <TouchableOpacity
-                    onPress={() => {}}
+                  <View
                     style={{
-                      backgroundColor: '#1E3C0F',
-
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 5,
-                      marginRight: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
+                      flexDirection: "row",
+                      gap: 10,
+                    }}
+                  >
+                    <TouchableOpacity
+                      onPress={() => {}}
+                      style={styles.cardButtonStyle}
+                    >
+                      <Text
+                        style={{
+                          color: "#6CF926",
+                          ...globalStyles.cardSubTitleText,
+                        }}
+                      >
+                        GO
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {}}
+                      style={styles.cardButtonStyle}
+                    >
+                      <Text
+                        style={{
+                          color: "#6CF926",
+                          ...globalStyles.cardSubTitleText,
+                        }}
+                      >
+                        CHECK
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => {}} style={styles.cardContainer}>
+                <View style={styles.cardContentStyle}>
+                  <View
+                    style={{
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      gap: 2,
                     }}
                   >
                     <Text
                       style={{
-                        color: '#6CF926',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
+                        color: "#6CF926",
+                        ...globalStyles.cardTitleText,
                       }}
                     >
-                      GO
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    style={{
-                      backgroundColor: '#1E3C0F',
-
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 5,
-                      marginRight: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      CHECK
-                    </Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-              {/* progress bar */}
-            </View>
-            <View
-              style={{
-                width: '100%',
-                // height: '100%',
-                backgroundColor: '#16270D',
-                borderRadius: 10,
-                marginBottom: 20,
-                paddingVertical: 10,
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  justifyContent: 'space-between',
-                  width: '100%',
-                }}
-              >
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    marginLeft: 10,
-                  }}
-                >
-                  <View>
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        marginLeft: 10,
-                        fontSize: 18,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      BUY LUMIK TAPPER NFT{' '}
+                      BUY LUMIK TAPPER NFT
                     </Text>
                     <View
                       style={{
-                        flexDirection: 'row',
-                        alignItems: 'center',
+                        flexDirection: "row",
+                        alignItems: "center",
                         columnGap: 4,
-                        marginLeft: 10,
                       }}
                     >
                       <Image
-                        source={require('../assets/img/global/gcwg.png')}
+                        source={require("../assets/img/global/gcwg.png")}
                         style={{ width: 20, height: 20 }}
                       />
 
                       <Text
                         style={{
-                          color: '#fff',
-                          fontSize: 16,
-                          ...globalStyles.globalFont,
+                          color: "#fff",
+                          ...globalStyles.cardSubTitleText,
                         }}
                       >
                         500
                       </Text>
                     </View>
                   </View>
-                </View>
-
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <TouchableOpacity
-                    onPress={() => {}}
+                  <View
                     style={{
-                      backgroundColor: '#1E3C0F',
-
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 5,
-                      marginRight: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
+                      flexDirection: "row",
+                      gap: 10,
                     }}
                   >
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
+                    <TouchableOpacity
+                      onPress={() => {}}
+                      style={styles.cardButtonStyle}
                     >
-                      GO
-                    </Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    style={{
-                      backgroundColor: '#1E3C0F',
-
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      borderRadius: 5,
-                      marginRight: 10,
-                      paddingHorizontal: 10,
-                      paddingVertical: 5,
-                    }}
-                  >
-                    <Text
-                      style={{
-                        color: '#6CF926',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
+                      <Text
+                        style={{
+                          color: "#6CF926",
+                          ...globalStyles.cardSubTitleText,
+                        }}
+                      >
+                        GO
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      onPress={() => {}}
+                      style={styles.cardButtonStyle}
                     >
-                      CHECK
-                    </Text>
-                  </TouchableOpacity>
+                      <Text
+                        style={{
+                          color: "#6CF926",
+                          ...globalStyles.cardSubTitleText,
+                        }}
+                      >
+                        CHECK
+                      </Text>
+                    </TouchableOpacity>
+                  </View>
                 </View>
-              </View>
-              {/* progress bar */}
+              </TouchableOpacity>
             </View>
           </ScrollView>
         </View>
@@ -486,6 +326,28 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
+  },
+  cardContainer: {
+    width: "100%",
+    backgroundColor: "#6CF92612",
+    borderRadius: 10,
+    borderColor: "#6CF92625",
+    borderWidth: 1,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+  },
+  cardContentStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+  },
+  cardButtonStyle: {
+    backgroundColor: "#6CF92612",
+    borderRadius: 6,
+    borderColor: "#6CF92625",
+    borderWidth: 1,
+    paddingVertical: 4,
+    paddingHorizontal: 6,
   },
 });

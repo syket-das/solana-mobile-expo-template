@@ -26,7 +26,6 @@
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
         <data android:scheme="com.syket.solanamobileexpotemplate"/>
-        <data android:scheme="exp+solana-mobile-expo-template"/>
         <data android:scheme="exp+azameina"/>
       </intent-filter>
     </activity>

@@ -1,30 +1,17 @@
-import { Image, ImageBackground, StyleSheet, Text, View } from 'react-native';
-import React from 'react';
-import CoinContainer from '../components/global/CoinContainer';
-import BottomTabNav from '../components/global/BottomTabNav';
-import ForceTopTab from '../components/force/ForceTopTab';
+import { ImageBackground, StyleSheet, View } from "react-native";
+import React from "react";
+import ForceTopTab from "../components/force/ForceTopTab";
+import NavBar from "../components/global/Navbar";
 
 const ForceScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/img/auth-bg.png')}
+        source={require("../assets/img/background-layer.jpg")}
         style={styles.bgImage}
       >
-        {/* <TopBarWalletMenu /> */}
-        <Image
-          source={require('../assets/img/home/text-logo.png')}
-          style={{
-            width: '50%',
-            height: 40,
-            alignSelf: 'center',
-            marginTop: 10,
-            objectFit: 'contain',
-          }}
-        />
-        <CoinContainer />
+        <NavBar />
         <ForceTopTab />
-        <BottomTabNav />
       </ImageBackground>
     </View>
   );
@@ -38,6 +25,6 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
 });

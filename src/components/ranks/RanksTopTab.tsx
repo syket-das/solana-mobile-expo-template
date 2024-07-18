@@ -5,312 +5,130 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { globalStyles } from '../../styles/globalStyles';
+} from "react-native";
+import React from "react";
+import { useNavigation } from "@react-navigation/native";
+import { globalStyles } from "../../styles/globalStyles";
+import Rank1 from "../../assets/img/rank/1.png";
+import Rank2 from "../../assets/img/rank/1.png";
+import StatCard from "../global/StatCard";
 
 const RanksTopTab = () => {
   const navigation = useNavigation();
-  const [selected, setSelected] = React.useState('top');
+  const [selected, setSelected] = React.useState("top");
 
   return (
     <View
       style={{
-        width: '90%',
-        marginHorizontal: '5%',
+        width: "100%",
       }}
     >
-      <View
-        style={{
-          height: 50,
-          backgroundColor: '#16270D',
-          borderRadius: 10,
-          marginTop: 20,
-
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingHorizontal: 10,
-        }}
-      >
+      <View style={globalStyles.tabContainer}>
         <TouchableOpacity
-          onPress={() => setSelected('top')}
+          onPress={() => setSelected("top")}
           style={{
-            backgroundColor: selected === 'top' ? '#006600' : 'transparent',
-            width: '30%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 30,
-            borderRadius: 5,
-            flex: 1,
+            backgroundColor: selected === "top" ? "#6CF92625" : "transparent",
+            ...styles.tabContentContainer,
           }}
         >
-          <Text
-            style={{
-              color: '#52F81A',
-              fontSize: 18,
-              ...globalStyles.globalFont,
-            }}
-          >
-            TOP 1111
-          </Text>
+          <Image
+            source={require("../../assets/img/rank/top-players.png")}
+            style={{ width: 24, height: 24 }}
+          />
+          <Text style={styles.tabTitle}>TOP 1111</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => setSelected('standing')}
+          onPress={() => setSelected("standing")}
           style={{
             backgroundColor:
-              selected === 'standing' ? '#006600' : 'transparent',
-            width: '30%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 30,
-            borderRadius: 5,
-            flex: 1,
+              selected === "standing" ? "#6CF92625" : "transparent",
+            ...styles.tabContentContainer,
           }}
         >
-          <Text
-            style={{
-              color: '#52F81A',
-              fontSize: 18,
-              ...globalStyles.globalFont,
-            }}
-          >
-            STANDINGS
-          </Text>
+          <Image
+            source={require("../../assets/img/rank/standings.png")}
+            style={{ width: 24, height: 24 }}
+          />
+          <Text style={styles.tabTitle}>STANDINGS</Text>
         </TouchableOpacity>
       </View>
 
-      {selected === 'top' ? (
+      {selected === "top" ? (
         <ScrollView
           style={{
-            marginTop: 20,
-            height: '20%',
-            // backgroundColor: '#16270D',
-            borderRadius: 10,
+            height: "30%",
           }}
         >
-          <TouchableOpacity
-            onPress={() => {}}
+          <View
             style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
+              marginTop: 16,
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
             }}
           >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/rank/1.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
+            <StatCard
+              isClickable={false}
+              cardTitle="STEVE JOBS 2"
+              cardImage={Rank1}
+              cardSubTitle={
+                <View style={styles.cardSubTitleContainer}>
                   <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
+                    source={require("../../assets/img/home/gcwg.png")}
+                    style={styles.cardSubTitleImage}
                   />
 
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500000
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM: 100K
-                  </Text>
+                  <Text style={styles.cardSubTitle}>500000</Text>
                 </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/rank/1.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  STEVE JOBS 2
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
+              }
+            />
+            <StatCard
+              isClickable={false}
+              cardTitle="STEVE JOBS 2"
+              cardImage={Rank2}
+              cardSubTitle={
+                <View style={styles.cardSubTitleContainer}>
                   <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
+                    source={require("../../assets/img/home/gcwg.png")}
+                    style={styles.cardSubTitleImage}
                   />
 
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500000
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM: 100K
-                  </Text>
+                  <Text style={styles.cardSubTitle}>500000</Text>
                 </View>
-              </View>
-            </View>
-          </TouchableOpacity>
+              }
+            />
+          </View>
         </ScrollView>
-      ) : selected === 'standing' ? (
+      ) : selected === "standing" ? (
         <ScrollView
           style={{
-            marginTop: 20,
-            height: '20%',
-            //   backgroundColor: '#16270D',
-            borderRadius: 10,
+            height: "40%",
           }}
         >
-          <TouchableOpacity
-            onPress={() => {}}
+          <View
             style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
+              marginTop: 16,
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
             }}
           >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/rank/1.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
+            <StatCard
+              isClickable={false}
+              cardTitle="STEVE JOBS 2"
+              cardImage={Rank1}
+              cardSubTitle={
+                <View style={styles.cardSubTitleContainer}>
                   <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
+                    source={require("../../assets/img/home/gcwg.png")}
+                    style={styles.cardSubTitleImage}
                   />
 
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500000
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | TEAM: 100K
-                  </Text>
+                  <Text style={styles.cardSubTitle}>500000</Text>
                 </View>
-              </View>
-            </View>
-          </TouchableOpacity>
+              }
+            />
+          </View>
         </ScrollView>
       ) : null}
     </View>
@@ -319,4 +137,34 @@ const RanksTopTab = () => {
 
 export default RanksTopTab;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  tabContentContainer: {
+    width: "50%",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 1,
+    height: 30,
+    borderRadius: 4,
+    flex: 1,
+  },
+  tabTitle: {
+    color: "#52F81A",
+    fontSize: 18,
+    ...globalStyles.globalFont,
+  },
+  cardSubTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 4,
+  },
+  cardSubTitleImage: {
+    width: 20,
+    height: 20,
+  },
+  cardSubTitle: {
+    color: "#fff",
+    ...globalStyles.cardSubTitleText,
+  },
+});

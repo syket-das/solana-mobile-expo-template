@@ -1,26 +1,33 @@
+import React, { useState } from "react";
 import {
   Image,
   ImageBackground,
   ScrollView,
   StyleSheet,
   Text,
-  TouchableOpacity,
   View,
-} from 'react-native';
-import React, { useState } from 'react';
-import CoinContainer from '../components/global/CoinContainer';
-import BottomTabNav from '../components/global/BottomTabNav';
-import ForceTopTab from '../components/force/ForceTopTab';
-import RanksTopTab from '../components/ranks/RanksTopTab';
-import useAuthStore from '../store/authStore';
-import * as Clipboard from 'expo-clipboard';
-import { Entypo, Ionicons } from '@expo/vector-icons';
-import { globalStyles } from '../styles/globalStyles';
-import CustomBottomSheet from '../components/global/CustomBottomSheet';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
-import InviteCodeModalContent from '../components/saga/InviteCodeModalContent';
-import { useNavigation } from '@react-navigation/native';
-import useUserStore from '../store/userStore';
+} from "react-native";
+import useAuthStore from "../store/authStore";
+import * as Clipboard from "expo-clipboard";
+import { Entypo, Ionicons } from "@expo/vector-icons";
+import { globalStyles } from "../styles/globalStyles";
+import CustomBottomSheet from "../components/global/CustomBottomSheet";
+import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
+import InviteCodeModalContent from "../components/saga/InviteCodeModalContent";
+import { useNavigation } from "@react-navigation/native";
+import useUserStore from "../store/userStore";
+import NavBar from "../components/global/Navbar";
+import StatCard from "../components/global/StatCard";
+import ReferralImage from "../assets/img/home/referral-code.png";
+import YourTeamImage from "../assets/img/saga/your-team.png";
+import PlatinumLeagueImage from "../assets/img/global/league/platinum.png";
+import RankImage from "../assets/img/saga/your-rank.png";
+import ReferralEarningsImage from "../assets/img/saga/your-referrals.png";
+import TokenMinedImage from "../assets/img/saga/token-mined.png";
+import LPBoosterImage from "../assets/img/saga/lp-on-boosters.png";
+import BotImage from "../assets/img/fuel/auto-miner.png";
+import BoosCoinImage from "../assets/img/home/boss.png";
+import LogoutImage from "../assets/img/saga/padlock.png";
 
 const SagaScreen = () => {
   const { user, error, getUserProfile }: any = useUserStore((state) => state);
@@ -34,7 +41,7 @@ const SagaScreen = () => {
   }, []);
 
   const modeBottomSheetRef = React.useRef<BottomSheet>(null);
-  const [copiedText, setCopiedText] = useState('');
+  const [copiedText, setCopiedText] = useState("");
   const navigation = useNavigation();
 
   const copyToClipboard = async (str: any) => {
@@ -45,60 +52,24 @@ const SagaScreen = () => {
     const text = await Clipboard.getStringAsync();
     setCopiedText(text);
   };
+
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/img/auth-bg.png')}
+        source={require("../assets/img/background-layer.jpg")}
         style={styles.bgImage}
       >
-        {/* <TopBarWalletMenu /> */}
-        <Image
-          source={require('../assets/img/home/text-logo.png')}
-          style={{
-            width: '50%',
-            height: 40,
-            alignSelf: 'center',
-            marginTop: 10,
-            objectFit: 'contain',
-          }}
-        />
-        <CoinContainer />
-
-        <ScrollView
-          style={{
-            marginHorizontal: 20,
-            marginTop: 20,
-            maxHeight: '70%',
-          }}
-        >
-          <View
-            style={{
-              width: '100%',
-              height: 50,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-              paddingHorizontal: 10,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                backgroundColor: '#006600',
-                borderRadius: 5,
-                padding: 5,
-              }}
-            >
+        <NavBar />
+        <View style={{ paddingHorizontal: 15, marginTop: 28 }}>
+          <View style={{ marginBottom: 16, ...globalStyles.tabContainer }}>
+            <View style={styles.tabContentContainer}>
+              <Image
+                source={require("../assets/img/saga/stats.png")}
+                style={{ width: 20, height: 20 }}
+              />
               <Text
                 style={{
-                  color: '#6CF926',
+                  color: "#6CF926",
                   fontSize: 20,
                   ...globalStyles.globalFont,
                 }}
@@ -107,384 +78,242 @@ const SagaScreen = () => {
               </Text>
             </View>
           </View>
-          <TouchableOpacity
-            onPress={() => {
-              modeBottomSheetRef.current?.expand();
-            }}
+          <ScrollView
             style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
+              height: "65%",
             }}
           >
             <View
               style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
+                width: "100%",
+                rowGap: 16,
               }}
             >
-              <Image
-                source={require('../assets/img/home/referral-code.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  YOUR INVITE CODE
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                    marginTop: 5,
-                  }}
-                >
+              <StatCard
+                isClickable
+                onPress={() => modeBottomSheetRef.current?.expand()}
+                cardTitle="YOUR INVITE CODE"
+                cardImage={ReferralImage}
+                cardSubTitle={
                   <Text
                     style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
+                      color: "#fff",
+                      ...globalStyles.cardSubTitleText,
                     }}
                   >
                     {user?.referralCode}
                   </Text>
-                </View>
-              </View>
-            </View>
-            <Ionicons
-              name="chevron-forward"
-              size={20}
-              color="#6CF926"
-              style={{
-                marginRight: 10,
-              }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Team');
-            }}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/saga/your-team.png')}
-                style={{ width: 40, height: 40 }}
+                }
               />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  YOUR TEAM
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                    marginTop: 5,
-                  }}
-                >
+              <StatCard
+                isClickable
+                onPress={() => navigation.navigate("Team")}
+                cardTitle="YOUR TEAM"
+                cardImage={YourTeamImage}
+                cardSubTitle={
                   <Text
                     style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
+                      color: "#fff",
+                      ...globalStyles.cardSubTitleText,
                     }}
                   >
-                    {user?.referrals?.length || 0}
+                    <Text
+                      style={{
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      {user?.referrals?.length || 0}
+                    </Text>
                   </Text>
-                </View>
-              </View>
-            </View>
-            <Ionicons
-              name="chevron-forward"
-              size={20}
-              color="#6CF926"
-              style={{
-                marginRight: 10,
-              }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
+                }
               />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    ...globalStyles.globalFont,
-                    fontSize: 18,
-                  }}
-                >
-                  YOUR MASTER | {user?.referredBy.userId.slice(0, 5)}
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                    marginTop: 5,
-                  }}
-                >
-                  <Text
+              <StatCard
+                isClickable={false}
+                cardTitle={
+                  <Text style={globalStyles.cardTitleText}>
+                    YOUR MASTER | {user?.referredBy.userId.slice(0, 5)}
+                  </Text>
+                }
+                cardImage={PlatinumLeagueImage}
+                cardSubTitle={
+                  <View
                     style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
+                      flexDirection: "row",
+                      alignItems: "center",
+                      columnGap: 4,
                     }}
                   >
-                    TEAM SIZE
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500 |{' '}
-                  </Text>
+                    <Text
+                      style={{
+                        color: "#6CF926",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      TEAM SIZE
+                    </Text>
+                    <Text
+                      style={{
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      500 |{" "}
+                    </Text>
 
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    TEAM SIZE
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                </View>
-              </View>
-            </View>
-            {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
+                    <Text
+                      style={{
+                        color: "#6CF926",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      TEAM SIZE
+                    </Text>
+                    <Text
+                      style={{
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      500
+                    </Text>
+                  </View>
+                }
               />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  YOUR RANK
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                    marginTop: 5,
-                  }}
-                >
-                  <Text
+              <StatCard
+                isClickable={false}
+                cardTitle="YOUR RANK"
+                cardImage={RankImage}
+                cardSubTitle={
+                  <View
                     style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
+                      flexDirection: "row",
+                      alignItems: "center",
+                      columnGap: 4,
                     }}
                   >
-                    LEAGUE
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    DIAMOND |{' '}
-                  </Text>
+                    <Text
+                      style={{
+                        color: "#6CF926",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      LEAGUE
+                    </Text>
+                    <Text
+                      style={{
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      DIAMOND |{" "}
+                    </Text>
 
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    RANK
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    50000
-                  </Text>
-                </View>
-              </View>
-            </View>
-            {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {}}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#31460C',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../assets/img/global/league/platinum.png')}
-                style={{ width: 40, height: 40 }}
+                    <Text
+                      style={{
+                        color: "#6CF926",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      RANK
+                    </Text>
+                    <Text
+                      style={{
+                        color: "#fff",
+                        ...globalStyles.cardSubTitleText,
+                      }}
+                    >
+                      50000
+                    </Text>
+                  </View>
+                }
               />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    ...globalStyles.globalFont,
-                    fontSize: 18,
-                  }}
-                >
-                  STEVE JOBS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../assets/img/global/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
+              <StatCard
+                isClickable={false}
+                cardTitle="REFERRAL EARNINGS"
+                cardImage={ReferralEarningsImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/home/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
 
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500
-                  </Text>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      fontSize: 12,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    | LVL 1
-                  </Text>
-                </View>
-              </View>
+                    <Text style={styles.cardSubTitle}>500000</Text>
+                  </View>
+                }
+              />
+              <StatCard
+                isClickable={false}
+                cardTitle="YOU MINED SO FAR"
+                cardImage={TokenMinedImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/home/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
+                    <Text style={styles.cardSubTitle}>500000</Text>
+                  </View>
+                }
+              />
+              <StatCard
+                isClickable={false}
+                cardTitle="LP SPENDS ON BOOSTERS"
+                cardImage={LPBoosterImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/home/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
+                    <Text style={styles.cardSubTitle}>500000</Text>
+                  </View>
+                }
+              />
+              <StatCard
+                isClickable={false}
+                cardTitle="LUMIK TAPPER LP EARNING"
+                cardImage={BotImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/home/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
+                    <Text style={styles.cardSubTitle}>500000</Text>
+                  </View>
+                }
+              />
+              <StatCard
+                isClickable={false}
+                cardTitle="BOSS MODE LP EARNING"
+                cardImage={BoosCoinImage}
+                cardSubTitle={
+                  <View style={styles.cardSubTitleContainer}>
+                    <Image
+                      source={require("../assets/img/home/gcwg.png")}
+                      style={styles.cardSubTitleImage}
+                    />
+
+                    <Text style={styles.cardSubTitle}>500000</Text>
+                  </View>
+                }
+              />
+              <StatCard
+                isClickable
+                onPress={() => console.log("Logging out")}
+                cardTitle="LOGOUT"
+                cardImage={LogoutImage}
+              />
             </View>
-          </TouchableOpacity>
-        </ScrollView>
+          </ScrollView>
+        </View>
 
-        <BottomTabNav />
+        {/* <BottomTabNav /> */}
       </ImageBackground>
 
       <CustomBottomSheet ref={modeBottomSheetRef} closable>
@@ -502,6 +331,29 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
+  },
+  tabContentContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    backgroundColor: "#6CF92625",
+    borderRadius: 5,
+    padding: 5,
+    gap: 4,
+  },
+  cardSubTitleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    columnGap: 4,
+  },
+  cardSubTitleImage: {
+    width: 20,
+    height: 20,
+  },
+  cardSubTitle: {
+    color: "#fff",
+    ...globalStyles.cardSubTitleText,
   },
 });
