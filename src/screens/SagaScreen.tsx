@@ -28,8 +28,22 @@ import BotImage from '../assets/img/fuel/auto-miner.png';
 import BoosCoinImage from '../assets/img/home/boss.png';
 import LogoutImage from '../assets/img/saga/padlock.png';
 import BottomTabNav from '../components/global/BottomTabNav';
+import { useMobileWallet } from '../utils/useMobileWallet';
+import {
+  fetchAuthorization,
+  useAuthorization,
+} from '../utils/useAuthorization';
 
 const SagaScreen = () => {
+  const { disconnect } = useMobileWallet();
+  const {
+    authorizeSession,
+    accounts,
+    selectedAccount,
+    deauthorizeSession,
+    isLoading,
+    authorizeSessionWithSignIn,
+  } = useAuthorization();
   const { user, error, getUserProfile }: any = useUserStore((state) => state);
 
   const fetchUserProfile = async () => {
@@ -39,6 +53,14 @@ const SagaScreen = () => {
   React.useEffect(() => {
     fetchUserProfile();
   }, []);
+
+  const LogOut = async () => {
+    const d = await fetchAuthorization();
+
+    await disconnect();
+
+    navigation.navigate('Auth');
+  };
 
   const modeBottomSheetRef = React.useRef<BottomSheet>(null);
   const navigation = useNavigation();
@@ -295,7 +317,7 @@ const SagaScreen = () => {
               />
               <StatCard
                 isClickable
-                onPress={() => console.log('Logging out')}
+                onPress={() => LogOut()}
                 cardTitle="LOGOUT"
                 cardImage={LogoutImage}
               />

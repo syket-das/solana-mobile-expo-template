@@ -11,7 +11,11 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import React, { useCallback, useEffect, useState } from 'react';
-import { useIsFocused, useNavigation } from '@react-navigation/native';
+import {
+  useIsFocused,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import {
   fetchAuthorization,
   useAuthorization,
@@ -22,6 +26,7 @@ import useAuthStore from '../store/authStore';
 import { globalStyles } from '../styles/globalStyles';
 
 const AuthScreen = () => {
+  const route = useRoute();
   const navigation = useNavigation();
   const isFocused = useIsFocused();
   const { user, registerOrLogin, error }: any = useAuthStore((state) => state);
@@ -54,19 +59,19 @@ const AuthScreen = () => {
         await registerOrLogin(selectedAccount);
 
         if (error) {
-          alertAndLog('Error during sign in', error);
+          // alertAndLog('Error during sign in', error);
           return;
         }
 
-        if (user) {
+        if (user && route.name === 'Auth') {
           navigation.navigate('Home');
         }
       }
     } catch (err: any) {
-      alertAndLog(
-        'Error during sign in',
-        err instanceof Error ? err.message : err
-      );
+      // alertAndLog(
+      //   'Error during sign in',
+      //   err instanceof Error ? err.message : err
+      // );
     } finally {
       setSignInInProgress(false);
     }
@@ -81,7 +86,7 @@ const AuthScreen = () => {
     setSignInInProgress(false);
 
     if (user) {
-      navigation.navigate('Home');
+      // navigation.navigate('Home');
     }
   };
 
@@ -98,7 +103,10 @@ const AuthScreen = () => {
   }, [isFocused, selectedAccount, user]);
 
   const handleAuth = async () => {
+    setSignInInProgress(true);
+
     await registerOrLogin(selectedAccount);
+    setSignInInProgress(false);
 
     if (user) {
       navigation.navigate('Home');

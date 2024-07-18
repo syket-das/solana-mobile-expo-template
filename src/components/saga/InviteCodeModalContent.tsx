@@ -5,27 +5,27 @@ import {
   TextInput,
   TouchableHighlight,
   View,
-} from "react-native";
-import React, { useState } from "react";
-import { globalStyles } from "../../styles/globalStyles";
-import useUserStore from "../../store/userStore";
-import * as Clipboard from "expo-clipboard";
+} from 'react-native';
+import React, { useState } from 'react';
+import { globalStyles } from '../../styles/globalStyles';
+import useUserStore from '../../store/userStore';
+import * as Clipboard from 'expo-clipboard';
 
 const InviteCodeModalContent = () => {
   const { user, error, getUserProfile }: any = useUserStore((state) => state);
 
   const fetchUserProfile = async () => {
     await getUserProfile();
-    copyToClipboard(user?.referralCode);
+    copyToClipboard(user?.referralCode || '');
   };
 
   React.useEffect(() => {
     fetchUserProfile();
   }, []);
   const [isVerified, setIsVerified] = useState(false);
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState('');
 
-  const [copiedText, setCopiedText] = useState("");
+  const [copiedText, setCopiedText] = useState('');
 
   const copyToClipboard = async (str: any) => {
     await Clipboard.setStringAsync(str);
@@ -39,13 +39,13 @@ const InviteCodeModalContent = () => {
   return (
     <View
       style={{
-        alignSelf: "center",
+        alignSelf: 'center',
         marginTop: 20,
       }}
     >
       <View style={globalStyles.bottomSheetImageContainer}>
         <Image
-          source={require("../../assets/img/home/referral-code.png")}
+          source={require('../../assets/img/home/referral-code.png')}
           style={globalStyles.bottomSheetImage}
         />
       </View>
@@ -53,10 +53,10 @@ const InviteCodeModalContent = () => {
       <Text
         style={{
           fontSize: 24,
-          fontWeight: "600",
-          color: "#6CF926",
+          fontWeight: '600',
+          color: '#6CF926',
           ...globalStyles.globalFont,
-          alignSelf: "center",
+          alignSelf: 'center',
           marginTop: 10,
         }}
       >
@@ -64,9 +64,9 @@ const InviteCodeModalContent = () => {
       </Text>
       <Text
         style={{
-          color: "#fff",
-          maxWidth: "80%",
-          textAlign: "center",
+          color: '#fff',
+          maxWidth: '80%',
+          textAlign: 'center',
           marginTop: 10,
           fontSize: 18,
           lineHeight: 20,
@@ -77,38 +77,38 @@ const InviteCodeModalContent = () => {
         friend will receive
         <Text
           style={{
-            color: "#FFCC00",
+            color: '#FFCC00',
             fontSize: 18,
             ...globalStyles.globalFont,
           }}
         >
-          {" 100 LP "}
+          {' 100 LP '}
         </Text>
-        for each successful referral. Plus, you'll earn{" "}
+        for each successful referral. Plus, you'll earn{' '}
         <Text
           style={{
-            color: "#FFCC00",
+            color: '#FFCC00',
             fontSize: 18,
             ...globalStyles.globalFont,
           }}
         >
-          {" 1% "}
+          {' 1% '}
         </Text>
         of the LP your referral earns through tapping.
       </Text>
 
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          alignItems: "center",
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
           marginTop: 25,
-          backgroundColor: "#383C1C",
-          width: "60%",
+          backgroundColor: '#383C1C',
+          width: '60%',
           borderRadius: 10,
-          borderColor: "#FFCC00",
+          borderColor: '#FFCC00',
           borderWidth: 1,
-          alignSelf: "center",
+          alignSelf: 'center',
         }}
       >
         <Text
@@ -116,7 +116,7 @@ const InviteCodeModalContent = () => {
             padding: 10,
             borderRadius: 10,
             flex: 1,
-            color: "#fff",
+            color: '#fff',
             ...globalStyles.globalFont,
             fontSize: 18,
           }}
@@ -125,21 +125,21 @@ const InviteCodeModalContent = () => {
         </Text>
         <TouchableHighlight
           style={{
-            backgroundColor: "#FFCC00",
+            backgroundColor: '#FFCC00',
             // borderRadius: 10,
             borderTopRightRadius: 10,
             borderBottomRightRadius: 10,
-            height: "100%",
-            alignItems: "center",
+            height: '100%',
+            alignItems: 'center',
           }}
         >
           <Text
             style={{
-              color: "#000",
+              color: '#000',
               padding: 10,
-              alignItems: "center",
+              alignItems: 'center',
               marginTop: 8,
-              fontWeight: "600",
+              fontWeight: '600',
               ...globalStyles.globalFont,
             }}
           >
@@ -150,9 +150,9 @@ const InviteCodeModalContent = () => {
 
       <Text
         style={{
-          color: "red",
+          color: 'red',
           marginTop: 20,
-          alignSelf: "center",
+          alignSelf: 'center',
         }}
       ></Text>
     </View>
@@ -164,18 +164,18 @@ export default InviteCodeModalContent;
 const styles = StyleSheet.create({
   gameBtn: {
     width: 70,
-    backgroundColor: "#1E3B10",
+    backgroundColor: '#1E3B10',
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
   },
   adBtn: {
     maxWidth: 150,
-    backgroundColor: "#1E3B10",
+    backgroundColor: '#1E3B10',
     borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 10,
     marginTop: 20,
   },

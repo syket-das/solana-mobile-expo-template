@@ -29,7 +29,7 @@ const CloseBtn = () => {
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
-  const snapPoints = useMemo(() => ['60%'], []);
+  const snapPoints = useMemo(() => ['55%'], []);
 
   //add this
   const renderBackdrop = useCallback(

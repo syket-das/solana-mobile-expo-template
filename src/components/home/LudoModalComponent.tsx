@@ -43,10 +43,10 @@ const LudoModeModalComponent = () => {
       </Text>
       <Text
         style={{
-          color: '#6CF926',
+          color: '#fff',
           textAlign: 'center',
           marginTop: 10,
-          fontSize: 16,
+          fontSize: 18,
           maxWidth: 300,
           ...globalStyles.globalFont,
           lineHeight: 20,
@@ -64,11 +64,7 @@ const LudoModeModalComponent = () => {
           columnGap: 20,
         }}
       >
-        <TouchableHighlight
-          onPress={() => {
-            setModeToBoss();
-          }}
-        >
+        <TouchableHighlight onPress={() => {}}>
           <View style={styles.adBtn}>
             <Entypo name="lock" size={20} color="#6CF926" />
             <Text
