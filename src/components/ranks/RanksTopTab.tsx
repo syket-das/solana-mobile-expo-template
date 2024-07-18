@@ -7,9 +7,11 @@ import {
   View,
 } from "react-native";
 import React from "react";
-import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { globalStyles } from "../../styles/globalStyles";
+import Rank1 from "../../assets/img/rank/1.png";
+import Rank2 from "../../assets/img/rank/1.png";
+import StatCard from "../global/StatCard";
 
 const RanksTopTab = () => {
   const navigation = useNavigation();
@@ -21,17 +23,17 @@ const RanksTopTab = () => {
         width: "100%",
       }}
     >
-      <View style={styles.tabContainer}>
+      <View style={globalStyles.tabContainer}>
         <TouchableOpacity
           onPress={() => setSelected("top")}
           style={{
-            backgroundColor: selected === "top" ? "#006600" : "transparent",
+            backgroundColor: selected === "top" ? "#6CF92625" : "transparent",
             ...styles.tabContentContainer,
           }}
         >
           <Image
             source={require("../../assets/img/rank/top-players.png")}
-            style={{ width: 17, height: 17 }}
+            style={{ width: 24, height: 24 }}
           />
           <Text style={styles.tabTitle}>TOP 1111</Text>
         </TouchableOpacity>
@@ -39,13 +41,13 @@ const RanksTopTab = () => {
           onPress={() => setSelected("standing")}
           style={{
             backgroundColor:
-              selected === "standing" ? "#006600" : "transparent",
+              selected === "standing" ? "#6CF92625" : "transparent",
             ...styles.tabContentContainer,
           }}
         >
           <Image
             source={require("../../assets/img/rank/standings.png")}
-            style={{ width: 17, height: 17 }}
+            style={{ width: 24, height: 24 }}
           />
           <Text style={styles.tabTitle}>STANDINGS</Text>
         </TouchableOpacity>
@@ -54,85 +56,48 @@ const RanksTopTab = () => {
       {selected === "top" ? (
         <ScrollView
           style={{
-            height: "40%",
+            height: "30%",
           }}
         >
-          <TouchableOpacity onPress={() => {}} style={styles.cardContainer}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Image
-                source={require("../../assets/img/rank/1.png")}
-                style={{ width: 40, height: 40 }}
-              />
-              <View style={{ marginLeft: 4 }}>
-                <Text style={styles.cardTitleText}>STEVE JOBS 2</Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    columnGap: 4,
-                  }}
-                >
+          <View
+            style={{
+              marginTop: 16,
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+            }}
+          >
+            <StatCard
+              isClickable={false}
+              cardTitle="STEVE JOBS 2"
+              cardImage={Rank1}
+              cardSubTitle={
+                <View style={styles.cardSubTitleContainer}>
                   <Image
                     source={require("../../assets/img/home/gcwg.png")}
-                    style={{ width: 20, height: 20 }}
+                    style={styles.cardSubTitleImage}
                   />
 
-                  <Text style={{ color: "#fff", ...styles.cardSubTitleText }}>
-                    500000
-                  </Text>
-                  <Text
-                    style={{ color: "#6CF926", ...styles.cardSubTitleText }}
-                  >
-                    | TEAM: 100K
-                  </Text>
+                  <Text style={styles.cardSubTitle}>500000</Text>
                 </View>
-              </View>
-            </View>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => {}} style={styles.cardContainer}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Image
-                source={require("../../assets/img/rank/1.png")}
-                style={{ width: 40, height: 40 }}
-              />
-              <View style={{ marginLeft: 4 }}>
-                <Text style={styles.cardTitleText}>STEVE JOBS 2</Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    columnGap: 4,
-                  }}
-                >
+              }
+            />
+            <StatCard
+              isClickable={false}
+              cardTitle="STEVE JOBS 2"
+              cardImage={Rank2}
+              cardSubTitle={
+                <View style={styles.cardSubTitleContainer}>
                   <Image
                     source={require("../../assets/img/home/gcwg.png")}
-                    style={{ width: 20, height: 20 }}
+                    style={styles.cardSubTitleImage}
                   />
 
-                  <Text style={{ color: "#fff", ...styles.cardSubTitleText }}>
-                    500000
-                  </Text>
-                  <Text
-                    style={{ color: "#6CF926", ...styles.cardSubTitleText }}
-                  >
-                    | TEAM: 100K
-                  </Text>
+                  <Text style={styles.cardSubTitle}>500000</Text>
                 </View>
-              </View>
-            </View>
-          </TouchableOpacity>
+              }
+            />
+          </View>
         </ScrollView>
       ) : selected === "standing" ? (
         <ScrollView
@@ -140,44 +105,30 @@ const RanksTopTab = () => {
             height: "40%",
           }}
         >
-          <TouchableOpacity onPress={() => {}} style={styles.cardContainer}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Image
-                source={require("../../assets/img/rank/1.png")}
-                style={{ width: 40, height: 40 }}
-              />
-              <View style={{ marginLeft: 4 }}>
-                <Text style={styles.cardTitleText}>STEVE JOBS</Text>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    alignItems: "center",
-                    columnGap: 4,
-                  }}
-                >
+          <View
+            style={{
+              marginTop: 16,
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+            }}
+          >
+            <StatCard
+              isClickable={false}
+              cardTitle="STEVE JOBS 2"
+              cardImage={Rank1}
+              cardSubTitle={
+                <View style={styles.cardSubTitleContainer}>
                   <Image
                     source={require("../../assets/img/home/gcwg.png")}
-                    style={{ width: 20, height: 20 }}
+                    style={styles.cardSubTitleImage}
                   />
 
-                  <Text style={{ color: "#fff", ...styles.cardSubTitleText }}>
-                    500000
-                  </Text>
-                  <Text
-                    style={{ color: "#6CF926", ...styles.cardSubTitleText }}
-                  >
-                    | TEAM: 100K
-                  </Text>
+                  <Text style={styles.cardSubTitle}>500000</Text>
                 </View>
-              </View>
-            </View>
-          </TouchableOpacity>
+              }
+            />
+          </View>
         </ScrollView>
       ) : null}
     </View>
@@ -187,17 +138,8 @@ const RanksTopTab = () => {
 export default RanksTopTab;
 
 const styles = StyleSheet.create({
-  tabContainer: {
-    height: 50,
-    backgroundColor: "#16270D",
-    borderRadius: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingHorizontal: 10,
-  },
   tabContentContainer: {
-    width: "30%",
+    width: "50%",
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
@@ -212,23 +154,17 @@ const styles = StyleSheet.create({
     fontSize: 18,
     ...globalStyles.globalFont,
   },
-  cardContainer: {
-    width: "100%",
-    height: 60,
-    backgroundColor: "#16270D",
-    borderRadius: 8,
+  cardSubTitleContainer: {
     flexDirection: "row",
     alignItems: "center",
-    paddingHorizontal: 8,
-    marginTop: 16,
+    columnGap: 4,
   },
-  cardTitleText: {
-    color: "#6CF926",
-    ...globalStyles.globalFont,
-    fontSize: 18,
+  cardSubTitleImage: {
+    width: 20,
+    height: 20,
   },
-  cardSubTitleText: {
-    fontSize: 16,
-    ...globalStyles.globalFont,
+  cardSubTitle: {
+    color: "#fff",
+    ...globalStyles.cardSubTitleText,
   },
 });

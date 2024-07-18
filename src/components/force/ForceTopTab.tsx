@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Image,
   ScrollView,
@@ -5,1135 +6,187 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
-import { globalStyles } from '../../styles/globalStyles';
+} from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { globalStyles } from "../../styles/globalStyles";
+import LeagueCard from "./LeagueCard";
+import StatCard from "../global/StatCard";
+import RockLeagueImage from "../../assets/img/global/league/rock.png";
+import WoodLeagueImage from "../../assets/img/global/league/wood.png";
+import BronzeLeagueImage from "../../assets/img/global/league/bronze.png";
+import SilverLeagueImage from "../../assets/img/global/league/silver.png";
+import GoldLeagueImage from "../../assets/img/global/league/gold.png";
+import PlatinumLeagueImage from "../../assets/img/global/league/platinum.png";
+import TeamImage from "../../assets/img/global/team.png";
+import SocialMediaNotificationImage from "../../assets/img/force/join-socials.png";
+import Web3PassImage from "../../assets/img/force/web3-pass.png";
+import DailyTaskImage from "../../assets/img/force/daily-task.png";
 
 const ForceTopTab = () => {
   const navigation = useNavigation();
-  const [selected, setSelected] = React.useState('task');
+  const [selected, setSelected] = React.useState("task");
+
+  const TaskCardSubTitle = (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "center",
+        columnGap: 4,
+      }}
+    >
+      <Image
+        source={require("../../assets/img/home/gcwg.png")}
+        style={{ width: 18, height: 18 }}
+      />
+
+      <Text
+        style={{
+          color: "#fff",
+          ...globalStyles.cardSubTitleText,
+        }}
+      >
+        500000
+      </Text>
+    </View>
+  );
 
   return (
     <View
       style={{
-        width: '90%',
-        marginHorizontal: '5%',
+        width: "100%",
+        paddingHorizontal: 15,
       }}
     >
       <View
         style={{
-          height: 50,
-          backgroundColor: '#16270D',
-          borderRadius: 10,
-          marginTop: 20,
-
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingHorizontal: 10,
+          marginTop: 28,
+          ...globalStyles.tabContainer,
         }}
       >
         <TouchableOpacity
-          onPress={() => setSelected('task')}
+          onPress={() => setSelected("task")}
           style={{
-            backgroundColor: selected === 'task' ? '#006600' : 'transparent',
-            width: '30%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 30,
-            borderRadius: 5,
-            flex: 1,
+            backgroundColor: selected === "task" ? "#6CF92625" : "transparent",
+            ...styles.tabContentContainer,
           }}
         >
-          <Text
-            style={{
-              color: '#52F81A',
-              fontSize: 18,
-              ...globalStyles.globalFont,
-            }}
-          >
-            TASK
-          </Text>
+          <Text style={styles.tabTitle}>TASK</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => setSelected('leagues')}
+          onPress={() => setSelected("leagues")}
           style={{
-            backgroundColor: selected === 'leagues' ? '#006600' : 'transparent',
-            width: '30%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 30,
-            borderRadius: 5,
-            flex: 1,
+            backgroundColor:
+              selected === "leagues" ? "#6CF92625" : "transparent",
+            ...styles.tabContentContainer,
           }}
         >
-          <Text
-            style={{
-              color: '#52F81A',
-              fontSize: 18,
-              ...globalStyles.globalFont,
-            }}
-          >
-            LEAGUES
-          </Text>
+          <Text style={styles.tabTitle}>LEAGUES</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => setSelected('team')}
+          onPress={() => setSelected("team")}
           style={{
-            backgroundColor: selected === 'team' ? '#006600' : 'transparent',
-            width: '30%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: 30,
-            borderRadius: 5,
-            flex: 1,
+            backgroundColor: selected === "team" ? "#6CF92625" : "transparent",
+            ...styles.tabContentContainer,
           }}
         >
-          <Text
-            style={{
-              color: '#52F81A',
-              fontSize: 18,
-              ...globalStyles.globalFont,
-            }}
-          >
-            TEAM
-          </Text>
+          <Text style={styles.tabTitle}>TEAM</Text>
         </TouchableOpacity>
       </View>
 
-      {selected === 'task' ? (
+      {selected === "task" ? (
         <ScrollView
           style={{
-            marginTop: 20,
-            height: '65%',
-            //   backgroundColor: '#16270D',
-            borderRadius: 10,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('JoinSocials');
-            }}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/force/join-socials.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  JOIN OUR SOCIALS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500000
-                  </Text>
-                </View>
-              </View>
-            </View>
-            {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
-            <Ionicons
-              name="chevron-forward"
-              size={20}
-              color="#6CF926"
-              style={{ marginRight: 10 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('Web3Pass');
-            }}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/force/web3-pass.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  WEB3.0 PASS
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500000
-                  </Text>
-                </View>
-              </View>
-            </View>
-            {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
-            <Ionicons
-              name="chevron-forward"
-              size={20}
-              color="#6CF926"
-              style={{ marginRight: 10 }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('DailyTask');
-            }}
-            style={{
-              width: '100%',
-              height: 60,
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              marginBottom: 20,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                marginLeft: 10,
-              }}
-            >
-              <Image
-                source={require('../../assets/img/force/daily-task.png')}
-                style={{ width: 40, height: 40 }}
-              />
-              <View>
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    marginLeft: 10,
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  DAILY TASK
-                </Text>
-                <View
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    columnGap: 4,
-                    marginLeft: 10,
-                  }}
-                >
-                  <Image
-                    source={require('../../assets/img/home/gcwg.png')}
-                    style={{ width: 20, height: 20 }}
-                  />
-
-                  <Text
-                    style={{
-                      color: '#fff',
-                      fontSize: 16,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    500000
-                  </Text>
-                </View>
-              </View>
-            </View>
-            {/* <Text style={{ color: '#6CF926', marginRight: 10 }}>{'>'}</Text> */}
-            <Ionicons
-              name="chevron-forward"
-              size={20}
-              color="#6CF926"
-              style={{ marginRight: 10 }}
-            />
-          </TouchableOpacity>
-        </ScrollView>
-      ) : selected === 'leagues' ? (
-        <ScrollView
-          style={{
-            marginTop: 20,
-            height: '65%',
-            // backgroundColor: '#16270D',
-            borderRadius: 10,
+            height: "62%",
           }}
         >
           <View
             style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
+              width: "100%",
+              rowGap: 16,
+              marginTop: 16,
             }}
           >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/league/rock.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    ROCK{' '}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3B10',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#52F81A',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#52F81A',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/league/wood.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    WOOD{' '}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3B10',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#52F81A',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#52F81A',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/league/bronze.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    BRONZE{' '}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3B10',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#52F81A',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#52F81A',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/league/silver.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    SILVER{' '}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3B10',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#52F81A',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#52F81A',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/league/gold.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    GOLD{' '}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3B10',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#52F81A',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#52F81A',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
-          </View>
-          <View
-            style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/league/platinum.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    PLATINUM{' '}
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3B10',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#52F81A',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#52F81A',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
+            <StatCard
+              isClickable
+              onPress={() => navigation.navigate("JoinSocials")}
+              cardTitle="JOIN OUR SOCIALS"
+              cardImage={SocialMediaNotificationImage}
+              cardSubTitle={TaskCardSubTitle}
+            />
+            <StatCard
+              isClickable
+              onPress={() => navigation.navigate("Web3Pass")}
+              cardTitle="WEB3.0 PASS"
+              cardImage={Web3PassImage}
+              cardSubTitle={TaskCardSubTitle}
+            />
+            <StatCard
+              isClickable
+              onPress={() => navigation.navigate("DailyTask")}
+              cardTitle="DAILY TASK"
+              cardImage={DailyTaskImage}
+              cardSubTitle={TaskCardSubTitle}
+            />
           </View>
         </ScrollView>
-      ) : selected === 'team' ? (
+      ) : selected === "leagues" ? (
         <ScrollView
           style={{
             marginTop: 20,
-            height: '65%',
-            // backgroundColor: '#16270D',
-            borderRadius: 10,
+            height: "62%",
           }}
         >
-          <View
-            style={{
-              width: '100%',
-              // height: '100%',
-              backgroundColor: '#16270D',
-              borderRadius: 10,
-              marginBottom: 20,
-              paddingVertical: 10,
-            }}
-          >
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                width: '100%',
-              }}
-            >
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                  marginLeft: 10,
-                }}
-              >
-                <Image
-                  source={require('../../assets/img/global/team.png')}
-                  style={{ width: 40, height: 40 }}
-                />
-                <View>
-                  <Text
-                    style={{
-                      color: '#6CF926',
-                      marginLeft: 10,
-                      fontSize: 18,
-                      ...globalStyles.globalFont,
-                    }}
-                  >
-                    INVITE 1
-                  </Text>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      columnGap: 4,
-                      marginLeft: 10,
-                    }}
-                  >
-                    <Image
-                      source={require('../../assets/img/home/gcwg.png')}
-                      style={{ width: 20, height: 20 }}
-                    />
-
-                    <Text
-                      style={{
-                        color: '#fff',
-                        fontSize: 16,
-                        ...globalStyles.globalFont,
-                      }}
-                    >
-                      500
-                    </Text>
-                  </View>
-                </View>
-              </View>
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  backgroundColor: '#1E3C0F',
-
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  borderRadius: 5,
-                  marginRight: 10,
-                  paddingHorizontal: 10,
-                  paddingVertical: 5,
-                }}
-              >
-                <Text
-                  style={{
-                    color: '#6CF926',
-                    fontSize: 18,
-                    ...globalStyles.globalFont,
-                  }}
-                >
-                  CLAIM
-                </Text>
-              </TouchableOpacity>
-            </View>
-            {/* progress bar */}
-
-            <View
-              style={{
-                width: '95%',
-                height: 20,
-                backgroundColor: '#1E3C0F',
-                borderRadius: 10,
-                borderWidth: 2,
-                borderColor: '#6CF926',
-                alignSelf: 'center',
-                marginTop: 10,
-              }}
-            >
-              <View
-                style={{
-                  width: `50%`,
-                  height: '100%',
-                  backgroundColor: '#6CF926',
-                  borderRadius: 10,
-                }}
-              ></View>
-            </View>
-          </View>
+          <LeagueCard
+            image={RockLeagueImage}
+            title="ROCK"
+            totalToken={500}
+            progress={"90%"}
+          />
+          <LeagueCard
+            image={WoodLeagueImage}
+            title="WOOD"
+            totalToken={500}
+            progress={"80%"}
+          />
+          <LeagueCard
+            image={BronzeLeagueImage}
+            title="BRONZE"
+            totalToken={500}
+            progress={"50%"}
+          />
+          <LeagueCard
+            image={SilverLeagueImage}
+            title="SILVER"
+            totalToken={500}
+            progress={"80%"}
+          />
+          <LeagueCard
+            image={GoldLeagueImage}
+            title="GOLD"
+            totalToken={500}
+            progress={"80%"}
+          />
+          <LeagueCard
+            image={PlatinumLeagueImage}
+            title="PLATINUM"
+            totalToken={500}
+            progress={"80%"}
+          />
+        </ScrollView>
+      ) : selected === "team" ? (
+        <ScrollView
+          style={{
+            marginTop: 20,
+            height: "62%",
+          }}
+        >
+          <LeagueCard
+            image={TeamImage}
+            title="INVITE 1"
+            totalToken={500}
+            progress={"50%"}
+          />
         </ScrollView>
       ) : null}
     </View>
@@ -1142,4 +195,18 @@ const ForceTopTab = () => {
 
 export default ForceTopTab;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  tabContentContainer: {
+    width: "30%",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 30,
+    borderRadius: 5,
+    flex: 1,
+  },
+  tabTitle: {
+    color: "#6CF926",
+    fontSize: 18,
+    ...globalStyles.globalFont,
+  },
+});

@@ -82,7 +82,7 @@ const AuthScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/img/background-image.png")}
+        source={require("../assets/img/background-layer.jpg")}
         style={styles.bgImage}
       >
         <Image

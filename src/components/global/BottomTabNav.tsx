@@ -19,13 +19,15 @@ const BottomTabNav = () => {
     <View
       style={{
         flexDirection: "row",
-        justifyContent: "center",
+        justifyContent: "space-between",
         alignItems: "center",
         columnGap: 10,
         marginTop: 40,
         marginBottom: 18,
+        paddingHorizontal: 15,
         position: "absolute",
         bottom: 0,
+        zIndex: 10,
         width: "100%",
       }}
     >
@@ -117,7 +119,7 @@ export default BottomTabNav;
 
 const styles = StyleSheet.create({
   gameBtn: {
-    backgroundColor: "#1E3B10",
+    backgroundColor: "#6CF92612",
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
@@ -133,11 +135,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 4,
   },
   activeGameBtn: {
-    borderColor: "#6CF926",
+    borderColor: "#6CF92625",
     borderWidth: 1,
   },
   activeBossBtn: {
-    borderColor: "#FFCC00",
+    borderColor: "#FFCC0070",
     borderWidth: 1,
   },
 });

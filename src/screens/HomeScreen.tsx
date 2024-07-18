@@ -1,5 +1,4 @@
 import {
-  Button,
   Image,
   ImageBackground,
   StyleSheet,
@@ -8,33 +7,21 @@ import {
   TouchableHighlight,
   View,
 } from "react-native";
-import React, {
-  memo,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { TopBarWalletMenu } from "../components/top-bar/top-bar-ui";
-import { useAuthorization } from "../utils/useAuthorization";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import GameCoin from "../components/home/GameCoin";
 import useHomeStore from "../store/homeStore";
-import Animated from "react-native-reanimated";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { BottomSheetModal, useBottomSheetModal } from "@gorhom/bottom-sheet";
 import CustomBottomSheet from "../components/global/CustomBottomSheet";
 import Modes from "../components/home/Modes";
 import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
 import BossModeModalContent from "../components/home/BossModeModalContent";
-import CoinContainer from "../components/global/CoinContainer";
-import BottomTabNav from "../components/global/BottomTabNav";
 import useAuthStore from "../store/authStore";
 import useReferralStore from "../store/referralStore";
 import Lifeline from "../components/home/Lifeline";
 import { alertAndLog } from "../utils/alertAndLog";
 import { globalStyles } from "../styles/globalStyles";
 import LudoModeModalComponent from "../components/home/LudoModalComponent";
+import NavBar from "../components/global/Navbar";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -91,25 +78,14 @@ const HomeScreen = () => {
     <>
       <View style={styles.container}>
         <ImageBackground
-          source={require("../assets/img/background-image.png")}
+          source={require("../assets/img/background-layer.jpg")}
           style={styles.bgImage}
         >
-          {/* <TopBarWalletMenu /> */}
-          <Image
-            source={require("../assets/img/home/text-logo.png")}
-            style={{
-              width: "40%",
-              height: 30,
-              alignSelf: "center",
-              marginTop: 10,
-              objectFit: "contain",
-            }}
-          />
-          <CoinContainer />
+          <NavBar />
           <GameCoin />
           {mode === "game" && (
             <ImageBackground
-              source={require("../assets/img/auth-bg.png")}
+              source={require("../assets/img/intersection.png")}
               style={{
                 width: "100%",
                 justifyContent: "center",
@@ -127,7 +103,7 @@ const HomeScreen = () => {
                 style={{
                   color: "#fff",
                   ...globalStyles.globalFont,
-                  fontSize: 20,
+                  fontSize: 28,
                 }}
               >
                 ROCK
@@ -154,7 +130,7 @@ const HomeScreen = () => {
           />
           <Lifeline />
 
-          <BottomTabNav />
+          {/* <BottomTabNav /> */}
 
           <CustomBottomSheet ref={bottomSheetRef}>
             <View

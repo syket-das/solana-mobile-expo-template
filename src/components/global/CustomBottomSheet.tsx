@@ -29,14 +29,14 @@ const CloseBtn = () => {
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
-  const snapPoints = useMemo(() => ["50%"], []);
+  const snapPoints = useMemo(() => ["45%"], []);
 
   //add this
   const renderBackdrop = useCallback(
     (props: any) => (
       <BottomSheetBackdrop
-        opacity={0}
-        style={{ backgroundColor: "transparent" }}
+        opacity={1}
+        style={{ backgroundColor: "white" }}
         {...props}
       />
     ),
@@ -48,7 +48,7 @@ const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
       ref={ref}
       index={-1}
       snapPoints={snapPoints}
-      enablePanDownToClose={false}
+      enablePanDownToClose={true}
       handleIndicatorStyle={{ backgroundColor: "#fff" }}
       backgroundStyle={{ backgroundColor: "#152C0E" }}
       backdropComponent={renderBackdrop} //add this

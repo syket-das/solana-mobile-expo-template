@@ -1,18 +1,14 @@
-import {
-  Image,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
 import React, { useEffect } from "react";
-import CoinContainer from "../components/global/CoinContainer";
-import BottomTabNav from "../components/global/BottomTabNav";
-import ForceTopTab from "../components/force/ForceTopTab";
-import RanksTopTab from "../components/ranks/RanksTopTab";
+import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
+import NavBar from "../components/global/Navbar";
 import { globalStyles } from "../styles/globalStyles";
 import useStatsStore from "../store/statsStore";
+import RanksTopTab from "../components/ranks/RanksTopTab";
+import TotalPlayersImageIcon from "../assets/img/rank/total-players.png";
+import DailyActivePlayersImageIcon from "../assets/img/rank/game.png";
+import CurrentOnlinePlayersImageImageIcon from "../assets/img/rank/current-online-players.png";
+import OverallScoreImageIcon from "../assets/img/saga/token-mined.png";
+import StatCard from "../components/global/StatCard";
 
 const RanksScreen = () => {
   const { stats, error, getStats }: any = useStatsStore((state) => state);
@@ -28,24 +24,13 @@ const RanksScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/img/background-image.png")}
+        source={require("../assets/img/background-layer.jpg")}
         style={styles.bgImage}
       >
-        {/* <TopBarWalletMenu /> */}
-        <Image
-          source={require("../assets/img/home/text-logo.png")}
-          style={{
-            width: "40%",
-            height: 30,
-            alignSelf: "center",
-            marginTop: 10,
-            objectFit: "contain",
-          }}
-        />
-        <CoinContainer />
+        <NavBar />
         <View
           style={{
-            marginTop: 20,
+            marginTop: 28,
             paddingHorizontal: 10,
             display: "flex",
             flexDirection: "column",
@@ -54,84 +39,49 @@ const RanksScreen = () => {
         >
           <Text style={styles.titleText}>GAME STATS</Text>
 
-          <TouchableOpacity onPress={() => {}} style={styles.contentContainer}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Image
-                source={require("../assets/img/rank/total-players.png")}
-                style={{ width: 45, height: 45 }}
-              />
-              <View
-                style={{
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  gap: 4,
-                }}
-              >
-                <Text style={styles.cardTitleText}>TOTAL PLAYERS</Text>
-                <Text style={styles.cardSubTitleText}>{stats?.users ?? 0}</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+          <StatCard
+            isClickable={false}
+            cardTitle="TOTAL PLAYERS"
+            cardImage={TotalPlayersImageIcon}
+            cardSubTitle={
+              <Text style={{ color: "#fff", ...globalStyles.cardSubTitleText }}>
+                {stats?.users ?? 0}
+              </Text>
+            }
+          />
 
-          <TouchableOpacity onPress={() => {}} style={styles.contentContainer}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Image
-                source={require("../assets/img/rank/game.png")}
-                style={{ width: 45, height: 45 }}
-              />
-              <View
-                style={{
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  gap: 4,
-                }}
-              >
-                <Text style={styles.cardTitleText}>DAILY ACTIVE PLAYERS</Text>
-                <Text style={styles.cardSubTitleText}>
-                  {stats?.dailyActiveUsers ?? 0}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+          <StatCard
+            isClickable={false}
+            cardTitle="DAILY ACTIVE PLAYERS"
+            cardImage={DailyActivePlayersImageIcon}
+            cardSubTitle={
+              <Text style={{ color: "#fff", ...globalStyles.cardSubTitleText }}>
+                {stats?.dailyActiveUsers ?? 0}
+              </Text>
+            }
+          />
 
-          <TouchableOpacity onPress={() => {}} style={styles.contentContainer}>
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                gap: 4,
-              }}
-            >
-              <Image
-                source={require("../assets/img/rank/current-online-players.png")}
-                style={{ width: 45, height: 45 }}
-              />
-              <View
-                style={{
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  gap: 4,
-                }}
-              >
-                <Text style={styles.cardTitleText}>CURRENT ONLINE PLAYERS</Text>
-                <Text style={styles.cardSubTitleText}>
-                  {stats?.activeUsers ?? 0}
-                </Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+          <StatCard
+            isClickable={false}
+            cardTitle="CURRENT ONLINE PLAYERS"
+            cardImage={CurrentOnlinePlayersImageImageIcon}
+            cardSubTitle={
+              <Text style={{ color: "#fff", ...globalStyles.cardSubTitleText }}>
+                {stats?.activeUsers ?? 0}
+              </Text>
+            }
+          />
+
+          <StatCard
+            isClickable={false}
+            cardTitle="OVERALL SCORE"
+            cardImage={OverallScoreImageIcon}
+            cardSubTitle={
+              <Text style={{ color: "#fff", ...globalStyles.cardSubTitleText }}>
+                0
+              </Text>
+            }
+          />
         </View>
 
         <View
@@ -146,7 +96,6 @@ const RanksScreen = () => {
           <Text style={styles.titleText}>RANKINGS</Text>
           <RanksTopTab />
         </View>
-        <BottomTabNav />
       </ImageBackground>
     </View>
   );
@@ -162,28 +111,9 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
-  contentContainer: {
-    width: "100%",
-    height: 60,
-    backgroundColor: "#16270D",
-    borderRadius: 8,
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 8,
-  },
   titleText: {
     fontSize: 24,
     color: "#52F81A",
-    ...globalStyles.globalFont,
-  },
-  cardTitleText: {
-    color: "#6CF926",
-    ...globalStyles.globalFont,
-    fontSize: 18,
-  },
-  cardSubTitleText: {
-    color: "#fff",
-    fontSize: 16,
     ...globalStyles.globalFont,
   },
 });

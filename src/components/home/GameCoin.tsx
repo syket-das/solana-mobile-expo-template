@@ -166,8 +166,8 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   image: {
-    width: 325,
-    height: 325,
+    width: 350,
+    height: 350,
     resizeMode: "contain",
   },
   points: {
