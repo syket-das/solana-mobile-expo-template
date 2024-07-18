@@ -1,7 +1,8 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
-import useHomeStore from '../../store/homeStore';
-import { globalStyles } from '../../styles/globalStyles';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useState } from "react";
+import useHomeStore from "../../store/homeStore";
+import { globalStyles } from "../../styles/globalStyles";
+import BossCoin from "../../assets/img/home/boss.png";
 
 const BossModeModalContent = () => {
   const [isVerified, setIsVerified] = useState(false);
@@ -10,61 +11,43 @@ const BossModeModalContent = () => {
   return (
     <View
       style={{
-        alignItems: 'center',
+        marginTop: 20,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       }}
     >
       <View>
         <View>
-          <View style={styles.gameBtn}>
-            <Image
-              source={require('../../assets/img/fuel/full-charge.png')}
-              style={{ width: 50, height: 40 }}
-            />
+          <View style={styles.bottomSheetImageContainer}>
+            <Image source={BossCoin} style={styles.bottomSheetImage} />
           </View>
         </View>
       </View>
-      <Text
-        style={{
-          color: '#6CF926',
-          textAlign: 'center',
-          marginTop: 10,
-          fontSize: 24,
-          ...globalStyles.globalFont,
-        }}
-      >
-        BOSS MODE
-      </Text>
-      <Text
-        style={{
-          color: '#fff',
-          textAlign: 'center',
-          marginTop: 10,
-          fontSize: 18,
-          maxWidth: 300,
-          ...globalStyles.globalFont,
-          lineHeight: 20,
-        }}
-      >
-        Battery draining so fast right? Want it to last for 10 hours while
-        earning Lumik points effortlessly? Click below to mint this NFT and
-        enjoy an 10 hour infinite battery limit daily, for a lifetime.
+      <Text style={styles.bottomSheetTitle}>BOSS MODE</Text>
+      <Text style={styles.bottomSheetSubTitle}>
+        Battery draining so fast right? Want it to last for{" "}
+        <Text style={{ color: "#FFCC00" }}>10 hours</Text> while earning Lumik
+        points effortlessly? Click below to mint this NFT and enjoy an{" "}
+        <Text style={{ color: "#FFCC00" }}>10 hour </Text>
+        infinite battery limit daily, for a lifetime.
       </Text>
 
       <View
         style={{
-          flexDirection: 'row',
-          justifyContent: 'center',
-          columnGap: 20,
+          flexDirection: "row",
+          justifyContent: "center",
+          columnGap: 15,
+          marginTop: 12,
         }}
       >
         {!isVerified && (
-          <TouchableOpacity onPress={() => console.log('rock')}>
+          <TouchableOpacity onPress={() => console.log("rock")}>
             <View style={styles.adBtn}>
               <Text
                 style={{
-                  color: '#fff',
+                  color: "#fff",
                   ...globalStyles.globalFont,
-                  fontSize: 20,
                 }}
               >
                 GO
@@ -77,9 +60,8 @@ const BossModeModalContent = () => {
             <View style={styles.adBtn}>
               <Text
                 style={{
-                  color: '#fff',
+                  color: "#fff",
                   ...globalStyles.globalFont,
-                  fontSize: 20,
                 }}
               >
                 CHECK
@@ -96,7 +78,7 @@ const BossModeModalContent = () => {
             <View style={styles.adBtn}>
               <Text
                 style={{
-                  color: '#fff',
+                  color: "#fff",
                   ...globalStyles.globalFont,
                   fontSize: 20,
                 }}
@@ -114,21 +96,44 @@ const BossModeModalContent = () => {
 export default BossModeModalContent;
 
 const styles = StyleSheet.create({
-  gameBtn: {
-    width: 70,
-    backgroundColor: '#1E3B10',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-  },
   adBtn: {
-    maxWidth: 150,
-    backgroundColor: '#1E3B10',
+    backgroundColor: "#FFCC0020",
+    borderColor: "#FFCC0050",
+    borderWidth: 1,
+    borderRadius: 6,
+    paddingHorizontal: 12,
+    paddingVertical: 8,
+  },
+  bottomSheetImage: {
+    width: 50,
+    height: 50,
+  },
+  bottomSheetImageContainer: {
+    height: 69,
+    width: 69,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 10,
-    marginTop: 20,
+    backgroundColor: "#FFCC0020",
+    borderColor: "#FFCC0050",
+    borderWidth: 1,
+  },
+  bottomSheetTitle: {
+    color: "#FFCC00",
+    textAlign: "center",
+    fontSize: 24,
+    marginTop: 12,
+    fontFamily: "Iceland-Regular",
+  },
+  bottomSheetSubTitle: {
+    marginTop: 10,
+    color: "#fff",
+    textAlign: "center",
+    fontSize: 18,
+    maxWidth: 300,
+    fontFamily: "Iceland-Regular",
+    lineHeight: 24,
+    width: 296,
   },
 });

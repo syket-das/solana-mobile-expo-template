@@ -1,10 +1,16 @@
-import { View, StyleSheet, Text, Button, TouchableOpacity } from 'react-native';
-import React, { forwardRef, useCallback, useMemo } from 'react';
+import {
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  ImageBackground,
+} from "react-native";
+import React, { forwardRef, useCallback, useMemo } from "react";
 import BottomSheet, {
   useBottomSheet,
   BottomSheetBackdrop,
-} from '@gorhom/bottom-sheet';
-import { Entypo } from '@expo/vector-icons';
+} from "@gorhom/bottom-sheet";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
 export type Ref = BottomSheet;
 
 interface Props {
@@ -15,29 +21,23 @@ interface Props {
 const CloseBtn = () => {
   const { close } = useBottomSheet();
   return (
-    <TouchableOpacity
-      onPress={() => close()}
-      style={{
-        position: 'absolute',
-        top: 0,
-        right: 10,
-      }}
-    >
-      <Entypo name="circle-with-cross" size={20} color="green" />
+    <TouchableOpacity onPress={() => close()} style={styles.closeBtn}>
+      <Ionicons name="close-sharp" size={12} color="green" />
     </TouchableOpacity>
   );
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
-  const snapPoints = useMemo(() => ['55%'], []);
+  const snapPoints = useMemo(() => ["45%"], []);
 
   //add this
   const renderBackdrop = useCallback(
     (props: any) => (
       <BottomSheetBackdrop
-        opacity={1}
-        style={{ backgroundColor: 'white' }}
         {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+        style={[props.style, styles.backdrop]}
       />
     ),
     []
@@ -49,9 +49,9 @@ const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
       index={-1}
       snapPoints={snapPoints}
       enablePanDownToClose={true}
-      handleIndicatorStyle={{ backgroundColor: '#fff' }}
-      backgroundStyle={{ backgroundColor: '#152C0E' }}
-      backdropComponent={renderBackdrop} //add this
+      handleIndicatorStyle={{ display: "none" }}
+      backgroundStyle={{ backgroundColor: "#142E07" }}
+      backdropComponent={renderBackdrop}
     >
       <View style={styles.contentContainer}>
         {props.closable && <CloseBtn />}
@@ -60,16 +60,27 @@ const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
     </BottomSheet>
   );
 });
-true;
+
 const styles = StyleSheet.create({
   contentContainer: {
     flex: 1,
   },
-  containerHeadline: {
-    fontSize: 24,
-    fontWeight: '600',
-    padding: 20,
-    color: '#fff',
+  closeBtn: {
+    position: "absolute",
+    top: 0,
+    right: 16,
+    width: 18,
+    height: 18,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#6CF92610",
+    borderColor: "#6CF92648",
+    borderWidth: 1,
+    borderRadius: 100,
+  },
+  backdrop: {
+    backgroundColor: "rgba(255, 255, 255, 0.4)",
   },
 });
 
