@@ -28,6 +28,7 @@ import LPBoosterImage from "../assets/img/saga/lp-on-boosters.png";
 import BotImage from "../assets/img/fuel/auto-miner.png";
 import BoosCoinImage from "../assets/img/home/boss.png";
 import LogoutImage from "../assets/img/saga/padlock.png";
+import BottomTabNav from "../components/global/BottomTabNav";
 
 const SagaScreen = () => {
   const { user, error, getUserProfile }: any = useUserStore((state) => state);
@@ -313,7 +314,7 @@ const SagaScreen = () => {
           </ScrollView>
         </View>
 
-        {/* <BottomTabNav /> */}
+        <BottomTabNav />
       </ImageBackground>
 
       <CustomBottomSheet ref={modeBottomSheetRef} closable>

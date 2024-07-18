@@ -77,7 +77,7 @@ const AppStack = () => {
       />
       <Stack.Screen
         name="Home"
-        component={BottomTabNavigation}
+        component={HomeScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

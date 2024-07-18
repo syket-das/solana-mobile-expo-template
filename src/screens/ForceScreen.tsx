@@ -2,6 +2,7 @@ import { ImageBackground, StyleSheet, View } from "react-native";
 import React from "react";
 import ForceTopTab from "../components/force/ForceTopTab";
 import NavBar from "../components/global/Navbar";
+import BottomTabNav from "../components/global/BottomTabNav";
 
 const ForceScreen = () => {
   return (
@@ -12,6 +13,7 @@ const ForceScreen = () => {
       >
         <NavBar />
         <ForceTopTab />
+        <BottomTabNav />
       </ImageBackground>
     </View>
   );

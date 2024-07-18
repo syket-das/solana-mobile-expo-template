@@ -23,7 +23,7 @@ const BottomTabNav = () => {
         alignItems: "center",
         columnGap: 10,
         marginTop: 40,
-        marginBottom: 18,
+        marginBottom: 10,
         paddingHorizontal: 15,
         position: "absolute",
         bottom: 0,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 4,
   },
   bossBtn: {
@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 8,
+    paddingVertical: 12,
     paddingHorizontal: 4,
   },
   activeGameBtn: {
