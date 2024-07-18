@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
   Image,
   ImageBackground,
@@ -6,59 +6,35 @@ import {
   StyleSheet,
   Text,
   View,
-} from 'react-native';
-import useAuthStore from '../store/authStore';
-import * as Clipboard from 'expo-clipboard';
-import { Entypo, Ionicons } from '@expo/vector-icons';
-import { globalStyles } from '../styles/globalStyles';
-import CustomBottomSheet from '../components/global/CustomBottomSheet';
-import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
-import InviteCodeModalContent from '../components/saga/InviteCodeModalContent';
-import { useNavigation } from '@react-navigation/native';
-import useUserStore from '../store/userStore';
-import NavBar from '../components/global/Navbar';
-import StatCard from '../components/global/StatCard';
-import ReferralImage from '../assets/img/home/referral-code.png';
-import YourTeamImage from '../assets/img/saga/your-team.png';
-import PlatinumLeagueImage from '../assets/img/global/league/platinum.png';
-import RankImage from '../assets/img/saga/your-rank.png';
-import ReferralEarningsImage from '../assets/img/saga/your-referrals.png';
-import TokenMinedImage from '../assets/img/saga/token-mined.png';
-import LPBoosterImage from '../assets/img/saga/lp-on-boosters.png';
-import BotImage from '../assets/img/fuel/auto-miner.png';
-import BoosCoinImage from '../assets/img/home/boss.png';
-import LogoutImage from '../assets/img/saga/padlock.png';
-import {
-  fetchAuthorization,
-  useAuthorization,
-} from '../utils/useAuthorization';
-import { useMobileWallet } from '../utils/useMobileWallet';
+} from "react-native";
+import useAuthStore from "../store/authStore";
+import * as Clipboard from "expo-clipboard";
+import { Entypo, Ionicons } from "@expo/vector-icons";
+import { globalStyles } from "../styles/globalStyles";
+import CustomBottomSheet from "../components/global/CustomBottomSheet";
+import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
+import InviteCodeModalContent from "../components/saga/InviteCodeModalContent";
+import { useNavigation } from "@react-navigation/native";
+import useUserStore from "../store/userStore";
+import NavBar from "../components/global/Navbar";
+import StatCard from "../components/global/StatCard";
+import ReferralImage from "../assets/img/home/referral-code.png";
+import YourTeamImage from "../assets/img/saga/your-team.png";
+import PlatinumLeagueImage from "../assets/img/global/league/platinum.png";
+import RankImage from "../assets/img/saga/your-rank.png";
+import ReferralEarningsImage from "../assets/img/saga/your-referrals.png";
+import TokenMinedImage from "../assets/img/saga/token-mined.png";
+import LPBoosterImage from "../assets/img/saga/lp-on-boosters.png";
+import BotImage from "../assets/img/fuel/auto-miner.png";
+import BoosCoinImage from "../assets/img/home/boss.png";
+import LogoutImage from "../assets/img/saga/padlock.png";
+import BottomTabNav from "../components/global/BottomTabNav";
 
 const SagaScreen = () => {
-  const { disconnect } = useMobileWallet();
-
   const { user, error, getUserProfile }: any = useUserStore((state) => state);
-  const {
-    authorizeSession,
-    accounts,
-    selectedAccount,
-    deauthorizeSession,
-    isLoading,
-    authorizeSessionWithSignIn,
-  } = useAuthorization();
 
   const fetchUserProfile = async () => {
     await getUserProfile();
-  };
-
-  const LogOut = async () => {
-    const d = await fetchAuthorization();
-
-    await disconnect();
-
-    const user = await fetchAuthorization();
-
-    navigation.navigate('Auth');
   };
 
   React.useEffect(() => {
@@ -66,7 +42,7 @@ const SagaScreen = () => {
   }, []);
 
   const modeBottomSheetRef = React.useRef<BottomSheet>(null);
-  const [copiedText, setCopiedText] = useState('');
+  const [copiedText, setCopiedText] = useState("");
   const navigation = useNavigation();
 
   const copyToClipboard = async (str: any) => {
@@ -81,7 +57,7 @@ const SagaScreen = () => {
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require('../assets/img/background-layer.jpg')}
+        source={require("../assets/img/background-layer.jpg")}
         style={styles.bgImage}
       >
         <NavBar />
@@ -89,12 +65,12 @@ const SagaScreen = () => {
           <View style={{ marginBottom: 16, ...globalStyles.tabContainer }}>
             <View style={styles.tabContentContainer}>
               <Image
-                source={require('../assets/img/saga/stats.png')}
+                source={require("../assets/img/saga/stats.png")}
                 style={{ width: 20, height: 20 }}
               />
               <Text
                 style={{
-                  color: '#6CF926',
+                  color: "#6CF926",
                   fontSize: 20,
                   ...globalStyles.globalFont,
                 }}
@@ -105,12 +81,12 @@ const SagaScreen = () => {
           </View>
           <ScrollView
             style={{
-              height: '65%',
+              height: "65%",
             }}
           >
             <View
               style={{
-                width: '100%',
+                width: "100%",
                 rowGap: 16,
               }}
             >
@@ -122,7 +98,7 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <Text
                     style={{
-                      color: '#fff',
+                      color: "#fff",
                       ...globalStyles.cardSubTitleText,
                     }}
                   >
@@ -132,19 +108,19 @@ const SagaScreen = () => {
               />
               <StatCard
                 isClickable
-                onPress={() => navigation.navigate('Team')}
+                onPress={() => navigation.navigate("Team")}
                 cardTitle="YOUR TEAM"
                 cardImage={YourTeamImage}
                 cardSubTitle={
                   <Text
                     style={{
-                      color: '#fff',
+                      color: "#fff",
                       ...globalStyles.cardSubTitleText,
                     }}
                   >
                     <Text
                       style={{
-                        color: '#fff',
+                        color: "#fff",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -164,14 +140,14 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View
                     style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
+                      flexDirection: "row",
+                      alignItems: "center",
                       columnGap: 4,
                     }}
                   >
                     <Text
                       style={{
-                        color: '#6CF926',
+                        color: "#6CF926",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -179,16 +155,16 @@ const SagaScreen = () => {
                     </Text>
                     <Text
                       style={{
-                        color: '#fff',
+                        color: "#fff",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
-                      500 |{' '}
+                      500 |{" "}
                     </Text>
 
                     <Text
                       style={{
-                        color: '#6CF926',
+                        color: "#6CF926",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -196,7 +172,7 @@ const SagaScreen = () => {
                     </Text>
                     <Text
                       style={{
-                        color: '#fff',
+                        color: "#fff",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -212,14 +188,14 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View
                     style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
+                      flexDirection: "row",
+                      alignItems: "center",
                       columnGap: 4,
                     }}
                   >
                     <Text
                       style={{
-                        color: '#6CF926',
+                        color: "#6CF926",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -227,16 +203,16 @@ const SagaScreen = () => {
                     </Text>
                     <Text
                       style={{
-                        color: '#fff',
+                        color: "#fff",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
-                      DIAMOND |{' '}
+                      DIAMOND |{" "}
                     </Text>
 
                     <Text
                       style={{
-                        color: '#6CF926',
+                        color: "#6CF926",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -244,7 +220,7 @@ const SagaScreen = () => {
                     </Text>
                     <Text
                       style={{
-                        color: '#fff',
+                        color: "#fff",
                         ...globalStyles.cardSubTitleText,
                       }}
                     >
@@ -260,7 +236,7 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View style={styles.cardSubTitleContainer}>
                     <Image
-                      source={require('../assets/img/home/gcwg.png')}
+                      source={require("../assets/img/home/gcwg.png")}
                       style={styles.cardSubTitleImage}
                     />
 
@@ -275,7 +251,7 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View style={styles.cardSubTitleContainer}>
                     <Image
-                      source={require('../assets/img/home/gcwg.png')}
+                      source={require("../assets/img/home/gcwg.png")}
                       style={styles.cardSubTitleImage}
                     />
 
@@ -290,7 +266,7 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View style={styles.cardSubTitleContainer}>
                     <Image
-                      source={require('../assets/img/home/gcwg.png')}
+                      source={require("../assets/img/home/gcwg.png")}
                       style={styles.cardSubTitleImage}
                     />
 
@@ -305,7 +281,7 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View style={styles.cardSubTitleContainer}>
                     <Image
-                      source={require('../assets/img/home/gcwg.png')}
+                      source={require("../assets/img/home/gcwg.png")}
                       style={styles.cardSubTitleImage}
                     />
 
@@ -320,7 +296,7 @@ const SagaScreen = () => {
                 cardSubTitle={
                   <View style={styles.cardSubTitleContainer}>
                     <Image
-                      source={require('../assets/img/home/gcwg.png')}
+                      source={require("../assets/img/home/gcwg.png")}
                       style={styles.cardSubTitleImage}
                     />
 
@@ -330,7 +306,7 @@ const SagaScreen = () => {
               />
               <StatCard
                 isClickable
-                onPress={() => LogOut()}
+                onPress={() => console.log("Logging out")}
                 cardTitle="LOGOUT"
                 cardImage={LogoutImage}
               />
@@ -338,7 +314,7 @@ const SagaScreen = () => {
           </ScrollView>
         </View>
 
-        {/* <BottomTabNav /> */}
+        <BottomTabNav />
       </ImageBackground>
 
       <CustomBottomSheet ref={modeBottomSheetRef} closable>
@@ -356,21 +332,21 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: 'cover',
+    resizeMode: "cover",
   },
   tabContentContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    backgroundColor: '#6CF92625',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    backgroundColor: "#6CF92625",
     borderRadius: 5,
     padding: 5,
     gap: 4,
   },
   cardSubTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     columnGap: 4,
   },
   cardSubTitleImage: {
@@ -378,7 +354,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   cardSubTitle: {
-    color: '#fff',
+    color: "#fff",
     ...globalStyles.cardSubTitleText,
   },
 });

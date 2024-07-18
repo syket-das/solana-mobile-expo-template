@@ -22,6 +22,7 @@ import AutoMiner from "../assets/img/fuel/auto-miner.png";
 import MultiPlayer from "../assets/img/fuel/multiplier.png";
 import EnergyCapacityImage from "../assets/img/fuel/energy-capacity.png";
 import FuelSpeedImage from "../assets/img/fuel/fuel-speed.png";
+import BottomTabNav from "../components/global/BottomTabNav";
 
 const FuelScreen = () => {
   const { points }: any = useHomeStore((state) => state);
@@ -242,6 +243,8 @@ const FuelScreen = () => {
               />
             </View>
           </View>
+
+          <BottomTabNav />
         </ImageBackground>
         <CustomBottomSheet ref={bottomSheetRef} closable>
           {key === "full-charge" ? (

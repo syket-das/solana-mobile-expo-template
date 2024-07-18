@@ -9,6 +9,7 @@ import DailyActivePlayersImageIcon from "../assets/img/rank/game.png";
 import CurrentOnlinePlayersImageImageIcon from "../assets/img/rank/current-online-players.png";
 import OverallScoreImageIcon from "../assets/img/saga/token-mined.png";
 import StatCard from "../components/global/StatCard";
+import BottomTabNav from "../components/global/BottomTabNav";
 
 const RanksScreen = () => {
   const { stats, error, getStats }: any = useStatsStore((state) => state);
@@ -96,6 +97,8 @@ const RanksScreen = () => {
           <Text style={styles.titleText}>RANKINGS</Text>
           <RanksTopTab />
         </View>
+
+        <BottomTabNav />
       </ImageBackground>
     </View>
   );

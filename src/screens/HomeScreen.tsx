@@ -22,6 +22,7 @@ import { alertAndLog } from "../utils/alertAndLog";
 import { globalStyles } from "../styles/globalStyles";
 import LudoModeModalComponent from "../components/home/LudoModalComponent";
 import NavBar from "../components/global/Navbar";
+import BottomTabNav from "../components/global/BottomTabNav";
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -130,7 +131,7 @@ const HomeScreen = () => {
           />
           <Lifeline />
 
-          {/* <BottomTabNav /> */}
+          <BottomTabNav />
 
           <CustomBottomSheet ref={bottomSheetRef}>
             <View
