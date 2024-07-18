@@ -42,7 +42,7 @@ const Modes = ({
             styles.gameBtn,
             {
               borderWidth: mode === "game" ? 1 : 0,
-              borderColor: mode === "game" ? "#6CF926" : "transparent",
+              borderColor: mode === "game" ? "#6CF92625" : "transparent",
             },
           ]}
         >
@@ -53,8 +53,7 @@ const Modes = ({
           <Text
             style={{
               color: "#6CF926",
-              marginTop: 4,
-              ...globalStyles.globalFont,
+              ...styles.btnLabel,
             }}
           >
             GAME
@@ -67,7 +66,7 @@ const Modes = ({
             styles.bossBtn,
             {
               borderWidth: mode === "boss" ? 1 : 0,
-              borderColor: mode === "boss" ? "#FFCC00" : "transparent",
+              borderColor: mode === "boss" ? "#FFCC0075" : "transparent",
             },
           ]}
         >
@@ -75,15 +74,7 @@ const Modes = ({
             source={require("../../assets/img/home/boss.png")}
             style={{ width: 50, height: 40 }}
           />
-          <Text
-            style={{
-              color: "#EEBF01",
-              marginTop: 4,
-              ...globalStyles.globalFont,
-            }}
-          >
-            BOSS
-          </Text>
+          <Text style={{ color: "#FFCC00", ...styles.btnLabel }}>BOSS</Text>
         </View>
       </TouchableHighlight>
       <TouchableHighlight onPress={() => handleLudoOpenPress()}>
@@ -95,8 +86,7 @@ const Modes = ({
           <Text
             style={{
               color: "#6CF926",
-              marginTop: 4,
-              ...globalStyles.globalFont,
+              ...styles.btnLabel,
             }}
           >
             LUDU
@@ -111,19 +101,27 @@ export default Modes;
 
 const styles = StyleSheet.create({
   gameBtn: {
-    backgroundColor: "#1E3B10",
+    backgroundColor: "#6CF92612",
     borderRadius: 10,
+    flexDirection: "column",
+    gap: 4,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 7,
-    paddingHorizontal: 5,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
   },
   bossBtn: {
-    backgroundColor: "#282209",
+    backgroundColor: "#FFCC0012",
     borderRadius: 10,
+    flexDirection: "column",
+    gap: 4,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 7,
-    paddingHorizontal: 5,
+    paddingVertical: 8,
+    paddingHorizontal: 4,
+  },
+  btnLabel: {
+    fontSize: 18,
+    ...globalStyles.globalFont,
   },
 });
