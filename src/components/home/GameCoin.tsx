@@ -1,14 +1,16 @@
 // @ts-nocheck
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect } from 'react';
+import { debounce } from 'lodash';
 import {
   View,
   StyleSheet,
   TouchableWithoutFeedback,
   Animated,
   Image,
-} from "react-native";
-import useHomeStore from "../../store/homeStore";
-import useAuthStore from "../../store/authStore";
+} from 'react-native';
+import useHomeStore from '../../store/homeStore';
+import useAuthStore from '../../store/authStore';
+import { useIsFocused } from '@react-navigation/native';
 
 const GameCoin = () => {
   const {
@@ -19,7 +21,10 @@ const GameCoin = () => {
     maxLifeline,
     mode,
     increaseLifeline,
+    updateToDB,
+    fetchFromDB,
   } = useHomeStore((state) => state);
+  const isFocused = useIsFocused();
 
   const { user } = useAuthStore((state) => state);
 
@@ -27,11 +32,15 @@ const GameCoin = () => {
   const [tiltX] = useState(new Animated.Value(0));
   const [tiltY] = useState(new Animated.Value(0));
 
+  useEffect(() => {
+    fetchFromDB();
+  }, [isFocused]);
+
   const handlePressIn = (event) => {
     const { locationX, locationY } = event.nativeEvent;
 
-    const tiltDirectionX = locationX > 175 ? 1 : -1; // Assuming coin is 350px wide
-    const tiltDirectionY = locationY > 175 ? 1 : -1; // Assuming coin is 350px tall
+    const tiltDirectionX = locationX > 175 ? 1 : -1;
+    const tiltDirectionY = locationY > 175 ? 1 : -1;
 
     Animated.timing(tiltX, {
       toValue: tiltDirectionX * 15,
@@ -47,6 +56,7 @@ const GameCoin = () => {
 
     increasePoints();
     decreaseLifeline();
+    updateToDB();
 
     const newAnimation = new Animated.Value(0);
     animations.push(newAnimation);
@@ -61,7 +71,7 @@ const GameCoin = () => {
         duration: 1000,
         useNativeDriver: true,
       }).start(() => {
-        animations.shift(); // Remove the animation once it finishes
+        animations.shift();
       });
     });
   };
@@ -88,7 +98,7 @@ const GameCoin = () => {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, [lifeline, points]);
+  }, [lifeline, maxLifeline]);
 
   return (
     <View style={styles.container}>
@@ -105,27 +115,27 @@ const GameCoin = () => {
                 {
                   rotateY: tiltX.interpolate({
                     inputRange: [-15, 15],
-                    outputRange: ["-15deg", "15deg"],
+                    outputRange: ['-15deg', '15deg'],
                   }),
                 },
                 {
                   rotateX: tiltY.interpolate({
                     inputRange: [-15, 15],
-                    outputRange: ["-15deg", "15deg"],
+                    outputRange: ['-15deg', '15deg'],
                   }),
                 },
               ],
             },
           ]}
         >
-          {mode === "game" ? (
+          {mode === 'game' ? (
             <Image
-              source={require("../../assets/img/home/gc.png")}
+              source={require('../../assets/img/home/gc.png')}
               style={styles.image}
             />
-          ) : mode === "boss" ? (
+          ) : mode === 'boss' ? (
             <Image
-              source={require("../../assets/img/home/golden-mining-coin.png")}
+              source={require('../../assets/img/home/golden-mining-coin.png')}
               style={styles.image}
             />
           ) : null}
@@ -159,8 +169,8 @@ const GameCoin = () => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center",
-    alignItems: "center",
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   coin: {
     marginVertical: 5,
@@ -168,17 +178,17 @@ const styles = StyleSheet.create({
   image: {
     width: 350,
     height: 350,
-    resizeMode: "contain",
+    resizeMode: 'contain',
   },
   points: {
     fontSize: 24,
-    fontWeight: "bold",
+    fontWeight: 'bold',
   },
   plusOne: {
-    position: "absolute",
+    position: 'absolute',
     fontSize: 20,
-    color: "#fff",
-    fontWeight: "bold",
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 

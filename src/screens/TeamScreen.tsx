@@ -6,17 +6,17 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import React, { useState } from "react";
-import BottomTabNav from "../components/global/BottomTabNav";
-import useAuthStore from "../store/authStore";
-import * as Clipboard from "expo-clipboard";
-import { globalStyles } from "../styles/globalStyles";
-import BottomSheet from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet";
-import useUserStore from "../store/userStore";
-import NavBar from "../components/global/Navbar";
-import Rank1 from "../assets/img/rank/1.png";
-import StatCard from "../components/global/StatCard";
+} from 'react-native';
+import React, { useState } from 'react';
+import BottomTabNav from '../components/global/BottomTabNav';
+import useAuthStore from '../store/authStore';
+import * as Clipboard from 'expo-clipboard';
+import { globalStyles } from '../styles/globalStyles';
+import BottomSheet from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheet/BottomSheet';
+import useUserStore from '../store/userStore';
+import NavBar from '../components/global/Navbar';
+import Rank1 from '../assets/img/rank/1.png';
+import StatCard from '../components/global/StatCard';
 
 const TeamScreen = () => {
   const { user, error, getUserProfile }: any = useUserStore((state) => state);
@@ -25,7 +25,7 @@ const TeamScreen = () => {
     await getUserProfile();
   };
   const modeBottomSheetRef = React.useRef<BottomSheet>(null);
-  const [copiedText, setCopiedText] = useState("");
+  const [copiedText, setCopiedText] = useState('');
 
   const copyToClipboard = async (str: any) => {
     await Clipboard.setStringAsync(str);
@@ -35,10 +35,11 @@ const TeamScreen = () => {
     const text = await Clipboard.getStringAsync();
     setCopiedText(text);
   };
+
   return (
     <View style={styles.container}>
       <ImageBackground
-        source={require("../assets/img/background-layer.jpg")}
+        source={require('../assets/img/background-layer.jpg')}
         style={styles.bgImage}
       >
         <NavBar />
@@ -47,29 +48,29 @@ const TeamScreen = () => {
           style={{
             paddingHorizontal: 15,
             marginTop: 28,
-            maxHeight: "70%",
+            maxHeight: '70%',
           }}
         >
           <View style={globalStyles.tabContainer}>
             <View
               style={{
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                backgroundColor: "#6CF92625",
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                backgroundColor: '#6CF92625',
                 borderRadius: 5,
                 padding: 5,
                 gap: 4,
               }}
             >
               <Image
-                source={require("../assets/img/saga/your-team.png")}
+                source={require('../assets/img/saga/your-team.png')}
                 style={{ width: 17, height: 17 }}
               />
               <Text
                 style={{
-                  color: "#6CF926",
+                  color: '#6CF926',
                   fontSize: 20,
                   ...globalStyles.globalFont,
                 }}
@@ -82,25 +83,25 @@ const TeamScreen = () => {
           {user && user.referrals.length === 0 && (
             <View
               style={{
-                width: "100%",
-                backgroundColor: "#6CF92612",
+                width: '100%',
+                backgroundColor: '#6CF92612',
                 borderRadius: 10,
-                borderColor: "#6CF92625",
+                borderColor: '#6CF92625',
                 borderWidth: 1,
                 paddingVertical: 22,
-                paddingHorizontal: "auto",
+                paddingHorizontal: 'auto',
                 marginTop: 16,
               }}
             >
               <View
                 style={{
-                  flexDirection: "row",
-                  alignItems: "center",
+                  flexDirection: 'row',
+                  alignItems: 'center',
                   marginLeft: 10,
                 }}
               >
                 <Text
-                  style={{ color: "#6CF926", ...globalStyles.cardTitleText }}
+                  style={{ color: '#6CF926', ...globalStyles.cardTitleText }}
                 >
                   NO TEAM MEMBERS
                 </Text>
@@ -110,7 +111,12 @@ const TeamScreen = () => {
 
           {user &&
             user.referrals.map((referral: any) => (
-              <View>
+              <View
+                key={referral.id}
+                style={{
+                  marginTop: 16,
+                }}
+              >
                 <StatCard
                   isClickable={false}
                   cardTitle="STEVE JOBS 2"
@@ -118,18 +124,20 @@ const TeamScreen = () => {
                   cardSubTitle={
                     <View style={styles.cardSubTitleContainer}>
                       <Image
-                        source={require("../assets/img/home/gcwg.png")}
+                        source={require('../assets/img/home/gcwg.png')}
                         style={styles.cardSubTitleImage}
                       />
 
-                      <Text style={styles.cardSubTitle}>500</Text>
+                      <Text style={styles.cardSubTitle}>
+                        {referral.referredUser.points.points}
+                      </Text>
                       <Text
                         style={{
-                          color: "#6CF926",
+                          color: '#6CF926',
                           ...globalStyles.cardSubTitleText,
                         }}
                       >
-                        | TEAM 1100K
+                        | TEAM {referral.referredUser.referrals?.length}
                       </Text>
                     </View>
                   }
@@ -152,11 +160,11 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     flex: 1,
-    resizeMode: "cover",
+    resizeMode: 'cover',
   },
   cardSubTitleContainer: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     columnGap: 4,
   },
   cardSubTitleImage: {
@@ -164,7 +172,7 @@ const styles = StyleSheet.create({
     height: 20,
   },
   cardSubTitle: {
-    color: "#fff",
+    color: '#fff',
     ...globalStyles.cardSubTitleText,
   },
 });

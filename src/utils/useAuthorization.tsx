@@ -7,7 +7,6 @@ import {
   AuthToken,
   Base64EncodedAddress,
   DeauthorizeAPI,
-  SignInPayloadWithRequiredFields,
   SignInPayload,
 } from '@solana-mobile/mobile-wallet-adapter-protocol';
 import { toUint8Array } from 'js-base64';
@@ -15,7 +14,7 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useCallback, useMemo } from 'react';
 
 const CHAIN = 'solana';
-const CLUSTER = 'devnet';
+const CLUSTER = 'mainnet-beta'; // Change to mainnet-beta for mainnet
 const CHAIN_IDENTIFIER = `${CHAIN}:${CLUSTER}`;
 
 export type Account = Readonly<{
@@ -43,9 +42,7 @@ function getAuthorizationFromAuthorizationResult(
 ): WalletAuthorization {
   let selectedAccount: Account;
   if (
-    // We have yet to select an account.
     previouslySelectedAccount == null ||
-    // The previously selected account is no longer in the set of authorized addresses.
     !authorizationResult.accounts.some(
       ({ address }) => address === previouslySelectedAccount.address
     )
@@ -69,7 +66,7 @@ function getPublicKeyFromAddress(address: Base64EncodedAddress): PublicKey {
 
 function cacheReviver(key: string, value: any) {
   if (key === 'publicKey') {
-    return new PublicKey(value as PublicKeyInitData); // the PublicKeyInitData should match the actual data structure stored in AsyncStorage
+    return new PublicKey(value as PublicKeyInitData);
   } else {
     return value;
   }
@@ -78,22 +75,28 @@ function cacheReviver(key: string, value: any) {
 const AUTHORIZATION_STORAGE_KEY = 'authorization-cache';
 
 export async function fetchAuthorization(): Promise<WalletAuthorization | null> {
-  const cacheFetchResult = await AsyncStorage.getItem(
-    AUTHORIZATION_STORAGE_KEY
-  );
-
-  if (!cacheFetchResult) {
+  try {
+    const cacheFetchResult = await AsyncStorage.getItem(
+      AUTHORIZATION_STORAGE_KEY
+    );
+    if (!cacheFetchResult) {
+      return null;
+    }
+    return JSON.parse(cacheFetchResult, cacheReviver);
+  } catch (error) {
+    console.error('Failed to fetch authorization:', error);
     return null;
   }
-
-  // Return prior authorization, if found.
-  return JSON.parse(cacheFetchResult, cacheReviver);
 }
 
 async function persistAuthorization(
   auth: WalletAuthorization | null
 ): Promise<void> {
-  await AsyncStorage.setItem(AUTHORIZATION_STORAGE_KEY, JSON.stringify(auth));
+  try {
+    await AsyncStorage.setItem(AUTHORIZATION_STORAGE_KEY, JSON.stringify(auth));
+  } catch (error) {
+    console.error('Failed to persist authorization:', error);
+  }
 }
 
 export const APP_IDENTITY = {
@@ -103,11 +106,16 @@ export const APP_IDENTITY = {
 
 export function useAuthorization() {
   const queryClient = useQueryClient();
-  const { data: authorization, isLoading } = useQuery({
-    queryKey: ['wallet-authorization'],
-    queryFn: () => fetchAuthorization(),
-  });
-  const { mutate: setAuthorization } = useMutation({
+  const { data: authorization, isLoading } =
+    useQuery<WalletAuthorization | null>({
+      queryKey: ['wallet-authorization'],
+      queryFn: fetchAuthorization,
+    });
+  const { mutate: setAuthorization } = useMutation<
+    void,
+    unknown,
+    WalletAuthorization | null
+  >({
     mutationFn: persistAuthorization,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['wallet-authorization'] });
@@ -125,8 +133,9 @@ export function useAuthorization() {
       await setAuthorization(nextAuthorization);
       return nextAuthorization;
     },
-    [authorization]
+    [authorization, setAuthorization]
   );
+
   const authorizeSession = useCallback(
     async (wallet: AuthorizeAPI) => {
       const authorizationResult = await wallet.authorize({
@@ -139,6 +148,7 @@ export function useAuthorization() {
     },
     [authorization, handleAuthorizationResult]
   );
+
   const authorizeSessionWithSignIn = useCallback(
     async (wallet: AuthorizeAPI, signInPayload: SignInPayload) => {
       const authorizationResult = await wallet.authorize({
@@ -152,6 +162,7 @@ export function useAuthorization() {
     },
     [authorization, handleAuthorizationResult]
   );
+
   const deauthorizeSession = useCallback(
     async (wallet: DeauthorizeAPI) => {
       if (authorization?.authToken == null) {
@@ -160,8 +171,9 @@ export function useAuthorization() {
       await wallet.deauthorize({ auth_token: authorization.authToken });
       await setAuthorization(null);
     },
-    [authorization]
+    [authorization, setAuthorization]
   );
+
   return useMemo(
     () => ({
       accounts: authorization?.accounts ?? null,
@@ -171,6 +183,12 @@ export function useAuthorization() {
       selectedAccount: authorization?.selectedAccount ?? null,
       isLoading,
     }),
-    [authorization, authorizeSession, deauthorizeSession]
+    [
+      authorization,
+      authorizeSession,
+      authorizeSessionWithSignIn,
+      deauthorizeSession,
+      isLoading,
+    ]
   );
 }

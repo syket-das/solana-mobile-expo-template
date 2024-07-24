@@ -28,7 +28,9 @@ import { globalStyles } from '../styles/globalStyles';
 const AuthScreen = () => {
   const route = useRoute();
   const navigation = useNavigation();
+
   const isFocused = useIsFocused();
+
   const { user, registerOrLogin, error }: any = useAuthStore((state) => state);
 
   const {
@@ -42,7 +44,7 @@ const AuthScreen = () => {
 
   const { signIn } = useMobileWallet();
   const [signInInProgress, setSignInInProgress] = useState(false);
-  const handleConnectPress = useCallback(async () => {
+  const handleConnectPress = async () => {
     try {
       if (signInInProgress) {
         return;
@@ -75,32 +77,47 @@ const AuthScreen = () => {
     } finally {
       setSignInInProgress(false);
     }
-  }, [signInInProgress, authorizeSession]);
+  };
 
   const getAuthData = async () => {
     setSignInInProgress(true);
-    const d = await fetchAuthorization();
 
-    await registerOrLogin(d?.selectedAccount);
+    try {
+      const d = await fetchAuthorization();
 
-    setSignInInProgress(false);
+      if (d?.selectedAccount) {
+        await registerOrLogin(d?.selectedAccount);
+      }
 
-    if (user) {
-      // navigation.navigate('Home');
-    }
+      setSignInInProgress(false);
+
+      if (user) {
+        console.log(user, 'user');
+
+        navigation.navigate('Home');
+      } else {
+        if (d?.selectedAccount.address) {
+          navigation.navigate('Home');
+        }
+      }
+    } catch (error) {}
   };
 
   useEffect(() => {
-    if (isFocused && selectedAccount && user) {
-      handleAuth();
-    } else {
-      async function fetchData() {
-        const data = getAuthData();
+    if (isFocused) {
+      if (selectedAccount && user) {
+        handleAuth();
+      } else {
+        fetchData();
       }
-
-      fetchData();
     }
-  }, [isFocused, selectedAccount, user]);
+  }, [isFocused]);
+
+  async function fetchData() {
+    if (!selectedAccount && !user) {
+      await getAuthData();
+    }
+  }
 
   const handleAuth = async () => {
     setSignInInProgress(true);
