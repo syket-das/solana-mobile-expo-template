@@ -17,6 +17,7 @@ import {
   useRoute,
 } from '@react-navigation/native';
 import {
+  AUTHORIZATION_STORAGE_KEY,
   fetchAuthorization,
   useAuthorization,
 } from '../utils/useAuthorization';
@@ -51,29 +52,33 @@ const AuthScreen = () => {
       }
 
       setSignInInProgress(true);
+
+      await fetchData();
+
       await signIn({
-        domain: 'ecosystem-kernel.onrender.com',
+        domain: 'azameinasaga.com',
         statement: 'Sign into Azameina',
-        uri: 'https://ecosystem-kernel.onrender.com',
+        uri: 'https://azameinasaga.com',
       });
 
-      if (selectedAccount?.address !== '') {
+      console.log('selectedAccount', selectedAccount);
+
+      if (selectedAccount?.address) {
         await registerOrLogin(selectedAccount);
 
         if (error) {
-          // alertAndLog('Error during sign in', error);
+          alertAndLog('Error during sign in', error);
           return;
         }
-
-        if (user && route.name === 'Auth') {
-          navigation.navigate('Home');
-        }
+      } else {
+        await fetchData();
+        await getAuthData();
       }
     } catch (err: any) {
-      // alertAndLog(
-      //   'Error during sign in',
-      //   err instanceof Error ? err.message : err
-      // );
+      alertAndLog(
+        'Error during sign in',
+        err instanceof Error ? err.message : err
+      );
     } finally {
       setSignInInProgress(false);
     }
@@ -111,10 +116,12 @@ const AuthScreen = () => {
         fetchData();
       }
     }
+
+    return () => {};
   }, [isFocused]);
 
   async function fetchData() {
-    if (!selectedAccount && !user) {
+    if (!selectedAccount?.address && !user?.id) {
       await getAuthData();
     }
   }

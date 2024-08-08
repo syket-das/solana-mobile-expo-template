@@ -1,15 +1,10 @@
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  ImageBackground,
-} from "react-native";
-import React, { forwardRef, useCallback, useMemo } from "react";
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { forwardRef, useCallback, useMemo } from 'react';
 import BottomSheet, {
   useBottomSheet,
   BottomSheetBackdrop,
-} from "@gorhom/bottom-sheet";
-import Ionicons from "@expo/vector-icons/Ionicons";
+} from '@gorhom/bottom-sheet';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 export type Ref = BottomSheet;
 
@@ -28,16 +23,17 @@ const CloseBtn = () => {
 };
 
 const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
-  const snapPoints = useMemo(() => ["45%"], []);
+  const snapPoints = useMemo(() => ['45%'], []);
 
-  //add this
+  // Modify this to prevent closing on backdrop press
   const renderBackdrop = useCallback(
-    (props: any) => (
+    (backdropProps: any) => (
       <BottomSheetBackdrop
-        {...props}
+        {...backdropProps}
         appearsOnIndex={0}
         disappearsOnIndex={-1}
-        style={[props.style, styles.backdrop]}
+        style={[backdropProps.style, styles.backdrop]}
+        pressBehavior="none"
       />
     ),
     []
@@ -48,9 +44,9 @@ const CustomBottomSheet = forwardRef<Ref, Props>((props, ref) => {
       ref={ref}
       index={-1}
       snapPoints={snapPoints}
-      enablePanDownToClose={true}
-      handleIndicatorStyle={{ display: "none" }}
-      backgroundStyle={{ backgroundColor: "#142E07" }}
+      enablePanDownToClose={false} // Disable drag to close
+      handleIndicatorStyle={{ display: 'none' }}
+      backgroundStyle={{ backgroundColor: '#142E07' }}
       backdropComponent={renderBackdrop}
     >
       <View style={styles.contentContainer}>
@@ -66,21 +62,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   closeBtn: {
-    position: "absolute",
+    position: 'absolute',
     top: 0,
     right: 16,
     width: 18,
     height: 18,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#6CF92610",
-    borderColor: "#6CF92648",
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#6CF92610',
+    borderColor: '#6CF92648',
     borderWidth: 1,
     borderRadius: 100,
   },
   backdrop: {
-    backgroundColor: "rgba(255, 255, 255, 0.4)",
+    backgroundColor: 'rgba(255, 255, 255, 0.4)',
   },
 });
 

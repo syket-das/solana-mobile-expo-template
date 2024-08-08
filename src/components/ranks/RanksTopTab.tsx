@@ -81,6 +81,7 @@ const RanksTopTab = () => {
           >
             {users.map((user: any, index: number) => (
               <StatCard
+                key={index}
                 isClickable={false}
                 cardTitle={'STEVE JOBS ' + index}
                 cardImage={Rank1}

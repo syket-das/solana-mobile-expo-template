@@ -30,7 +30,10 @@ const useAuthStore = create(
         });
       } catch (error) {
         set({
-          error: error.response?.data?.message || 'Something went wrong',
+          error:
+            error.response?.data?.error ||
+            error.message ||
+            'Something went wrong',
           user: null,
           token: null,
         });

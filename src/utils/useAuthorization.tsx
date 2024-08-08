@@ -72,7 +72,7 @@ function cacheReviver(key: string, value: any) {
   }
 }
 
-const AUTHORIZATION_STORAGE_KEY = 'authorization-cache';
+export const AUTHORIZATION_STORAGE_KEY = 'authorization-cache';
 
 export async function fetchAuthorization(): Promise<WalletAuthorization | null> {
   try {

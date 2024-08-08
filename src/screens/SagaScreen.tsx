@@ -30,9 +30,11 @@ import LogoutImage from '../assets/img/saga/padlock.png';
 import BottomTabNav from '../components/global/BottomTabNav';
 import { useMobileWallet } from '../utils/useMobileWallet';
 import {
+  AUTHORIZATION_STORAGE_KEY,
   fetchAuthorization,
   useAuthorization,
 } from '../utils/useAuthorization';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SagaScreen = () => {
   const { disconnect } = useMobileWallet();
@@ -55,9 +57,7 @@ const SagaScreen = () => {
   }, []);
 
   const LogOut = async () => {
-    const d = await fetchAuthorization();
-
-    await disconnect();
+    await AsyncStorage.removeItem(AUTHORIZATION_STORAGE_KEY);
 
     navigation.navigate('Auth');
   };
